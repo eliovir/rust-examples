@@ -17,9 +17,16 @@ Examples are tested with version 0.7.
   * 5.2 Enums: `tutorial-05_2-enum.rs`
 * [tutorial-tasks](Rust Tasks and Communication)
   * 2 Basics: `tutorial-tasks-02-basics.rs`
+  * 2.2 Backgrounding computations: Futures: `tutorial-tasks-02_2-backgrounding_computations.rs`
+* [unittesting](Doc unit testing)
+  * Unit testing in Rust: `unittests.rs`
+* Some new files:
+  * `Makefile` to compile, run tests and run benchmarks
+  * A library and tests for a Fibonacci function: `libfibonacci.rs` 
 
 [tutorial]: http://static.rust-lang.org/doc/0.7/tutorial.html
 [tutorial-tasks]: http://static.rust-lang.org/doc/0.7/tutorial-tasks.html
+[unittesting]: https://github.com/mozilla/rust/wiki/Doc-unit-testing
 
 ## License
 
@@ -30,3 +37,18 @@ BSD-like licenses.
 These codes are distributed under the MIT license.
 
 See LICENSE for details.
+
+# Running it
+
+To compile executables, simply
+
+```bash
+$ make exe
+```
+
+To get help on commands:
+
+```bash
+$ make help
+```
+
