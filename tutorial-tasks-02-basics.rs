@@ -1,6 +1,8 @@
 /**
  * Rust Tasks and Communication Tutorial - 2 Basics
  * http://static.rust-lang.org/doc/0.7/tutorial-tasks.html#basics
+ *
+ * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 use std::int;
 

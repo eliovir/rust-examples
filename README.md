@@ -15,18 +15,18 @@ Examples are tested with version 0.7.
   * 2.1 Compiling your first program: `tutorial-02_1-hello.rs`
   * 3 Syntax basics: `tutorial-03-syntax_basics.rs`
   * 5.2 Enums: `tutorial-05_2-enum.rs`
-* [tutorial-tasks](Rust Tasks and Communication)
+* [Rust Tasks and Communication]
   * 2 Basics: `tutorial-tasks-02-basics.rs`
   * 2.2 Backgrounding computations: Futures: `tutorial-tasks-02_2-backgrounding_computations.rs`
-* [unittesting](Doc unit testing)
+* [Doc unit testing]
   * Unit testing in Rust: `unittests.rs`
 * Some new files:
   * `Makefile` to compile, run tests and run benchmarks
   * A library and tests for a Fibonacci function: `libfibonacci.rs` 
 
 [tutorial]: http://static.rust-lang.org/doc/0.7/tutorial.html
-[tutorial-tasks]: http://static.rust-lang.org/doc/0.7/tutorial-tasks.html
-[unittesting]: https://github.com/mozilla/rust/wiki/Doc-unit-testing
+[Rust Tasks and Communication]: http://static.rust-lang.org/doc/0.7/tutorial-tasks.html
+[Doc unit testing]: https://github.com/mozilla/rust/wiki/Doc-unit-testing
 
 ## License
 

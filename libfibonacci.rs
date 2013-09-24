@@ -2,6 +2,8 @@
 #[crate_type = "lib"];
 /**
  * Compute fibonacci.
+ *
+ * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 
 extern mod extra;
@@ -32,22 +34,14 @@ extern mod extra;
 fn fibonacci(n: int) -> uint {
 	if n < 0 {
 		fail!(fmt!("%d is negative!", n));
-		/*
-	} else if n == 0 {
-		fail!("zero is not a right argument to fibonacci()!");
-	} else if n <= 2 {
-		return 1;
-	} else {
-		return fibonacci(n - 1) + fibonacci(n - 2);
-		*/
 	}
-	/*
-	*/
 	match n {
 		0     => fail!("zero is not a right argument to fibonacci()!"),
 		1 | 2 => 1,
 		3     => 2,
+		/*
 		50    => 12586269025,
+		*/
 		_     => fibonacci(n - 1) + fibonacci(n - 2)
 	}
 }
