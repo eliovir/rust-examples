@@ -1,4 +1,9 @@
-tutorial-02_1-hello
-tutorial-03-syntax_basics
-what_it_looks_like
 *~
+fibonacci
+lib*.so
+lib-stamps
+test-*
+tutorial-*
+!tutorial-*.rs
+unittests
+what_it_looks_like
