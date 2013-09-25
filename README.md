@@ -38,17 +38,24 @@ These codes are distributed under the MIT license.
 
 See LICENSE for details.
 
-# Running it
+# Compile and running it
 
-To compile executables, simply
+You will need the version 0.7 of the rust compiler.
+If you encounter problems, make sure you have the right version before creating an issue.
 
-```bash
-$ make exe
-```
+The simplest way to build **rust-examples** is to do a clone and use ``make`` to compile:
+
+
+    git clone https://github.com/eliovir/rust-examples
+    cd rust-examples
+    make
+    
+To run tests and benchmarks:
+
+    make tests
+    make bench
 
 To get help on commands:
 
-```bash
-$ make help
-```
+    make help
 
