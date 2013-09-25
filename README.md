@@ -28,16 +28,6 @@ Examples are tested with version 0.7.
 [Rust Tasks and Communication]: http://static.rust-lang.org/doc/0.7/tutorial-tasks.html
 [Doc unit testing]: https://github.com/mozilla/rust/wiki/Doc-unit-testing
 
-## License
-
-Rust is primarily distributed under the terms of both the MIT license
-and the Apache License (Version 2.0), with portions covered by various
-BSD-like licenses.
-
-These codes are distributed under the MIT license.
-
-See LICENSE for details.
-
 # Compile and running it
 
 You will need the version 0.7 of the rust compiler.
@@ -59,3 +49,22 @@ To get help on commands:
 
     make help
 
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Make your changes, and add tests for them
+4. Test your changes (`mvn test`)
+5. Commit your changes (`git commit -am 'Add some feature'`)
+6. Push to the branch (`git push origin my-new-feature`)
+7. Create new Pull Request
+
+## License
+
+Rust is primarily distributed under the terms of both the MIT license
+and the Apache License (Version 2.0), with portions covered by various
+BSD-like licenses.
+
+These codes are distributed under the MIT license.
+
+See LICENSE for details.
