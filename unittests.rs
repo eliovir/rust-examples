@@ -14,8 +14,17 @@ mod tests {
 	}
 	*/
 	#[test]
+	fn testFloat() {
+		let expected = 1f64;
+		let mut actual = 1f64;
+		let precision = 0.1f64;
+		actual = actual + precision / 2f64;
+		assert_approx_eq!(expected, actual, precision);
+	}
+	#[test]
 	fn testSuccess() {
 		assert!(1 == 1);
+		assert_eq!(1, 1);
 	}
 }
 fn main() {
