@@ -10,21 +10,21 @@ Examples are tested with version 0.7.
 ## Files
 
 * [Homepage](http://www.rust-lang.org/)
-  * `what_it_looks_like.rs`
-* [tutorial]
-  * 2.1 Compiling your first program: `tutorial-02_1-hello.rs`
-  * 3 Syntax basics: `tutorial-03-syntax_basics.rs`
-  * 5.2 Enums: `tutorial-05_2-enum.rs`
+    * `what_it_looks_like.rs`
+* [Tutorial]
+    * 2.1 Compiling your first program: `tutorial-02_1-hello.rs`
+    * 3 Syntax basics: `tutorial-03-syntax_basics.rs`
+    * 5.2 Enums: `tutorial-05_2-enum.rs`
 * [Rust Tasks and Communication]
-  * 2 Basics: `tutorial-tasks-02-basics.rs`
-  * 2.2 Backgrounding computations: Futures: `tutorial-tasks-02_2-backgrounding_computations.rs`
+    * 2 Basics: `tutorial-tasks-02-basics.rs`
+    * 2.2 Backgrounding computations: Futures: `tutorial-tasks-02_2-backgrounding_computations.rs`
 * [Doc unit testing]
-  * Unit testing in Rust: `unittests.rs`
+    * Unit testing in Rust: `unittests.rs`
 * Some new files:
-  * `Makefile` to compile, run tests and run benchmarks
-  * A library and tests for a Fibonacci function: `libfibonacci.rs` 
+    * `Makefile` to compile, run tests and run benchmarks
+    * A library and tests for a Fibonacci function: `libfibonacci.rs`
 
-[tutorial]: http://static.rust-lang.org/doc/0.7/tutorial.html
+[Tutorial]: http://static.rust-lang.org/doc/0.7/tutorial.html
 [Rust Tasks and Communication]: http://static.rust-lang.org/doc/0.7/tutorial-tasks.html
 [Doc unit testing]: https://github.com/mozilla/rust/wiki/Doc-unit-testing
 
@@ -39,7 +39,7 @@ The simplest way to build **rust-examples** is to do a clone and use ``make`` to
     git clone https://github.com/eliovir/rust-examples
     cd rust-examples
     make
-    
+
 To run tests and benchmarks:
 
     make tests
@@ -51,7 +51,7 @@ To get help on commands:
 
 ## Contributing
 
-1. Fork it
+1. Fork it (`git clone https://github.com/eliovir/rust-examples`)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Make your changes, and add tests for them
 4. Test your changes (`make test`)
