@@ -20,6 +20,9 @@ Examples are tested with version 0.7.
     * 2.2 Backgrounding computations: Futures: `tutorial-tasks-02_2-backgrounding_computations.rs`
 * [Doc unit testing]
     * Unit testing in Rust: `unittests.rs`
+* API
+    * Program to an 'interface', not an 'implementation', by Josh Davis: `lang-interface.rs`
+    * Pointer snippets from Dave Herman's talk: `lang-pointers.rs`
 * Some new files:
     * `Makefile` to compile, run tests and run benchmarks
     * A library and tests for a Fibonacci function: `libfibonacci.rs`
