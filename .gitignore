@@ -1,8 +1,8 @@
 *~
 /api-extra-getopts
 /fibonacci
-/lang-interface
-/lang-pointers
+/lang-*
+!lang-*.rs
 /lib*.so
 /lib-stamps
 /nbproject/private/
