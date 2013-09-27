@@ -14,7 +14,7 @@ Examples are tested with version 0.7.
 * [Tutorial]
     * 2.1 Compiling your first program: `tutorial-02_1-hello.rs`
     * 3 Syntax basics: `tutorial-03-syntax_basics.rs`
-    * 4.3 Loops (`for`, `while`, `loop`): `tutorial-04_3-loops.rs`
+    * 4.3 Loops (`for`, `for i.times`, `while`, `loop`): `tutorial-04_3-loops.rs`
     * 5.2 Enums: `tutorial-05_2-enum.rs`
 * [Rust Tasks and Communication]
     * 2 Basics: `tutorial-tasks-02-basics.rs`

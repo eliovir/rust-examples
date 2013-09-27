@@ -11,6 +11,7 @@ fn main() {
 	for std::uint::range(0, 10) |i| {
 		println(fmt!("%u is an integer!", i));
 	}
+
 	/*
 	 * is inlined by the compiler as:
 	 */
@@ -19,6 +20,14 @@ fn main() {
 		println(fmt!("%u is an integer!", j));
 		j += 1;
 	}
+
+	/*
+	 * Using for and .times
+	 */
+	for 5.times {
+		println("Here's some Rust!");
+	}
+
 	/*
 	 * Using loop.
 	 */
