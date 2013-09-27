@@ -12,6 +12,7 @@ fn main() {
 	println(fmt!("Is there a key foo?  => %?", h.contains_key(& &"foo"))); // => true
 	println(fmt!("Is there a key baz?  => %?", h.contains_key(& &"baz"))); // => false
 	println(fmt!("The value for foo is => %?", h.find(& &"foo"))); // => Some(&42)
+	let key = "baz";
 	h.insert(key, 1);
 	println(fmt!("Is there a key baz?  => %?", h.contains_key(& &"baz"))); // => false
 
@@ -25,7 +26,6 @@ fn main() {
 	println(fmt!("Is there a key foo?  => %?", h.contains_key(&~"foo"))); // => true
 	println(fmt!("Is there a key baz?  => %?", h.contains_key(&~"baz"))); // => false
 	println(fmt!("The value for foo is => %?", h.find(&~"foo"))); // => Some(&42)
-	let key = "baz";
 	h.insert(key.to_owned(), 1);
 	println(fmt!("Is there a key baz?  => %?", h.contains_key(&~"baz"))); // => true
 }

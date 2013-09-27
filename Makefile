@@ -6,7 +6,7 @@ TESTPROG:=$(patsubst %.rs,test-%,$(TESTSRC))
 SRC=$(wildcard *.rs)
 SRC:=$(filter-out $(TESTSRC),$(SRC))
 PROG:=$(patsubst %.rs,%,$(SRC))
-RUSTFLAGS= -L .
+RUSTFLAGS=
 
 .SILENT:
 .PRECIOUS: $(LIBSTAMP)
@@ -37,7 +37,10 @@ test: $(TESTPROG)
 		./$$EXE;\
 	done
 
-% : %.rs $(LIBSTAMP)
+tutorial-tasks-02_2-backgrounding_computations: tutorial-tasks-02_2-backgrounding_computations.rs  $(LIBSTAMP)
+	$(RUSTC) $(RUSTFLAGS) $< -o $@ -L .
+	
+% : %.rs
 	$(RUSTC) $(RUSTFLAGS) $< -o $@
 
 lib-stamps/% : %.rs
