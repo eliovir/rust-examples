@@ -1,5 +1,6 @@
 *~
-/api-extra-getopts
+/api-*
+!api-.rs
 /fibonacci
 /lang-*
 !lang-*.rs
