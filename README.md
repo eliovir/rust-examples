@@ -23,7 +23,7 @@ Examples are tested with version 0.7.
 * [Doc unit testing]
     * Unit testing in Rust: `unittests.rs`
 * API
-    * Program to an 'interface', not an 'implementation', by Josh Davis: `lang-interface.rs`
+    * Program to an 'interface', not an 'implementation', by [Josh Davis](http://joshldavis.com/2013/07/01/program-to-an-interface-fool/): `lang-interface.rs`
     * Pointer snippets from Dave Herman's talk: `lang-pointers.rs`
     * extra::getopts: `api-extra-getopts.rs`
     * std::hashmap::HashMap: `api-std-hashmap.rs`
