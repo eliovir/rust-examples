@@ -16,6 +16,7 @@ Examples are tested with version 0.7.
     * 3 Syntax basics: `tutorial-03-syntax_basics.rs`
     * 4.3 Loops (`for`, `for i.times`, `while`, `loop`): `tutorial-04_3-loops.rs`
     * 5.2 Enums: `tutorial-05_2-enum.rs`
+    * 5.3 Tuples: `tutorial-05_3-tuples.rs`
 * [Rust Tasks and Communication]
     * 2 Basics: `tutorial-tasks-02-basics.rs`
     * 2.1 Communication: `tutorial-tasks-02_1-communication.rs`
