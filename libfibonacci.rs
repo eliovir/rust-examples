@@ -1,5 +1,8 @@
 #[link(name = "fibonacci", vers = "1.0", author = "eliovir")];
 #[crate_type = "lib"];
+#[license = "MIT"];
+#[desc = "Fibonacci library" ];
+#[comment = "Example of library: compute Fibonacci"];
 /**
  * Compute fibonacci.
  *
@@ -8,26 +11,26 @@
 
 extern mod extra;
 /**
-* Calcule les elements de la suite de Fibonnaci. 
-* 
+* Calcule les elements de la suite de Fibonnaci.
+*
 * REGLE RG024 Le projet permet de calculer les membres de la Suite de
-* Fibonacci. 
-* 
-* REGLE RG024.1 : f(1) = 1 
-* REGLE RG024.2 : f(2) = 1 
-* 
-* REGLE RG024.3 : f(n) = f(n-1) + f(n-2) si n > 2 
-* 
+* Fibonacci.
+*
+* REGLE RG024.1 : f(1) = 1
+* REGLE RG024.2 : f(2) = 1
+*
+* REGLE RG024.3 : f(n) = f(n-1) + f(n-2) si n > 2
+*
 * REGLE RG024.4 : il n'est pas possible de calculer la valeur de la Suite
-* de Fibonacci pour un rang negatif. 
-* 
+* de Fibonacci pour un rang negatif.
+*
 * REGLE RG024.5 : le calcul de n'importe quel element de la Suite de
-* Fibonacci doit s'effectuer en moins de deux secondes. 
-* 
+* Fibonacci doit s'effectuer en moins de deux secondes.
+*
 * REGLE RG024.6 : le calcul de n'importe quel element de la Suite de
 * Fibonacci, pour un rang inferieur a 50, doit s'effectuer en moins d'une
-* seconde. 
-* 
+* seconde.
+*
 * @param n le rang pour lequel on calcule le membre.
 * @return Le membre de rang n dans la Suite.
 */
@@ -57,7 +60,7 @@ fn RG024_x(n: int, expected: uint) {
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
- * 
+ *
  * REGLE RG024.1 : f(1) = 1
  */
 #[test]
@@ -66,7 +69,7 @@ fn RG024_1() {
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
- * 
+ *
  * REGLE RG024.2 : f(2) = 1
  */
 #[test]
@@ -75,7 +78,7 @@ fn RG024_2() {
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
- * 
+ *
  * REGLE RG024.3.a : f(3) = 2
  */
 #[test]
@@ -84,7 +87,7 @@ fn RG024_3_a() {
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
- * 
+ *
  * REGLE RG024.4.a : il n'est pas possible de calculer la valeur de la Suite
  * de Fibonacci pour un rang negatif ou nul.
  */
@@ -96,7 +99,7 @@ fn RG024_4_a() {
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
- * 
+ *
  * REGLE RG024.5 : f(55) = 139583862445
  */
 #[test]
