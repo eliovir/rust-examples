@@ -1,4 +1,4 @@
-rust-examples
+rust-examples [![Ohloh statistics](https://www.ohloh.net/p/rust-examples/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/rust-examples)
 =============
 
 [Rust-examples](https://github.com/eliovir/rust-examples) is a repository to
@@ -6,8 +6,6 @@ gather example codes from tutorial and other documentations of
 [Rust](http://www.rust-lang.org/) into files, ready to compile.
 
 Examples are tested with version 0.8.
-
-[![Ohloh statistics](https://www.ohloh.net/p/rust-examples/widgets/project_partner_badge.gif)](https://www.ohloh.net/p/rust-examples?ref=sample)
 
 
 ## Files
