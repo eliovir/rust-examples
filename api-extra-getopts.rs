@@ -1,5 +1,5 @@
 /**
- * http://static.rust-lang.org/doc/0.7/extra/getopts.html
+ * http://static.rust-lang.org/doc/0.8/extra/getopts.html
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -7,8 +7,8 @@ extern mod extra;
 use extra::getopts::*;
 use std::os;
 
-fn do_work(in: &str, out: Option<~str>) {
-	println(in);
+fn do_work(inp: &str, out: Option<~str>) {
+	println(inp);
 	println(match out {
 		Some(x) => x,
 		None => ~"No Output"
@@ -16,15 +16,15 @@ fn do_work(in: &str, out: Option<~str>) {
 }
 
 fn print_usage(program: &str, _opts: &[Opt]) {
-	println(fmt!("Usage: %s [options]", program));
-	println("-o\t\tOutput");
-	println("-h --help\tUsage");
+	printfln!("Usage: %s [options]", program);
+	println("-o\\t\\tOutput");
+	println("-h --help\\tUsage");
 }
 
 fn main() {
 	let args = os::args();
 
-	let program = copy args[0];
+	let program = args[0].clone();
 
 	let opts = ~[
 		optopt("o"),
@@ -33,16 +33,15 @@ fn main() {
 	];
 	let matches = match getopts(args.tail(), opts) {
 		Ok(m) => { m }
-		Err(f) => {
-			fail!(fail_str(f)) }
+		Err(f) => { fail!(f.to_err_msg()) }
 	};
-	if opt_present(&matches, "h") || opt_present(&matches, "help") {
+	if matches.opt_present("h") || matches.opt_present("help") {
 		print_usage(program, opts);
 		return;
 	}
-	let output = opt_maybe_str(&matches, "o");
+	let output = matches.opt_str("o");
 	let input: &str = if !matches.free.is_empty() {
-		copy matches.free[0]
+		matches.free[0].clone()
 	} else {
 		print_usage(program, opts);
 		return;

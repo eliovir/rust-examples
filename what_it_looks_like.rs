@@ -1,19 +1,17 @@
 /**
- * Example given on the homepage (2013-09-24) http://www.rust-lang.org/
+ * Example given on the homepage (2013-10-21) http://www.rust-lang.org/
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 fn main() {
-    let nums = [0, 1, 2, 3];
+    let nums = [1, 2];
     let noms = ["Tim", "Eston", "Aaron", "Ben"];
-
-    let mut evens = nums.iter().filter(|&x| x % 2 == 0);
-
-    for evens.advance |&num| {
+ 
+    let mut odds = nums.iter().map(|&x| x * 2 - 1);
+ 
+    for num in odds {
         do spawn {
-            let msg = fmt!("%s says hello from a lightweight thread!",
-                           noms[num]);
-            println(msg);
+            println!("{:s} says hello from a lightweight thread!", noms[num]);
         }
     }
 }

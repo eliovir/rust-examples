@@ -34,7 +34,7 @@ extern mod extra;
 * @param n le rang pour lequel on calcule le membre.
 * @return Le membre de rang n dans la Suite.
 */
-fn fibonacci(n: int) -> uint {
+pub fn fibonacci(n: int) -> uint {
 	if n < 0 {
 		fail!(fmt!("%d is negative!", n));
 	}

@@ -1,5 +1,6 @@
 /**
- * http://static.rust-lang.org/doc/0.7/std/hashmap.html
+ * http://static.rust-lang.org/doc/0.8/std/hashmap.html
+ * https://github.com/mozilla/rust/blob/0.8/src/test/run-pass/hashmap-memory.rs#L70
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -7,7 +8,8 @@ use std::hashmap::HashMap;
 
 fn main() {
 	println("Using borrowed pointers as keys.");
-	let mut h = HashMap::new::<&str, int>();
+	let mut h: HashMap<&str, int>;
+	h = HashMap::new();
 	h.insert("foo", 42);
 	println(fmt!("Is there a key foo?  => %?", h.contains_key(& &"foo"))); // => true
 	println(fmt!("Is there a key baz?  => %?", h.contains_key(& &"baz"))); // => false
@@ -21,7 +23,7 @@ fn main() {
 	// to problems, so I don't suggest you do it in reality)
 
 	println("Using owned pointers as keys.");
-	let mut h = HashMap::new::<~str, int>();
+	let mut h: HashMap<~str, int> = HashMap::new();
 	h.insert(~"foo", 42);
 	println(fmt!("Is there a key foo?  => %?", h.contains_key(&~"foo"))); // => true
 	println(fmt!("Is there a key baz?  => %?", h.contains_key(&~"baz"))); // => false

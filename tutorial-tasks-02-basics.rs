@@ -1,10 +1,9 @@
 /**
  * Rust Tasks and Communication Tutorial - 2 Basics
- * http://static.rust-lang.org/doc/0.7/tutorial-tasks.html#basics
+ * http://static.rust-lang.org/doc/0.8/tutorial-tasks.html#basics
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-use std::int;
 
 fn generate_task_number() -> int {
 	10
@@ -34,7 +33,7 @@ fn main() {
 
 	/*
 	 */
-	for int::range(0, 20) |child_task_number| {
+	for child_task_number in range(0, 20) {
 		do spawn {
 			print(fmt!("I am child number %d\n", child_task_number));
 		}
