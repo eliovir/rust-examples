@@ -7,6 +7,9 @@ gather example codes from tutorial and other documentations of
 
 Examples are tested with version 0.8.
 
+[![Ohloh statistics](https://www.ohloh.net/p/rust-examples/widgets/project_partner_badge.gif)](https://www.ohloh.net/p/rust-examples?ref=sample)
+
+
 ## Files
 
 * [Homepage](http://www.rust-lang.org/)
