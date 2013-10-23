@@ -34,12 +34,12 @@ extern mod extra;
 * @param n le rang pour lequel on calcule le membre.
 * @return Le membre de rang n dans la Suite.
 */
-pub fn fibonacci(n: int) -> uint {
+pub fn fibonacci_reccursive(n: int) -> uint {
 	if n < 0 {
 		fail!(fmt!("%d is negative!", n));
 	}
 	match n {
-		0     => fail!("zero is not a right argument to fibonacci()!"),
+		0     => fail!("zero is not a right argument to fibonacci_reccursive()!"),
 		1 | 2 => 1,
 		3     => 2,
 		/*
@@ -48,6 +48,31 @@ pub fn fibonacci(n: int) -> uint {
 		_     => fibonacci(n - 1) + fibonacci(n - 2)
 	}
 }
+
+/**
+ * Non reccursive function.
+ */
+pub fn fibonacci(n: int) -> uint {
+	if n < 0 {
+		fail!(fmt!("%d is negative!", n));
+	} else if n == 0 {
+		fail!("zero is not a right argument to fibonacci()!");
+	} else if n == 1 {
+		return 1u;
+	}
+	let mut i = 0;
+	let mut sum = 0;
+	let mut last = 0;
+	let mut curr = 1;
+	while (i < n - 1) {
+		sum = last + curr;
+		last = curr;
+		curr = sum;
+		i += 1;
+	}
+	sum
+}
+
 /*
 #[cfg(test)]
 mod tests {
@@ -56,7 +81,7 @@ mod tests {
 fn RG024_x(n: int, expected: uint) {
 	// println(fmt!("RG024_x(%d, %u)", n, expected));
 	let found = fibonacci(n);
-	assert!(expected == found);
+	assert!(expected == found, fmt!("fib(%d): expected (%u) != found (%u)", n, expected, found));
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
@@ -106,6 +131,12 @@ fn RG024_4_a() {
 fn RG024_5() {
 	/*RG024_x(55, 139583862445);*/
 	RG024_x(30, 832040);
+}
+#[bench]
+fn bench_fibonacci_reccursive_20(b: &mut extra::test::BenchHarness) {
+	do b.iter {
+		fibonacci_reccursive(20);
+	}
 }
 #[bench]
 fn bench_fibonacci_20(b: &mut extra::test::BenchHarness) {
