@@ -18,6 +18,8 @@ Examples are tested with version 0.8.
     * 4.3 Loops (`for`, `for i.times`, `while`, `loop`): `tutorial-04_3-loops.rs`
     * 5.2 Enums: `tutorial-05_2-enum.rs`
     * 5.3 Tuples: `tutorial-05_3-tuples.rs`
+    * 5.14 Closures: `tutorial-14-closure.rs`
+    * 5.15 Methods, with *constructor*: `tutorial-15-methods.rs`
 * [Rust Tasks and Communication]
     * 2 Basics: `tutorial-tasks-02-basics.rs`
     * 2.1 Communication: `tutorial-tasks-02_1-communication.rs`
@@ -31,15 +33,15 @@ Examples are tested with version 0.8.
     * std::hashmap::HashMap: `api-std-hashmap.rs`
 * Some new files:
     * `Makefile` to compile, run tests and run benchmarks
-    * A library and tests for a Fibonacci function: `libfibonacci.rs`
+    * A library and its unit tests and benchmarks for 2 Fibonacci functions (a reccursive and a non reccursive): `libfibonacci.rs`
 
-[Tutorial]: http://static.rust-lang.org/doc/0.7/tutorial.html
-[Rust Tasks and Communication]: http://static.rust-lang.org/doc/0.7/tutorial-tasks.html
+[Tutorial]: http://static.rust-lang.org/doc/0.8/tutorial.html
+[Rust Tasks and Communication]: http://static.rust-lang.org/doc/0.8/tutorial-tasks.html
 [Doc unit testing]: https://github.com/mozilla/rust/wiki/Doc-unit-testing
 
 # Compile and running it
 
-You will need the version 0.7 of the rust compiler.
+You will need the version 0.8 of the rust compiler.
 If you encounter problems, make sure you have the right version before creating an issue.
 
 The simplest way to build **rust-examples** is to do a clone and use ``make`` to compile:
