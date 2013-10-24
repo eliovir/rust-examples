@@ -1,6 +1,7 @@
 *~
 /api-*
 !api-.rs
+/date
 /fibonacci
 /lang-*
 !lang-*.rs
