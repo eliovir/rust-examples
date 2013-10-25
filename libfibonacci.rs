@@ -79,9 +79,10 @@ mod tests {
 }
 */
 fn RG024_x(n: int, expected: uint) {
-	// println(fmt!("RG024_x(%d, %u)", n, expected));
-	let found = fibonacci(n);
-	assert!(expected == found, fmt!("fib(%d): expected (%u) != found (%u)", n, expected, found));
+	let mut found = fibonacci_reccursive(n);
+	assert!(expected == found, fmt!("fibibonacci_reccursive(%d): expected (%u) != found (%u)", n, expected, found));
+	found = fibonacci(n);
+	assert!(expected == found, fmt!("fibibonacci(%d): expected (%u) != found (%u)", n, expected, found));
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
