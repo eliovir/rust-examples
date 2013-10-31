@@ -31,6 +31,7 @@ Examples are tested with version 0.8.
     * Pointer snippets from Dave Herman's talk: `lang-pointers.rs`
     * extra::getopts: `api-extra-getopts.rs`
     * std::hashmap::HashMap: `api-std-hashmap.rs`
+    * std::vec: OwnedVector, 2D-arrays, ...: `api-std-vec.rs`
 * Some new files:
     * `Makefile` to compile, run tests and run benchmarks
     * A library and its unit tests and benchmarks for 2 Fibonacci functions (a reccursive and a non reccursive): `libfibonacci.rs`

@@ -1,3 +1,8 @@
+#[link(name = "date", vers = "1.0", author = "eliovir")];
+#[crate_type = "lib"];
+#[license = "MIT"];
+#[desc = "Library for simple date management" ];
+#[comment = "Example of library: date management"];
 /**
  * Date management
  *
