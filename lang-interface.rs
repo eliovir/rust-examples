@@ -28,13 +28,13 @@ trait Burns {
 
 impl Burns for Log {
 	fn burn(&self) {
-		println(fmt!("The %s log is burning!", self.wood_type));
+		println!("The {} log is burning!", self.wood_type);
 	}
 }
 
 impl Burns for Book {
 	fn burn(&self) {
-		println(fmt!("The book \"%s\" by %s is burning!", self.title, self.author));
+		println!("The book \"{}\" by {} is burning!", self.title, self.author);
 	}
 }
 

@@ -6,12 +6,12 @@
  *
  * Dave Herman talks about Mozilla Rust and some of the features that make it safe, concurrent, and fast.
  *
- * Corrected to 0.7
- * http://static.rust-lang.org/doc/0.7/tutorial-tasks.html#communication
+ * Corrected to 0.9-pre
+ * http://static.rust-lang.org/doc/master/tutorial-tasks.html#communication
  */
 struct Point {
-    x: float,
-    y: float
+    x: f64,
+    y: f64
 }
 fn main() {
 	let (port, channel): (Port<~Point>, Chan<~Point>) = stream();

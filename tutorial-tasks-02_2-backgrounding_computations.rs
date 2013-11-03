@@ -1,6 +1,6 @@
 /**
  * Rust Tasks and Communication Tutorial - 2.2 Backgrounding computations: Futures
- * http://static.rust-lang.org/doc/0.8/tutorial-tasks.html#backgrounding-computations-futures
+ * http://static.rust-lang.org/doc/master/tutorial-tasks.html#backgrounding-computations-futures
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -31,7 +31,7 @@ fn main() {
 	 */
 	let mut delayed_fib = extra::future::Future::spawn(|| fibonacci::fibonacci(n));
 	println("Doing something else");
-	println(fmt!("fib(%d) = %?", n, delayed_fib.get()));
+	println!("fib({:d}) = {}", n, delayed_fib.get());
 
 	/*
 	 * The workload will be distributed on the available cores.
@@ -42,5 +42,5 @@ fn main() {
 	for ft in futures.mut_iter() {
 		final_res += ft.get();
 	}
-	println(fmt!("π^2/6 is not far from : %?", final_res));
+	println!("π^2/6 is not far from : {}", final_res);
 }

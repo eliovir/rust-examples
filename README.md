@@ -5,7 +5,7 @@ rust-examples [![Ohloh statistics](https://www.ohloh.net/p/rust-examples/widgets
 gather example codes from tutorial and other documentations of
 [Rust](http://www.rust-lang.org/) into files, ready to compile.
 
-Examples are tested with version 0.8.
+Examples are tested with version 0.9-pre.
 
 
 ## Files
@@ -37,13 +37,13 @@ Examples are tested with version 0.8.
     * A library and its unit tests and benchmarks for 2 Fibonacci functions (a reccursive and a non reccursive): `libfibonacci.rs`
     * A struct to manage dates: `libdate.rs`
 
-[Tutorial]: http://static.rust-lang.org/doc/0.8/tutorial.html
-[Rust Tasks and Communication]: http://static.rust-lang.org/doc/0.8/tutorial-tasks.html
+[Tutorial]: http://static.rust-lang.org/doc/master/tutorial.html
+[Rust Tasks and Communication]: http://static.rust-lang.org/doc/master/tutorial-tasks.html
 [Doc unit testing]: https://github.com/mozilla/rust/wiki/Doc-unit-testing
 
 # Compile and running it
 
-You will need the version 0.8 of the rust compiler.
+You will need the version 0.9-pre of the rust compiler.
 If you encounter problems, make sure you have the right version before creating an issue.
 
 The simplest way to build **rust-examples** is to do a clone and use ``make`` to compile:

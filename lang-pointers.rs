@@ -5,12 +5,12 @@
  * Dave Herman talks about Mozilla Rust and some of the features that make it safe, concurrent, and fast.
  */
 struct Point {
-	x: float,
-	y: float
+	x: f64,
+	y: f64
 }
 fn print_point(p: &Point) {
 	match *p {
-		Point {x, y} => println(fmt!("(%f, %f)", x, y))
+		Point {x, y} => println!("({:f}, {:f})", x, y)
 	}
 }
 fn main() {

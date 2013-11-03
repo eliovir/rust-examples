@@ -1,6 +1,6 @@
 /**
  * Rust Tasks and Communication Tutorial - 2 Basics
- * http://static.rust-lang.org/doc/0.8/tutorial-tasks.html#basics
+ * http://static.rust-lang.org/doc/master/tutorial-tasks.html#basics
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -28,14 +28,14 @@ fn main() {
 
 	do spawn {
 		   // Capture it in the remote task
-		   println(fmt!("I am child number %d", child_task_number_10));
+		   println!("I am child number {}", child_task_number_10);
 	}
 
 	/*
 	 */
 	for child_task_number in range(0, 20) {
 		do spawn {
-			print(fmt!("I am child number %d\n", child_task_number));
+			print!("I am child number {}\n", child_task_number);
 		}
 	}
 

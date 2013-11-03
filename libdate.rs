@@ -104,7 +104,7 @@ impl Date {
  */
 impl ToStr for Date {
 	fn to_str(&self) -> ~str {
-		fmt!("%4d-%2d-%2d", self.year, self.month, self.day)
+		format!("{:4d}-{:2d}-{:2d}", self.year, self.month, self.day)
 	}
 }
 
@@ -118,7 +118,7 @@ mod tests {
 		date.addDays(days);
 		let expected="2013-10-26";
 		let found=date.to_str();
-		assert!(expected==found, fmt!("Adding %d days to %? should return %?, not %?", days, orig, expected, found));
+		assert!(expected==found, format!("Adding {:d} days to {} should return {}, not {}", days, orig, expected, found));
 	}
 	#[test]
 	fn isLeap() {
@@ -141,7 +141,7 @@ mod tests {
 		let date = ::Date::new(2013, 10, 24);
 		let expected = "2013-10-24";
 		let found = date.to_str();
-		assert!(expected == found, fmt!("%?!=%?", expected, found));
+		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 	/*
 	 * Static methods
@@ -159,14 +159,14 @@ mod tests {
 		let date = ::Date::new(2013, 10, 24);
 		let expected = "2013-10-24";
 		let found = date.to_str();
-		assert!(expected == found, fmt!("%?!=%?", expected, found));
+		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 	#[test]
 	fn newFromString() {
 		let date = ::Date::newFromString("2013-10-24 23:24:34");
 		let expected = "2013-10-24";
 		let found = date.to_str();
-		assert!(expected == found, fmt!("%?!=%?", expected, found));
+		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 }
 fn main() {

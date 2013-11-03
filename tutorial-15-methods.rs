@@ -1,17 +1,18 @@
+#[feature(struct_variant)];
 /**
  * 15 Methods
- * http://static.rust-lang.org/doc/0.8/tutorial.html#methods
+ * http://static.rust-lang.org/doc/master/tutorial.html#methods
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-use std::float::consts::pi;
+use std::f64::consts::PI;
 
 struct Point {
-	x: float,
-	y: float
+	x: f64,
+	y: f64
 }
 enum Shape {
-	Circle { center: Point, radius: float },
+	Circle { center: Point, radius: f64 },
 	Rectangle { top_left: Point, bottom_right: Point }
 }
 impl Shape {
@@ -21,26 +22,26 @@ impl Shape {
 			Rectangle{top_left: p1, bottom_right: p2} => draw_rectangle(p1, p2)
 		}
 	}
-	pub fn new_circle(area: float) -> Shape {
-		let center = Point{x: 0f, y: 0f};
-		let radius = (area / pi).sqrt();
+	pub fn new_circle(area: f64) -> Shape {
+		let center = Point{x: 0.0, y: 0.0};
+		let radius = (area / PI).sqrt();
 		Circle{center: center, radius: radius}
 	}
 }
-fn draw_circle(p: Point, f: float) {
-	println(fmt!("draw_circle(%?, %?)", p, f));
+fn draw_circle(p: Point, f: f64) {
+	println!("draw_circle({:?}, {:f})", p, f);
 }
 fn draw_rectangle(p1: Point, p2: Point) {
-	println(fmt!("draw_rectangle(%?, %?)", p1, p2));
+	println!("draw_rectangle({:?}, {:?})", p1, p2);
 }
 fn main() {
-	let c = Circle{center: Point { x: 1f, y: 2f }, radius: 3f};
+	let c = Circle{center: Point { x: 1.0, y: 2.0 }, radius: 3.0};
 	c.draw();
 
-	let r = Rectangle{top_left: Point{x: 1f, y: 2f}, bottom_right: Point{x: 2f, y: 3f}};
+	let r = Rectangle{top_left: Point{x: 1.0, y: 2.0}, bottom_right: Point{x: 2.0, y: 3.0}};
 	r.draw();
 
 	let c2 = Shape::new_circle(42.5);
-	println(fmt!("c2=%?", c2));
+	println!("c2={:?}", c2);
 	c2.draw();
 }

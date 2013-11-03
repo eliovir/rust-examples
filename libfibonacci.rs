@@ -36,7 +36,7 @@ extern mod extra;
 */
 pub fn fibonacci_reccursive(n: int) -> uint {
 	if n < 0 {
-		fail!(fmt!("%d is negative!", n));
+		fail!("{:d} is negative!", n);
 	}
 	match n {
 		0     => fail!("zero is not a right argument to fibonacci_reccursive()!"),
@@ -54,7 +54,7 @@ pub fn fibonacci_reccursive(n: int) -> uint {
  */
 pub fn fibonacci(n: int) -> uint {
 	if n < 0 {
-		fail!(fmt!("%d is negative!", n));
+		fail!("{:d} is negative!", n);
 	} else if n == 0 {
 		fail!("zero is not a right argument to fibonacci()!");
 	} else if n == 1 {
@@ -80,9 +80,9 @@ mod tests {
 */
 fn RG024_x(n: int, expected: uint) {
 	let mut found = fibonacci_reccursive(n);
-	assert!(expected == found, fmt!("fibibonacci_reccursive(%d): expected (%u) != found (%u)", n, expected, found));
+	assert!(expected == found, format!("fibibonacci_reccursive({:d}): expected ({:u}) != found ({:u})", n, expected, found));
 	found = fibonacci(n);
-	assert!(expected == found, fmt!("fibibonacci(%d): expected (%u) != found (%u)", n, expected, found));
+	assert!(expected == found, format!("fibibonacci({:d}): expected ({:u}) != found ({:u})", n, expected, found));
 }
 /**
  * Test du calcul de la suite de Fibonnaci.

@@ -1,10 +1,10 @@
 /**
- * http://static.rust-lang.org/doc/0.8/extra/getopts.html
+ * http://static.rust-lang.org/doc/master/extra/getopts.html
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 extern mod extra;
-use extra::getopts::*;
+use extra::getopts::{getopts,Opt,optflag,optopt};
 use std::os;
 
 fn do_work(inp: &str, out: Option<~str>) {
@@ -16,7 +16,7 @@ fn do_work(inp: &str, out: Option<~str>) {
 }
 
 fn print_usage(program: &str, _opts: &[Opt]) {
-	printfln!("Usage: %s [options]", program);
+	println!("Usage: {} [options]", program);
 	println("-o\\t\\tOutput");
 	println("-h --help\\tUsage");
 }
