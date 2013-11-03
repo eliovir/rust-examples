@@ -7,7 +7,7 @@
  * Date management
  *
  * Use "constructor", string manipulation
- * Tested with rust-0.8
+ * Tested with rust-0.9-pre
  *
  * @author Eliovir <http://github.com/~eliovir>
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
