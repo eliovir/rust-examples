@@ -38,6 +38,17 @@ impl Burns for Book {
 	}
 }
 
+struct Incunable(Book);
+
+impl Burns for Incunable {
+	fn burn(&self) {
+		let book: &Book = match *self {
+			Incunable(ref book) => book
+		};
+		println!("The incunable \"{}\" by {} is burning!", book.title, book.author);
+	}
+}
+
 /**
  * This is where the power of programming to an interface comes in.
  * Rather than expecting a Book object or a Log object, we just take in any object with any type (we call the type T) that implements the Burns interface.
@@ -48,17 +59,22 @@ fn start_fire<T: Burns>(item: T) {
 
 fn main() {
 	let lg = Log {
-	wood_type: ~"Oak",
+		wood_type: ~"Oak",
 	};
 	let book = Book {
 		title: ~"The Brothers Karamazov",
 		author: ~"Fyodor Dostoevsky",
 	};
-	
+	let nuremberg_chronicle = Book {
+		title: ~"Liber Chronicarum",
+		author: ~"Hartmann Schedel",
+	};
+	let incunable = Incunable(nuremberg_chronicle);
 	// Burn the oak log!
 	start_fire(lg);
 	
 	// Burn the book!
 	start_fire(book);
+	start_fire(incunable);
 }
 
