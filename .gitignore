@@ -1,7 +1,8 @@
 *~
 /api-*
 !api-.rs
-/date
+/design_pattern-*
+!design_pattern-*.rs
 /fibonacci
 /lang-*
 !lang-*.rs
