@@ -41,7 +41,7 @@ enum StructShape {
  */
 fn struct_area(sh: StructShape) -> f64 {
 	match sh {
-		StructCircle { radius: radius, _ } => f64::consts::PI * radius * radius,
+		StructCircle { radius: radius, .. } => f64::consts::PI * radius * radius,
 		StructRectangle { top_left: top_left, bottom_right: bottom_right } => {
 			(bottom_right.x - top_left.x) * (top_left.y - bottom_right.y)
 		}

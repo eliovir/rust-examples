@@ -14,7 +14,7 @@ fn main() {
 	spawn(print_message);
 
 	// Print something more profound in a different task using a lambda expression
-	spawn( || println("I am also running in a different task!") );
+	spawn( proc() println("I am also running in a different task!") );
 
 	// The canonical way to spawn is using `do` notation
 	do spawn {

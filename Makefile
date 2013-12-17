@@ -1,7 +1,7 @@
 RUSTC=echo -e "\033[32;1mRustc:\033[33m" $@ "\033[m"; rustc
-LIBSRC=$(wildcard lib*.rs)
+LIBSRC=date.rs fibonacci.rs
 LIBSTAMP=$(patsubst %.rs,lib-stamps/%,$(LIBSRC))
-TESTSRC=libdate.rs libfibonacci.rs unittests.rs
+TESTSRC=$(LIBSRC) unittests.rs
 TESTPROG:=$(patsubst %.rs,test-%,$(TESTSRC))
 SRC=$(wildcard *.rs)
 SRC:=$(filter-out $(TESTSRC),$(SRC))

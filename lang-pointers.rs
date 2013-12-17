@@ -1,3 +1,4 @@
+#[feature(managed_boxes)];
 /**
  * Snippets from the Dave Herman's presentation (2013-01-06)
  * http://www.infoq.com/presentations/Rust

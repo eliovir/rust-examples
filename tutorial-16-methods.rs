@@ -1,6 +1,6 @@
 #[feature(struct_variant)];
 /**
- * 15 Methods
+ * 16 Methods
  * http://static.rust-lang.org/doc/master/tutorial.html#methods
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>

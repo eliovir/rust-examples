@@ -1,16 +1,16 @@
 /**
- * 14 Closure
+ * 15 Closure
  * http://static.rust-lang.org/doc/master/tutorial.html#closures
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 
-fn apply(i: int, f: &fn(int)->int) -> int {
+fn apply(i: int, f: |int|->int) -> int {
 	f(i)
 }
 
-fn call_closure_with_ten(f: &fn(int)) {
-	f(10);
+fn call_closure_with_ten(b: |int|) {
+	b(10);
 }
 
 fn main() {

@@ -1,5 +1,5 @@
 /**
- * http://static.rust-lang.org/doc/master/extra/getopts.html
+ * http://static.rust-lang.org/doc/master/extra/getopts/index.html
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */

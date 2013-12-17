@@ -14,7 +14,7 @@ struct Point {
     y: f64
 }
 fn main() {
-	let (port, channel): (Port<~Point>, Chan<~Point>) = stream();
+	let (port, channel): (Port<~Point>, Chan<~Point>) = Chan::new();
 	// isolate process using spawn
 	do spawn || {
 		let s = ~Point { x: 1.0, y: 2.0 };

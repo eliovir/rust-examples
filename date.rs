@@ -15,7 +15,7 @@
  */
 use std::from_str::FromStr;
 
-struct Date {
+pub struct Date {
 	day: int,
 	month: int,
 	year: int
@@ -169,6 +169,9 @@ mod tests {
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 }
+/*
 fn main() {
 	println("This program must be build and run with --test");
 }
+*/
+

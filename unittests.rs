@@ -27,6 +27,8 @@ mod tests {
 		assert_eq!(1, 1);
 	}
 }
+/*
 fn main() {
 	println("This program must be build and run with --test");
 }
+*/

@@ -78,6 +78,7 @@ pub fn fibonacci(n: int) -> uint {
 mod tests {
 }
 */
+#[cfg(test)]
 fn RG024_x(n: int, expected: uint) {
 	let mut found = fibonacci_reccursive(n);
 	assert!(expected == found, format!("fibibonacci_reccursive({:d}): expected ({:u}) != found ({:u})", n, expected, found));
@@ -135,13 +136,13 @@ fn RG024_5() {
 }
 #[bench]
 fn bench_fibonacci_reccursive_20(b: &mut extra::test::BenchHarness) {
-	do b.iter {
-		fibonacci_reccursive(20);
-	}
+	b.iter(|| {
+			fibonacci_reccursive(20);
+	});
 }
 #[bench]
 fn bench_fibonacci_20(b: &mut extra::test::BenchHarness) {
-	do b.iter {
+	b.iter(|| {
 		fibonacci(20);
-	}
+	});
 }

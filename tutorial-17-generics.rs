@@ -4,7 +4,7 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-fn map<T, U>(vector: &[T], function: &fn(v: &T) -> U) -> ~[U] {
+fn map<T, U>(vector: &[T], function: |v: &T| -> U) -> ~[U] {
     let mut accumulator = ~[];
     for element in vector.iter() {
         accumulator.push(function(element));
