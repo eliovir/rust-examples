@@ -1,5 +1,5 @@
 RUSTC=echo -e "\033[32;1mRustc:\033[33m" $@ "\033[m"; rustc
-LIBSRC=date.rs fibonacci.rs
+LIBSRC=date.rs fibonacci.rs inifile.rs
 LIBSTAMP=$(patsubst %.rs,lib-stamps/%,$(LIBSRC))
 TESTSRC=$(LIBSRC) unittests.rs
 TESTPROG:=$(patsubst %.rs,test-%,$(TESTSRC))

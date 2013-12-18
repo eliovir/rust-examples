@@ -37,6 +37,7 @@ Examples are tested with version 0.9-pre.
     * `Makefile` to compile, run tests and run benchmarks
     * A library and its unit tests and benchmarks for 2 Fibonacci functions (a reccursive and a non reccursive): `fibonacci.rs`
     * A struct to manage dates: `date.rs`
+    * A struct to manage INI files: `inifile.rs`
     * Design pattern Decorator: `design_pattern-decorator.rs`
 
 [Tutorial]: http://static.rust-lang.org/doc/master/tutorial.html
