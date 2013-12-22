@@ -30,4 +30,11 @@ fn main() {
 	println!("The value for foo is => {:?}", h.find(&~"foo")); // => Some(&42)
 	h.insert(key.to_owned(), 1);
 	println!("Is there a key baz?  => {}", h.contains_key(&~"baz")); // => true
+
+	// List keys of the HashMap
+	let mut keys: ~[~str] = ~[];
+	for (k, _) in h.iter() {
+		keys.push(k.to_owned());
+	}
+	println!("These are the keys: {:?}.", keys);
 }
