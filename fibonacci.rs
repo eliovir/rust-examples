@@ -1,4 +1,5 @@
 #[link(name = "fibonacci", vers = "1.0", author = "eliovir")];
+#[crate_id="fibonacci"];
 #[crate_type = "lib"];
 #[license = "MIT"];
 #[desc = "Fibonacci library" ];

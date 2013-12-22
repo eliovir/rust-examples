@@ -11,7 +11,7 @@ RUSTFLAGS=
 .SILENT:
 .PRECIOUS: $(LIBSTAMP)
 
-all: exe test bench 
+all: exe test bench
 	# Build executables, run tests and benchmarks
 
 help:
@@ -28,6 +28,12 @@ bench: $(TESTPROG)
 		./$$EXE --bench;\
 	done
 
+doc: $(SRC)
+	# Run rustdoc
+	@for FI in $(SRC); do \
+		rustdoc -o html-doc $$FI;\
+	done
+
 exe: $(PROG)
 	# Build executables
 
@@ -39,7 +45,7 @@ test: $(TESTPROG)
 
 tutorial-tasks-02_2-backgrounding_computations: tutorial-tasks-02_2-backgrounding_computations.rs  $(LIBSTAMP)
 	$(RUSTC) $(RUSTFLAGS) $< -o $@ -L .
-	
+
 % : %.rs
 	$(RUSTC) $(RUSTFLAGS) $< -o $@
 
