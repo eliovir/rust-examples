@@ -13,6 +13,7 @@
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  * @see http://docs.python.org/2/library/configparser.html
  * @since 2013-12-18
+ * @todo eddyb: you may want that to be Option<&'a str> so you can return None when the option isn't present. Option<T> can be either Some(T) or None. Option<~T> and Option<&T> are nullable pointers semantically (and optimized as such)
  */
 
 extern mod extra;
@@ -45,11 +46,11 @@ impl IniFile {
 	 * Add a section named section to the instance.
 	 * If a section by the given name already exists, fail!()
 	 */
-	pub fn add_section(&mut self, section: ~str) {
+	pub fn add_section(&mut self, section: &str) {
 		if !self.has_section(section.to_owned()) {
-			self.comments.insert(section.clone(), HashMap::new());
-			self.opts.insert(section.clone(), HashMap::new());
-			self.sections.push(section.clone());
+			self.comments.insert(section.to_owned(), HashMap::new());
+			self.opts.insert(section.to_owned(), HashMap::new());
+			self.sections.push(section.to_owned());
 			self.options.push(~[]);
 		} else {
 			fail!("The section {:?} already exists!", section);
@@ -64,18 +65,19 @@ impl IniFile {
 	/**
 	 * Get an option value for the named section.
 	 */
-	pub fn get(&self, section: ~str, option: ~str) -> ~str {
-		if !self.has_option(section.to_owned(), option.to_owned()) {
+	pub fn get(&self, section: &str, option: &str) -> ~str {
+	//pub fn get<'a>(&'a self, section: &str, option: &str) -> &'a str {
+		if !self.has_option(section, option) {
 			()
 		}
-		self.opts.get(&section).get(&option).to_owned()
+		self.opts.get(&section.to_owned()).get(&option.to_owned()).to_owned()
 	}
 	/**
 	 * A convenience method which coerces the option in the specified section to a boolean.
 	 * Note that the accepted values for the option are '1', 'yes', 'true', and 'on', which cause this method to return True, and '0', 'no', 'false', and 'off', which cause it to return False.
 	 * @todo These string values are checked in a case-insensitive manner. 
 	 */
-	pub fn get_bool(&self, section: ~str, option: ~str) -> bool {
+	pub fn get_bool(&self, section: &str, option: &str) -> bool {
 		let value = self.get(section, option);
 		match value {
 			~"1" | ~"yes" | ~"true" | ~"T" | ~"on" => true,
@@ -86,7 +88,7 @@ impl IniFile {
 	/**
 	 * A convenience method which coerces the option in the specified section to a float f64.
 	 */
-	pub fn get_f64(&self, section: ~str, option: ~str) -> f64 {
+	pub fn get_f64(&self, section: &str, option: &str) -> f64 {
 		let value = self.get(section, option);
 		let x: Option<f64> = FromStr::from_str(value);
 		match x {
@@ -97,7 +99,7 @@ impl IniFile {
 	/**
 	 * A convenience method which coerces the option in the specified section to an integer.
 	 */
-	pub fn get_int(&self, section: ~str, option: ~str) -> int {
+	pub fn get_int(&self, section: &str, option: &str) -> int {
 		let value = self.get(section, option);
 		// https://github.com/mozilla/rust/wiki/Doc-FAQ-Cheatsheet#string-to-int
 		let x: Option<int> = FromStr::from_str(value);
@@ -109,15 +111,15 @@ impl IniFile {
 	/**
 	 * Indicates whether the given section exists and contains the given option.
 	 */
-	pub fn has_option(&self, section: ~str, option: ~str) -> bool {
-		self.has_section(section.to_owned()) &&
-			self.opts.get(&section).contains_key(&option)
+	pub fn has_option(&self, section: &str, option: &str) -> bool {
+		self.has_section(section) &&
+			self.opts.get(&section.to_owned()).contains_key(&option.to_owned())
 	}
 	/**
 	 * Indicates whether the named section is present in the configuration.
 	 */
-	pub fn has_section(&self, section: ~str) -> bool {
-		self.opts.contains_key(&section)
+	pub fn has_section(&self, section: &str) -> bool {
+		self.opts.contains_key(&section.to_owned())
 	}
 	pub fn new() -> IniFile {
 		IniFile { comments: HashMap::new(), options: ~[~[]], path: Path::new(""), opts: HashMap::new(), sections: ~[]}
@@ -135,11 +137,11 @@ impl IniFile {
 	pub fn read(&mut self, filepath: ~str) {
 		self.path = Path::new(filepath);
 		let on_error = || fail!("open of {:?} failed", self.path);
-		let file : File = File::open(&self.path).unwrap_or_else(on_error);
+		let file: File = File::open(&self.path).unwrap_or_else(on_error);
 		let mut reader = BufferedReader::new(file);
 		let mut lines: ~[~str] = ~[];
 		for line in reader.lines() {
-		    lines.push(line);
+			lines.push(line);
 		}
 		self.read_string(lines);
 	}
@@ -155,12 +157,12 @@ impl IniFile {
 				line_len = line_len - 1;
 			}
 			if line_len == 0 {
-			   	comment_lines.push_str(line.clone());
+				comment_lines.push_str(line.clone());
 				continue;
 			}
 			if line.slice_chars(0, 1) == "#" ||
-			   line.slice_chars(0, 1) == ";" {
-			   	comment_lines.push_str(line.clone());
+			line.slice_chars(0, 1) == ";" {
+				comment_lines.push_str(line.clone());
 				continue;
 			}
 			if line.slice_chars(0, 1) == "[" {
@@ -255,7 +257,7 @@ impl IniFile {
 	/**
 	 * Redefine file path.
 	 */
-	pub fn setPath(&mut self, filepath: Path) {
+	pub fn set_path(&mut self, filepath: Path) {
 		self.path = filepath;
 	}
 	/**
@@ -306,195 +308,195 @@ mod tests {
 	use std::path::Path;
 	#[test]
 	fn defaultFilepathIsEmpty() {
-		let ini = ::IniFile::new();
-		let expected=".";
-		let found=ini.filepath();
-		assert!(expected==found, format!("Default file path must be \"\", not \"{}\".", found));
+		let ini = super::IniFile::new();
+		let expected = ".";
+		let found = ini.filepath();
+		assert!(expected == found, format!("Default file path must be \"\", not \"{}\".", found));
 	}
 	#[test]
 	fn filepath() {
-		let mut ini = ::IniFile::new();
-		let filepath=~"data/config.ini";
+		let mut ini = super::IniFile::new();
+		let filepath = ~"data/config.ini";
 		ini.read(filepath);
-		let expected="data/config.ini";
+		let expected = "data/config.ini";
 		let found=ini.filepath();
-		assert!(expected==found, format!("Default file path must be \"{}\", not \"{}\".", expected, found));
+		assert!(expected == found, format!("Default file path must be \"{}\", not \"{}\".", expected, found));
 	}
 	#[test]
 	fn sections_length() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
 		let expected = 5;
 		let sections = ini.sections();
 		let found = sections.len();
-		assert!(expected==found, format!("{:u} sections are expected, not {:u}.", expected, found));
+		assert!(expected == found, format!("{:u} sections are expected, not {:u}.", expected, found));
 	}
 	#[test]
 	fn sections_names() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
 		let expected = ~[~"section1", ~"section2", ~"Booleans", ~"Integers", ~"Floats"];
 		let found = ini.sections();
-		assert!(expected==found, format!("Sections must be \"{:?}\", not {:?}.", expected, found));
+		assert!(expected == found, format!("Sections must be \"{:?}\", not {:?}.", expected, found));
 	}
 	#[test]
 	fn has_option_true() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
-		let found = ini.has_option(~"section1", ~"value11");
+		let found = ini.has_option("section1", "value11");
 		assert!(found, "Option \"value11\" in section [section1] must be found!");
 	}
 	#[test]
 	fn has_option_false() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
-		let found = ini.has_option(~"section1", ~"unknown key");
+		let found = ini.has_option("section1", "unknown key");
 		assert!(!found, "Option \"unknown key\" in section [section1] must not be found!");
 	}
 	#[test]
 	fn has_section_true() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
-		let found = ini.has_section(~"section1");
+		let found = ini.has_section("section1");
 		assert!(found, "Section section1 must be found!");
 	}
 	#[test]
 	fn has_section_false() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
-		let found = ini.has_section(~"unknown section");
+		let found = ini.has_section("unknown section");
 		assert!(!found, "Section \"unknown section\" must not be found!");
 	}
 	#[test]
 	fn get() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
 		let expected = "string 11";
-		let found = ini.get(~"section1", ~"value11");
-		assert!(expected==found, format!("[section1] value11 must be \"{}\", not \"{}\".", expected, found));
+		let found = ini.get("section1", "value11");
+		assert!(expected == found, format!("[section1] value11 must be \"{}\", not \"{}\".", expected, found));
 	}
 	#[test]
 	fn get_bool_true() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
 		let options = ["true1", "true2", "true3"];
 		for key in options.iter() {
-			let found = ini.get_bool(~"Booleans", key.to_owned());
+			let found = ini.get_bool("Booleans", key.to_owned());
 			assert!(found, format!("[Booleans] {:?} must be true.", key));
 		}
 	}
 	#[test]
 	fn get_bool_false() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
 		let options = ["false1", "false2", "false3"];
 		for key in options.iter() {
-			let found = ini.get_bool(~"Booleans", key.to_owned());
+			let found = ini.get_bool("Booleans", key.to_owned());
 			assert!(!found, format!("[Booleans] {:?} must be false.", key));
 		}
 	}
 	#[test]
 	#[should_fail]
 	fn get_bool_fail() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
-		ini.get_bool(~"section1", ~"value11");
+		ini.get_bool("section1", "value11");
 	}
 	#[test]
 	fn get_int() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
-		let mut test : HashMap<~str, int> = HashMap::new();
+		let mut test: HashMap<~str, int> = HashMap::new();
 		test.insert(~"integer0", 0i);
 		test.insert(~"integer1", 1i);
 		test.insert(~"integer2", 2i);
 		test.insert(~"integer3", 03i);
 		for (key, expected) in test.iter() {
-			let found = ini.get_int(~"Integers", key.to_owned());
-			assert!((expected*1)==found,
+			let found = ini.get_int("Integers", key.to_owned());
+			assert!((expected*1) == found,
 				format!("[Integers] {:?} must be \"{:?}\", not \"{:?}\".", key, expected, found));
 		}
 	}
 	#[test]
 	#[should_fail]
 	fn get_int_fail() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
-		ini.get_int(~"section1", ~"value11");
+		ini.get_int("section1", "value11");
 	}
 	#[test]
 	fn get_f64() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
-		let mut test : HashMap<~str, f64> = HashMap::new();
+		let mut test: HashMap<~str, f64> = HashMap::new();
 		test.insert(~"float01", 0.1f64);
 		test.insert(~"float11", 1.1f64);
 		test.insert(~"float20", 2.0f64);
 		test.insert(~"float30", 3.0f64);
 		for (key, expected) in test.iter() {
-			let found = ini.get_f64(~"Floats", key.to_owned());
-			assert!((expected*1.0f64)==found,
+			let found = ini.get_f64("Floats", key.to_owned());
+			assert!((expected*1.0f64) == found,
 				format!("[Floats] {:?} must be \"{:?}\", not \"{:?}\".", key, expected, found));
 		}
 	}
 	#[test]
 	fn add_section() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
 		let expected = ~[~"section1", ~"section2", ~"Booleans", ~"Integers", ~"Floats"];
 		let found = ini.sections();
-		assert!(expected==found, format!("Sections must be \"{:?}\", not {:?}.", expected, found));
-		ini.add_section(~"New section");
+		assert!(expected == found, format!("Sections must be \"{:?}\", not {:?}.", expected, found));
+		ini.add_section("New section");
 		let expected2 = ~[~"section1", ~"section2", ~"Booleans", ~"Integers", ~"Floats", ~"New section"];
 		let found2 = ini.sections();
-		assert!(expected2==found2, format!("Sections must be \"{:?}\", not {:?}.", expected2, found2));
+		assert!(expected2 == found2, format!("Sections must be \"{:?}\", not {:?}.", expected2, found2));
 	}
 	#[test]
 	#[should_fail]
 	fn add_section_twice() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
-		ini.add_section(~"New section");
-		ini.add_section(~"New section");
+		ini.add_section("New section");
+		ini.add_section("New section");
 	}
 	#[test]
 	fn remove_section() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
 		ini.remove_section(~"section1");
 		let expected = ~[~"section2", ~"Booleans", ~"Integers", ~"Floats"];
 		let found = ini.sections();
-		assert!(expected==found, format!("Sections must be \"{:?}\", not {:?}.", expected, found));
+		assert!(expected == found, format!("Sections must be \"{:?}\", not {:?}.", expected, found));
 	}
 	#[test]
 	fn set() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
 		ini.set(~"section1", ~"value2", ~"string 2");
 		let expected = "string 2";
-		let found = ini.get(~"section1", ~"value2");
-		assert!(expected==found, format!("[section1] value2 must be \"{}\", not \"{}\".", expected, found));
+		let found = ini.get("section1", "value2");
+		assert!(expected == found, format!("[section1] value2 must be \"{}\", not \"{}\".", expected, found));
 	}
 	#[test]
 	fn options() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
 		let expected = ~[~"value11", ~"value"];
 		let found = ini.options(~"section1");
-		assert!(expected==found, format!("Items of [section1] must be \"{:?}\", not {:?}.", expected, found));
+		assert!(expected == found, format!("Items of [section1] must be \"{:?}\", not {:?}.", expected, found));
 	}
 	#[test]
 	fn to_str() {
 		let filepath = ~"data/config.ini";
 		let path = Path::new(filepath);
 		let on_error = || fail!("open of {:?} failed", path);
-		let file : File = File::open(&path).unwrap_or_else(on_error);
+		let file: File = File::open(&path).unwrap_or_else(on_error);
 		let mut reader = BufferedReader::new(file);
 		let mut lines: ~[~str] = ~[];
 		for line in reader.lines() {
-		    lines.push(line);
+			lines.push(line);
 		}
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
 		let found = ini.to_str();
 		let expected = lines.concat();
@@ -502,10 +504,10 @@ mod tests {
 	}
 	#[test]
 	fn write() {
-		let mut ini = ::IniFile::new();
+		let mut ini = super::IniFile::new();
 		ini.read(~"data/config.ini");
 		ini.write(~"data/write_test.ini");
-		let mut ini2 = ::IniFile::new();
+		let mut ini2 = super::IniFile::new();
 		ini2.read(~"data/write_test.ini");
 		let found = ini2.to_str();
 		let expected = ini.to_str();
@@ -517,15 +519,15 @@ mod tests {
 		let filepath = ~"data/write_test.ini";
 		let path = Path::new(filepath);
 
-		let mut ini = ::IniFile::new();
-		ini.add_section(~"section1");
+		let mut ini = super::IniFile::new();
+		ini.add_section("section1");
 		ini.set(~"section1", ~"key1", ~"value1");
-		ini.setPath(path.clone());
+		ini.set_path(path.clone());
 		ini.save();
 
 
 		let on_error = || fail!("open of {:?} failed", path);
-		let file : File = File::open(&path).unwrap_or_else(on_error);
+		let file: File = File::open(&path).unwrap_or_else(on_error);
 		let mut reader = BufferedReader::new(file);
 		let mut lines: ~[~str] = ~[];
 		for line in reader.lines() {
