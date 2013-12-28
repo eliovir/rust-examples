@@ -1,5 +1,4 @@
-#[link(name = "date", vers = "1.0", author = "eliovir")];
-#[crate_id="date"];
+#[crate_id = "date#1.0"];
 #[crate_type = "lib"];
 #[license = "MIT"];
 #[desc = "Library for simple date management" ];

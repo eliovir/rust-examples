@@ -1,5 +1,4 @@
-#[link(name = "fibonacci", vers = "1.0", author = "eliovir")];
-#[crate_id="fibonacci"];
+#[crate_id="fibonacci#1.1"];
 #[crate_type = "lib"];
 #[license = "MIT"];
 #[desc = "Fibonacci library" ];
@@ -8,6 +7,7 @@
  * Compute fibonacci.
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+ * @author Eliovir <http://github.com/~eliovir>
  */
 
 extern mod extra;

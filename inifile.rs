@@ -1,5 +1,4 @@
-#[link(name = "inifile", vers = "1.0", author = "eliovir")];
-#[crate_id="inifile"];
+#[crate_id="inifile#1.0"];
 #[crate_type = "lib"];
 #[license = "MIT"];
 #[desc = "Library for simple INI file management" ];

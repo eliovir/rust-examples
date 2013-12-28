@@ -1,4 +1,4 @@
-#[link(name = "decorator", vers = "1.0", author = "eliovir")];
+#[crate_id="decorator#1.0"];
 #[crate_type = "bin"];
 #[license = "MIT"];
 #[desc = "Implementation of design pattern Decorator" ];
