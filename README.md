@@ -20,8 +20,8 @@ Examples are tested with version 0.9-pre.
     * 4.3 Loops (`for`, `for i.times`, `while`, `loop`): `tutorial-04_3-loops.rs`
     * 5.2 Enums: `tutorial-05_2-enum.rs`
     * 5.3 Tuples: `tutorial-05_3-tuples.rs`
-    * 15 Closures: `tutorial-14-closure.rs`
-    * 16 Methods, with *constructor*: `tutorial-15-methods.rs`
+    * 15 Closures: `tutorial-15-closure.rs`
+    * 16 Methods, with *constructor*: `tutorial-16-methods.rs`
     * 17 Generics: `tutorial-17-generics.rs`
 * [Rust Tasks and Communication]
     * 2 Basics: `tutorial-tasks-02-basics.rs`
@@ -37,6 +37,7 @@ Examples are tested with version 0.9-pre.
     * std::vec: OwnedVector, 2D-arrays, ...: `api-std-vec.rs`
 * Some new files:
     * `Makefile` to compile, run tests and run benchmarks
+    * `.travis.yml` to add the repository to [Travis CI](https://travis-ci.org/eliovir/rust-examples) and [Rust CI](http://www.rust-ci.org/p/90/)
     * A library and its unit tests and benchmarks for 2 Fibonacci functions (a reccursive and a non reccursive): `fibonacci.rs`
     * A struct to manage dates: `date.rs`
     * A struct to manage INI files: `inifile.rs`
