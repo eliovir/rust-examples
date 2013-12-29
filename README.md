@@ -17,7 +17,7 @@ Examples are tested with version 0.9-pre.
 * [Tutorial]
     * 2.1 Compiling your first program: `tutorial-02_1-hello.rs`
     * 3 Syntax basics: `tutorial-03-syntax_basics.rs`
-    * 4.3 Loops (`for`, `for i.times`, `while`, `loop`): `tutorial-04_3-loops.rs`
+    * 4.3 Loops (`for`, `while`, `loop`): `tutorial-04_3-loops.rs`
     * 5.2 Enums: `tutorial-05_2-enum.rs`
     * 5.3 Tuples: `tutorial-05_3-tuples.rs`
     * 15 Closures: `tutorial-15-closure.rs`
@@ -32,9 +32,9 @@ Examples are tested with version 0.9-pre.
 * API
     * Program to an 'interface', not an 'implementation', by [Josh Davis](http://joshldavis.com/2013/07/01/program-to-an-interface-fool/): `lang-interface.rs`
     * Pointer snippets from Dave Herman's talk: `lang-pointers.rs`
-    * extra::getopts: `api-extra-getopts.rs`
-    * std::hashmap::HashMap: `api-std-hashmap.rs`
-    * std::vec: OwnedVector, 2D-arrays, ...: `api-std-vec.rs`
+    * [extra::getopts](http://static.rust-lang.org/doc/master/extra/getopts/index.html): `api-extra-getopts.rs`
+    * [std::hashmap::HashMap](http://static.rust-lang.org/doc/master/std/hashmap/struct.HashMap.html): `api-std-hashmap.rs`
+    * [std::vec](http://static.rust-lang.org/doc/master/std/vec/index.html): OwnedVector, 2D-arrays, ...: `api-std-vec.rs`
 * Some new files:
     * `Makefile` to compile, run tests and run benchmarks
     * `.travis.yml` to add the repository to [Travis CI](https://travis-ci.org/eliovir/rust-examples) and [Rust CI](http://www.rust-ci.org/p/90/)
