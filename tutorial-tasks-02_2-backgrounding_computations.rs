@@ -23,6 +23,7 @@ fn test_partial_sum_5() {
 	let actual = partial_sum(param);
 	assert_approx_eq!(expected, actual);
 }
+#[allow(dead_code)]
 fn main() {
 	let n = 40;
 	println("Setting spawn");

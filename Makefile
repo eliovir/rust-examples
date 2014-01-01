@@ -1,7 +1,7 @@
 RUSTC=echo -e "\033[32;1mRustc:\033[33m" $@ "\033[m"; rustc
 LIBSRC=date.rs fibonacci.rs inifile.rs
 LIBSTAMP=$(patsubst %.rs,lib-stamps/%,$(LIBSRC))
-TESTSRC=$(LIBSRC) unittests.rs
+TESTSRC=$(LIBSRC) tutorial-tasks-02_2-backgrounding_computations.rs unittests.rs
 TESTPROG:=$(patsubst %.rs,build/test-%,$(TESTSRC))
 SRC=$(wildcard *.rs)
 SRC:=$(filter-out $(TESTSRC),$(SRC))
@@ -60,4 +60,4 @@ lib-stamps/% : %.rs lib
 	$(RUSTC) --out-dir lib/ --lib $<  > $@;
 
 build/test-% : %.rs $(LIBSTAMP) build
-	$(RUSTC) $(RUSTFLAGS) $< -o $@ --test
+	$(RUSTC) $(RUSTFLAGS) $< -o $@ --test -L lib/
