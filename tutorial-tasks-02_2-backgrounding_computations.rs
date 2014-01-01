@@ -6,6 +6,7 @@
  */
 extern mod extra;
 extern mod fibonacci(name = "fibonacci", vers = "1.0", author = "eliovir");
+#[cfg(not(test))]
 use std::vec;
 
 fn partial_sum(start: uint) -> f64 {
@@ -23,7 +24,7 @@ fn test_partial_sum_5() {
 	let actual = partial_sum(param);
 	assert_approx_eq!(expected, actual);
 }
-#[allow(dead_code)]
+#[cfg(not(test))]
 fn main() {
 	let n = 40;
 	println("Setting spawn");
