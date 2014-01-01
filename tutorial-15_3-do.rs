@@ -32,4 +32,6 @@ fn main() {
 	do call_it() |n| {
 		println(n.to_str());
 	}
+	// `do` only works with `proc`s, so no use of `do` with each, which is a |closure|.
+	// |v: &int| is stack closure, not procedure: procedure is allocated at heap, and you can call it only once.
 }
