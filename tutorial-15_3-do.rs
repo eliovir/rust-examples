@@ -8,18 +8,28 @@
 
 // A function that takes a procedure as argument:
 fn call_it(op: proc(v: int)) {
-	    op(10)
+	op(10)
+}
+
+fn each(v: &[int], op: |v: &int|) {
+	let mut n = 0;
+	while n < v.len() {
+		op(&v[n]);
+		n += 1;
+	}
 }
 
 fn main() {
 	// As a caller, if we use a closure to provide the final operator argument, we can write it in a way that has a pleasant, block-like structure.
 	call_it(proc(n) {
-		    println(n.to_str());
+		println(n.to_str());
+	});
+	each([1, 2, 3], |n: &int| {
+		println(n.to_str());
 	});
 
 	// This is such a useful pattern that Rust has a special form of function call for these functions.
 	do call_it() |n| {
-		    println(n.to_str());
+		println(n.to_str());
 	}
-
 }
