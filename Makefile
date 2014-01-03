@@ -39,25 +39,27 @@ exe: $(PROG)
 
 test: $(TESTPROG)
 	# Run tests
-	@for EXE in $(TESTPROG); do\
-		./$$EXE;\
-	done
+	@EXIT=0; for EXE in $(TESTPROG); do\
+		./$$EXE; RET=$$?; \
+		if test "$$RET" = "1"; then \
+			EXIT=1;\
+		fi;\
+	done; exit $$EXIT
 
-build:
-	mkdir -p $@
 
 build/tutorial-tasks-02_2-backgrounding_computations: tutorial-tasks-02_2-backgrounding_computations.rs $(LIBSTAMP) build
 	$(RUSTC) $(RUSTFLAGS) $< -o $@ -L lib/
 
-build/% : %.rs build
+build/% : %.rs
+	mkdir -p build
 	$(RUSTC) $(RUSTFLAGS) $< -o $@
 
-lib:
-	mkdir -p $@
 
-lib-stamps/% : %.rs lib
+lib-stamps/% : %.rs
+	mkdir -p lib
 	mkdir -p lib-stamps ;
 	$(RUSTC) --out-dir lib/ --lib $<  > $@;
 
-build/test-% : %.rs $(LIBSTAMP) build
+build/test-% : %.rs $(LIBSTAMP)
+	mkdir -p build
 	$(RUSTC) $(RUSTFLAGS) $< -o $@ --test -L lib/
