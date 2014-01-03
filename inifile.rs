@@ -532,6 +532,9 @@ mod tests {
 	fn save() {
 		let filepath = ~"data/write_test.ini";
 		let path = Path::new(filepath);
+		if path.exists() {
+			println!("The file {:?} should not exist before test::save() is executed!", path);
+		}
 
 		let mut ini = super::IniFile::new();
 		ini.add_section("section1");
