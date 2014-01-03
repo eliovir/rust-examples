@@ -523,8 +523,9 @@ mod tests {
 		assert_eq!(expected, found);
 		
 		// Clean
+		assert!(path.exists(), format!("{} should exist after reading the new inifile!", writepath));
 		let result: Result<(), ~Any> = do task::try {
-			fs::unlink(&Path::new(writepath));
+			fs::unlink(&path);
 		};
 		assert!(!result.is_err(), format!("Unlinking {} should not fail!", writepath));
 	}
