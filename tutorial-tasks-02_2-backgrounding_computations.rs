@@ -5,7 +5,7 @@
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 extern mod extra;
-extern mod fibonacci(name = "fibonacci", vers = "1.0", author = "eliovir");
+extern mod fibonacci;
 #[cfg(not(test))]
 use std::vec;
 
