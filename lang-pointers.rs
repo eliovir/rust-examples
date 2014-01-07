@@ -74,13 +74,12 @@ fn main() {
 	 * Dereferenced mutable pointers may appear on the left hand side of assignments.
 	 * Such an assignment modifies the value that the pointer points to.
 	 */
-	let managed = @mut 10;
+	let managed = @10;
 	let mut owned = ~20;
 
 	let mut value = 30;
 	let borrowed = &mut value;
 
-	*managed = *owned + 10;
 	*owned = *borrowed + 100;
 	*borrowed = *managed + 1000;
 	let sum = *managed + *owned + *borrowed;
