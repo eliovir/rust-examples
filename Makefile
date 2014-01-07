@@ -1,4 +1,4 @@
-RUSTC=echo -e "\033[32;1mRustc:\033[33m" $@ "\033[m"; rustc
+RUSTC=printf "\033[32;1mRustc:\033[33m %s\033[m\n" $@; rustc
 LIBSRC=date.rs fibonacci.rs inifile.rs
 LIBSTAMP=$(patsubst %.rs,lib-stamps/%,$(LIBSRC))
 TESTSRC=$(LIBSRC) tutorial-tasks-02_2-backgrounding_computations.rs unittests.rs
@@ -39,25 +39,26 @@ exe: $(PROG)
 
 test: $(TESTPROG)
 	# Run tests
-	@for EXE in $(TESTPROG); do\
-		./$$EXE;\
-	done
-
-build:
-	mkdir -p $@
+	@EXIT=0; for EXE in $(TESTPROG); do\
+		./$$EXE; RET=$$?; \
+		if test "$$RET" != "0"; then \
+			EXIT=$$RET;\
+		fi;\
+	done; exit $$EXIT
 
 build/tutorial-tasks-02_2-backgrounding_computations: tutorial-tasks-02_2-backgrounding_computations.rs $(LIBSTAMP) build
 	$(RUSTC) $(RUSTFLAGS) $< -o $@ -L lib/
 
-build/% : %.rs build
+build/% : %.rs
+	mkdir -p build
 	$(RUSTC) $(RUSTFLAGS) $< -o $@
 
-lib:
-	mkdir -p $@
 
-lib-stamps/% : %.rs lib
+lib-stamps/% : %.rs
+	mkdir -p lib
 	mkdir -p lib-stamps ;
 	$(RUSTC) --out-dir lib/ --lib $<  > $@;
 
-build/test-% : %.rs $(LIBSTAMP) build
+build/test-% : %.rs $(LIBSTAMP)
+	mkdir -p build
 	$(RUSTC) $(RUSTFLAGS) $< -o $@ --test -L lib/
