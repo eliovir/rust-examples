@@ -22,7 +22,7 @@ fn test_partial_sum_5() {
 	let param = 5u;
 	let expected = 0.00000033f64;
 	let actual = partial_sum(param);
-	assert_approx_eq!(expected, actual);
+	assert!((expected - actual).abs() < 1.0e-6);
 }
 #[cfg(not(test))]
 fn main() {

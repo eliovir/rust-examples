@@ -19,7 +19,7 @@ mod tests {
 		let mut actual = 1f64;
 		let precision = 0.1f64;
 		actual = actual + precision / 2f64;
-		assert_approx_eq!(expected, actual, precision);
+		assert!((expected - actual).abs() < precision);
 	}
 	#[test]
 	fn testSuccess() {
