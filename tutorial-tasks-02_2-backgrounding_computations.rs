@@ -1,6 +1,6 @@
 /**
  * Rust Tasks and Communication Tutorial - 2.2 Backgrounding computations: Futures
- * http://static.rust-lang.org/doc/master/tutorial-tasks.html#backgrounding-computations-futures
+ * http://static.rust-lang.org/doc/master/guide-tasks.html#backgrounding-computations-futures
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -10,10 +10,9 @@ extern mod fibonacci;
 use std::vec;
 
 fn partial_sum(start: uint) -> f64 {
-	// println(fmt!("partial_sum(%u)", start));
 	let mut local_sum = 0f64;
 	for num in range(start*100000, (start+1)*100000) {
-		local_sum += (num as f64 + 1.0).pow(&-2.0);
+		local_sum += (num as f64 + 1.0).powf(&-2.0);
 	}
 	local_sum
 }
@@ -22,7 +21,8 @@ fn test_partial_sum_5() {
 	let param = 5u;
 	let expected = 0.00000033f64;
 	let actual = partial_sum(param);
-	assert_approx_eq!(expected, actual);
+	let precision = 1e-06f64;
+	assert!((expected - actual).abs() < precision);
 }
 #[cfg(not(test))]
 fn main() {

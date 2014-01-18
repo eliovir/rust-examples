@@ -17,5 +17,5 @@ fn main() {
 
 	let tuple1 = (5i, 6i);
 	let (first, _) = tuple1;
-	println(first.to_str());
+	println!("{}", first);
 }

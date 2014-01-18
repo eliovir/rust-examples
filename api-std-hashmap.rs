@@ -7,7 +7,7 @@
 use std::hashmap::HashMap;
 
 fn main() {
-	println("Using borrowed pointers as keys.");
+	println!("Using borrowed pointers as keys.");
 	let mut h: HashMap<&str, int>;
 	h = HashMap::new();
 	h.insert("foo", 42);
@@ -22,7 +22,7 @@ fn main() {
 	// unless all keys are static, this will be likely to lead
 	// to problems, so I don't suggest you do it in reality)
 
-	println("Using owned pointers as keys.");
+	println!("Using owned pointers as keys.");
 	let mut h: HashMap<~str, int> = HashMap::new();
 	h.insert(~"foo", 42);
 	println!("Is there a key foo?  => {}", h.contains_key(&~"foo")); // => true

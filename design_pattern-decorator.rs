@@ -55,10 +55,10 @@ fn main() {
 	let message = Message{message: ~"The first message is underlined then intended."};
 	let underlined = UnderlinedMessage{decorated: message};
 	let indented = IndentedMessage{decorated: underlined};
-	println(indented.print());
+	println!("{}", indented.print());
 	
 	let message2 = Message{message: ~"The second message is indented then underlined."};
 	let indented2 = IndentedMessage{decorated: message2};
 	let underlined2 = UnderlinedMessage{decorated: indented2};
-	println(underlined2.print());
+	println!("{}", underlined2.print());
 }

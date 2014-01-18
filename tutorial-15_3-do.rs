@@ -22,15 +22,15 @@ fn each(v: &[int], op: |v: &int|) {
 fn main() {
 	// As a caller, if we use a closure to provide the final operator argument, we can write it in a way that has a pleasant, block-like structure.
 	call_it(proc(n) {
-		println(n.to_str());
+		println!("{:?}", n);
 	});
 	each([1, 2, 3], |n: &int| {
-		println(n.to_str());
+		println!("{:?}", n);
 	});
 
 	// This is such a useful pattern that Rust has a special form of function call for these functions.
 	do call_it() |n| {
-		println(n.to_str());
+		println!("{:?}", n);
 	}
 	// `do` only works with `proc`s, so no use of `do` with each, which is a |closure|.
 	// |v: &int| is stack closure, not procedure: procedure is allocated at heap, and you can call it only once.

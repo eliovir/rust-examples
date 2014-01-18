@@ -1,6 +1,6 @@
 /**
  * Rust Tasks and Communication Tutorial - 2 Basics
- * http://static.rust-lang.org/doc/master/tutorial-tasks.html#basics
+ * http://static.rust-lang.org/doc/master/guide-tasks.html#basics
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -10,15 +10,15 @@ fn generate_task_number() -> int {
 }
 fn main() {
 	// Print something profound in a different task using a named function
-	fn print_message() { println("I am running in a different task!"); }
+	fn print_message() { println!("I am running in a different task!"); }
 	spawn(print_message);
 
 	// Print something more profound in a different task using a lambda expression
-	spawn( proc() println("I am also running in a different task!") );
+	spawn( proc() println!("I am also running in a different task!") );
 
 	// The canonical way to spawn is using `do` notation
 	do spawn {
-		    println("I too am running in a different task!");
+		    println!("I too am running in a different task!");
 	}
 
 	/*

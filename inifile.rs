@@ -19,7 +19,7 @@ extern mod extra;
 
 use std::from_str::FromStr;
 use std::hashmap::HashMap;
-use std::io::buffered::BufferedReader;
+use std::io::BufferedReader;
 use std::io::fs::File;
 use std::path::Path;
 
@@ -301,7 +301,7 @@ impl ToStr for IniFile {
 #[cfg(test)]
 mod tests {
 	use std::hashmap::HashMap;
-	use std::io::buffered::BufferedReader;
+	use std::io::BufferedReader;
 	use std::io::fs;
 	use std::io::fs::File;
 	use std::path::Path;

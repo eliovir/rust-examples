@@ -1,5 +1,5 @@
 /**
- * https://github.com/mozilla/rust/wiki/Doc-unit-testing
+ * http://static.rust-lang.org/doc/master/guide-testing.html
  * rustc unittest.rs --test -o unittest
  * ./unittest --test
  *
@@ -19,7 +19,7 @@ mod tests {
 		let mut actual = 1f64;
 		let precision = 0.1f64;
 		actual = actual + precision / 2f64;
-		assert_approx_eq!(expected, actual, precision);
+		assert!((expected - actual).abs() < precision);
 	}
 	#[test]
 	fn testSuccess() {
@@ -27,8 +27,7 @@ mod tests {
 		assert_eq!(1, 1);
 	}
 }
-/*
+#[cfg(not(test))]
 fn main() {
 	println("This program must be build and run with --test");
 }
-*/

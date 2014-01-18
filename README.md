@@ -45,8 +45,9 @@ Examples are tested with version 0.9-pre.
     * Design pattern Decorator: `design_pattern-decorator.rs`
 
 [Tutorial]: http://static.rust-lang.org/doc/master/tutorial.html
-[Rust Tasks and Communication]: http://static.rust-lang.org/doc/master/tutorial-tasks.html
-[Doc unit testing]: https://github.com/mozilla/rust/wiki/Doc-unit-testing
+[Rust Tasks and Communication]: http://static.rust-lang.org/doc/master/guide-tasks.html
+[Doc unit testing]: http://static.rust-lang.org/doc/master/guide-testing.html
+
 
 # Compile and running it
 
