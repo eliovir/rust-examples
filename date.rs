@@ -169,9 +169,4 @@ mod tests {
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 }
-#[cfg(not(test))]
-fn main() {
-	println("This program must be build and run with --test");
-}
-
 
