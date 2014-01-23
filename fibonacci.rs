@@ -65,7 +65,7 @@ pub fn fibonacci(n: int) -> uint {
 	let mut sum = 0;
 	let mut last = 0;
 	let mut curr = 1;
-	while (i < n - 1) {
+	while i < n - 1 {
 		sum = last + curr;
 		last = curr;
 		curr = sum;
