@@ -28,7 +28,7 @@ impl Date {
 		let mut year = self.year; 
 		day = day + days;
 		if days > 0 {
-			while (day > Date::monthLength(year, month)) {
+			while day > Date::monthLength(year, month) {
 				day = day - Date::monthLength(year, month);
 				month = month + 1;
 				if (month > 12) {
@@ -39,16 +39,16 @@ impl Date {
 		}
 		if day == 0 {
 			month = month - 1;
-			if (month < 1) {
+			if month < 1 {
 				month = 12;
 				year = year - 1;
 			}
 			day = Date::monthLength(year, month);
 		}
 		if days < 0 {
-			while (day < 1) {
+			while day < 1 {
 				month = month - 1;
-				if (month < 1) {
+				if month < 1 {
 					year = year - 1;
 					month = 12;
 				}
@@ -169,9 +169,9 @@ mod tests {
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 }
-/*
+#[cfg(not(test))]
 fn main() {
 	println("This program must be build and run with --test");
 }
-*/
+
 
