@@ -31,7 +31,7 @@ impl Date {
 			while day > Date::monthLength(year, month) {
 				day = day - Date::monthLength(year, month);
 				month = month + 1;
-				if (month > 12) {
+				if month > 12 {
 					year = year + 1;
 					month = 1;
 				}
