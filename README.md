@@ -52,7 +52,7 @@ Examples are tested with version 0.10-pre.
 
 # Compile and running it
 
-You will need the version 0.9 of the rust compiler.
+You will need the version 0.10-pre of the rust compiler.
 If you encounter problems, make sure you have the right version before creating an issue.
 
 The simplest way to build **rust-examples** is to do a clone and use ``make`` to compile:
