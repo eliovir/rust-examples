@@ -35,6 +35,7 @@ Examples are tested with version 0.10-pre.
     * Pointer snippets from Dave Herman's talk: `lang-pointers.rs`
     * [extra::getopts](http://static.rust-lang.org/doc/master/extra/getopts/index.html): `api-extra-getopts.rs`
     * [std::hashmap::HashMap](http://static.rust-lang.org/doc/master/std/hashmap/struct.HashMap.html): `api-std-hashmap.rs`
+    * [std::io::File](http://static.rust-lang.org/doc/master/std/io/index.html): `api-std-io-file.rs`
     * [std::vec](http://static.rust-lang.org/doc/master/std/vec/index.html): OwnedVector, 2D-arrays, ...: `api-std-vec.rs`
 * Some new files:
     * `Makefile` to compile, run tests and run benchmarks
