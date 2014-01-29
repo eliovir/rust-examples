@@ -3,17 +3,19 @@
 #[license = "MIT"];
 #[desc = "Library for simple INI file management" ];
 #[comment = "Example of library: INI file management"];
-/**
- * INI file management, partial implementation of Python API.
- *
- * Tested with rust-0.9-pre
- *
- * @author Eliovir <http://github.com/~eliovir>
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- * @see http://docs.python.org/2/library/configparser.html
- * @since 2013-12-18
- * @todo eddyb: you may want that to be Option<&'a str> so you can return None when the option isn't present. Option<T> can be either Some(T) or None. Option<~T> and Option<&T> are nullable pointers semantically (and optimized as such)
- */
+//! INI file management, partial implementation of Python API.
+//!
+//! Tested with rust-0.10-pre
+//!
+//! @author Eliovir <http://github.com/~eliovir>
+//!
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+//!
+//! @see http://docs.python.org/2/library/configparser.html
+//!
+//! @since 2013-12-18
+//!
+//! @todo eddyb: you may want that to be Option<&'a str> so you can return None when the option isn't present. Option<T> can be either Some(T) or None. Option<~T> and Option<&T> are nullable pointers semantically (and optimized as such)
 
 extern mod extra;
 

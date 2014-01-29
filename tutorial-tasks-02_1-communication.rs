@@ -1,14 +1,15 @@
-/**
- * Rust Tasks and Communication Tutorial - 2.1 Communication
- *
- * Originally, snippets from the Dave Herman's presentation (2013-01-06) about concurrency
- * http://www.infoq.com/presentations/Rust
- *
- * Dave Herman talks about Mozilla Rust and some of the features that make it safe, concurrent, and fast.
- *
- * Corrected to 0.9-pre
- * http://static.rust-lang.org/doc/master/tutorial-tasks.html#communication
- */
+#[crate_id="tutorial-tasks-02_1-communication"];
+//! Rust Tasks and Communication Tutorial - 2.1 Communication
+//!
+//! Originally, snippets from the Dave Herman's presentation (2013-01-06) about concurrency
+//! http://www.infoq.com/presentations/Rust
+//!
+//! Dave Herman talks about Mozilla Rust and some of the features that make it safe, concurrent, and fast.
+//! 
+//! Corrected to 0.9-pre
+//! http://static.rust-lang.org/doc/master/tutorial-tasks.html#communication
+
+//! Simple struct to test data exchange.
 struct Point {
     x: f64,
     y: f64

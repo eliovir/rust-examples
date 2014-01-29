@@ -3,16 +3,17 @@
 #[license = "MIT"];
 #[desc = "Implementation of design pattern Decorator" ];
 #[comment = "Implement in Rust the design pattern found in Wikipedia (PHP example)."];
-/**
- * Design pattern: Decorator
- *
- * Tested with rust-0.9-pre
- *
- * @see http://fr.wikipedia.org/wiki/D%C3%A9corateur_%28patron_de_conception%29#Exemple_en_PHP
- * @author Eliovir <http://github.com/~eliovir>
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- * @since 2013-11-06
- */
+//! Design pattern: Decorator
+//!
+//! Tested with rust-0.10-pre
+//!
+//! @see http://fr.wikipedia.org/wiki/D%C3%A9corateur_%28patron_de_conception%29#Exemple_en_PHP
+//!
+//! @author Eliovir <http://github.com/~eliovir>
+//!
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+//! @since 2013-11-06
+
 struct Message {
 	message: ~str,
 }

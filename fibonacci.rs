@@ -3,12 +3,11 @@
 #[license = "MIT"];
 #[desc = "Fibonacci library" ];
 #[comment = "Example of library: compute Fibonacci"];
-/**
- * Compute fibonacci.
- *
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- * @author Eliovir <http://github.com/~eliovir>
- */
+//! Compute fibonacci.
+//!
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+//!
+//! @author Eliovir <http://github.com/~eliovir>
 
 extern mod extra;
 /**

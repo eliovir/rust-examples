@@ -28,9 +28,9 @@ bench: $(TESTPROG)
 		./$$EXE --bench;\
 	done
 
-doc: $(SRC)
+doc: $(SRC) $(LIBSRC)
 	# Run rustdoc
-	@for FI in $(SRC); do \
+	@for FI in $(SRC) $(LIBSRC); do \
 		rustdoc -o html-doc $$FI;\
 	done
 

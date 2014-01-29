@@ -3,18 +3,21 @@
 #[license = "MIT"];
 #[desc = "Library for simple date management" ];
 #[comment = "Example of library: date management"];
-/**
- * Date management
- *
- * Use "constructor", string manipulation
- * Tested with rust-0.9-pre
- *
- * @author Eliovir <http://github.com/~eliovir>
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- * @since 2013-10-24
- */
+//! Date management
+//!
+//! Use "constructor", string manipulation
+//! Tested with rust-0.9-pre
+//!
+//! @author Eliovir <http://github.com/~eliovir>
+//!
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+//!
+//! @since 2013-10-24
 use std::from_str::FromStr;
 
+/**
+ * Simple struct to handle date.
+ */
 pub struct Date {
 	day: int,
 	month: int,
@@ -22,6 +25,9 @@ pub struct Date {
 }
 
 impl Date {
+	/**
+	 * Add days to the current day. Use negative to remove day.
+	 */
 	pub fn addDays(&mut self, days: int) {
 		let mut day = self.day;
 		let mut month = self.month;
@@ -60,6 +66,9 @@ impl Date {
 		self.year = year;
 	}
 
+	/**
+	 * Check if defined date is valid.
+	 */
 	pub fn isValid(&self) -> bool {
 		if self.month < 1 || self.month > 12 {
 			false
@@ -73,9 +82,17 @@ impl Date {
 	/*
 	 * Static methods
 	 */
+
+	/**
+	 * Static method to know if the year is a leap year.
+	 */
 	pub fn isLeap(year: int) -> bool {
 		(year % 4 == 0 && year % 100 != 0) || year % 400 == 0
 	}
+
+	/**
+	 * Static method to get the number of days in the month.
+	 */
 	pub fn monthLength(year: int, month: int) -> int {
 		match  month {
 			1 | 3 | 5 | 7 | 8 | 10 | 12 => 31,
@@ -84,9 +101,17 @@ impl Date {
 			_ => fail!("Wrong month")
 		}
 	}
+
+	/**
+	 * "Constructor".
+	 */
 	pub fn new(year: int, month: int, day: int) -> Date {
 		Date{day: day, month: month, year: year}
 	}
+
+	/**
+	 * "Constructor" using string like "2013-10-24".
+	 */
 	pub fn newFromString(string: &str) -> Date {
 		if string.len() < 10 {
 			fail!("Wrong format!");
@@ -100,6 +125,7 @@ impl Date {
 
 /**
  * Operator overloading
+ *
  * @see http://maniagnosis.crsr.net/2013/04/operator-overloading-in-rust.html
  */
 impl ToStr for Date {

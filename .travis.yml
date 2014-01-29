@@ -9,4 +9,5 @@ install:
 script:
   - make clean test
 after_script:
+  - make doc
   - curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
