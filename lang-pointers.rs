@@ -1,4 +1,7 @@
 #[feature(managed_boxes)];
+use std::rc::Rc;
+use std::gc::Gc;
+
 /**
  * Snippets from the Dave Herman's presentation (2013-01-06)
  * http://www.infoq.com/presentations/Rust
@@ -7,6 +10,9 @@
  * 
  * 13. Dereferencing pointers
  * http://static.rust-lang.org/doc/master/tutorial.html#dereferencing-pointers
+ *
+ * The deprecation of @, its alternatives
+ * https://github.com/mozilla/rust/wiki/Doc-detailed-release-notes
  */
 struct Point {
 	x: f64,
@@ -99,4 +105,20 @@ fn main() {
 	let rect = &Rectangle(*top, *bottom);
 	let area = rect.area();
 	println!("Area of rectangle {:?}: {:f}", rect, area);
+
+	/*
+	 * Managed boxes will be completely removed very soon, so all code
+	 * should begin transitioning to the Rc or Gc types now included in
+	 * the standard library.
+	 *
+	 * Note that to get the value inside one of these boxes you first call
+	 * the borrow() method, which returns &T, then dereference that. 
+	 */
+	let rc1 = Rc::new(1);
+	let rc2 = rc1.clone();
+	println!("{}", *rc1.borrow() + *rc2.borrow());
+
+	let gc1 = Gc::new(1);
+	let gc2 = gc1.clone();
+	println!("{}", *gc1.borrow() + *gc2.borrow());
 }
