@@ -16,27 +16,23 @@ fn main() {
 	// Print something more profound in a different task using a lambda expression
 	spawn( proc() println!("I am also running in a different task!") );
 
-	// The canonical way to spawn is using `do` notation
-	do spawn {
-		    println!("I too am running in a different task!");
-	}
 
 	/*
 	 */
 	// Generate some state locally
 	let child_task_number_10 = generate_task_number();
 
-	do spawn {
+	spawn(proc() {
 		   // Capture it in the remote task
 		   println!("I am child number {}", child_task_number_10);
-	}
+	});
 
 	/*
 	 */
 	for child_task_number in range(0, 20) {
-		do spawn {
-			print!("I am child number {}\n", child_task_number);
-		}
+		spawn( proc()
+			print!("I am child number {}\n", child_task_number)
+		);
 	}
 
 }

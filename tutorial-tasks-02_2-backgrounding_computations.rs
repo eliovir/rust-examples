@@ -38,7 +38,7 @@ fn main() {
 	/*
 	 * The workload will be distributed on the available cores.
 	 */
-	let mut futures = vec::from_fn(1000, |ind| do extra::future::Future::spawn { partial_sum(ind) });
+	let mut futures = vec::from_fn(1000, |ind| extra::future::Future::spawn( proc() { partial_sum(ind) }));
 
 	let mut final_res = 0f64;
 	for ft in futures.mut_iter() {

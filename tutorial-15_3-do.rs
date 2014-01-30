@@ -4,7 +4,6 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-// The do expression makes it easier to call functions that take procedures as arguments.
 
 // A function that takes a procedure as argument:
 fn call_it(op: proc(v: int)) {
@@ -28,10 +27,5 @@ fn main() {
 		println!("{:?}", n);
 	});
 
-	// This is such a useful pattern that Rust has a special form of function call for these functions.
-	do call_it() |n| {
-		println!("{:?}", n);
-	}
-	// `do` only works with `proc`s, so no use of `do` with each, which is a |closure|.
 	// |v: &int| is stack closure, not procedure: procedure is allocated at heap, and you can call it only once.
 }

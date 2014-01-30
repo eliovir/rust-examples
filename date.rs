@@ -6,7 +6,7 @@
 //! Date management
 //!
 //! Use "constructor", string manipulation
-//! Tested with rust-0.9-pre
+//! Tested with rust-0.10-pre
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!

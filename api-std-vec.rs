@@ -1,5 +1,5 @@
 /**
- * http://static.rust-lang.org/doc/0.8/std/vec/index.html
+ * http://static.rust-lang.org/doc/master/std/vec/index.html
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
