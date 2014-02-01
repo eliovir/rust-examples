@@ -17,7 +17,9 @@ Examples are tested with version 0.10-pre.
 * [Tutorial]
     * 2.1 Compiling your first program: `tutorial-02_1-hello.rs`
     * 3 Syntax basics: `tutorial-03-syntax_basics.rs`
+    * 4.2 Pattern matching: `tutorial-04_2-pattern-matching.rs`
     * 4.3 Loops (`for`, `while`, `loop`): `tutorial-04_3-loops.rs`
+    * 5.1 Structs: `tutorial-05_1-structs.rs`
     * 5.2 Enums: `tutorial-05_2-enum.rs`
     * 5.3 Tuples: `tutorial-05_3-tuples.rs`
     * 15 Closures: `tutorial-15-closure.rs`

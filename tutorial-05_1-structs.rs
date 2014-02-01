@@ -15,6 +15,8 @@ fn main() {
 	let mut mypoint = Point { x: 1.0, y: 1.0 };
 	let origin = Point { x: 0.0, y: 0.0 };
 
+	println!("origin = {:?}", origin);
+
 	mypoint.y += 1.0; // mypoint is mutable, and its fields as well
 	//origin.y += 1.0; // ERROR: assigning to immutable field
 	
