@@ -7,6 +7,8 @@
 use std::rand::{task_rng, Rng};
 use std::f64;
 use std::num::atan;
+struct Point { x: f64, y: f64 }
+
 fn angle(vector: (f64, f64)) -> f64 {
 	let pi = f64::consts::PI;
 	/*
@@ -56,4 +58,13 @@ fn main() {
 
 	let vector = (1f64,1f64);
 	println!("angle({:?}) == {:?}", vector, angle(vector));
+
+	/*
+	 * To destructure a struct, use `..`.
+	 * http://static.rust-lang.org/doc/master/tutorial.html#structs
+	 */
+	let mypoint = Point { x: 0.0, y: 0.0 };
+	match mypoint {
+		Point { x, .. } => println!("{}", x),	
+	}
 }
