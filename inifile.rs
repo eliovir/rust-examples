@@ -533,7 +533,7 @@ mod tests {
 	}
 	#[test]
 	fn save() {
-		let filepath = ~"data/write_test.ini";
+		let filepath = ~"data/save_test.ini";
 		let path = Path::new(filepath);
 		if path.exists() {
 			println!("The file {:?} should not exist before test::save() is executed!", path);
