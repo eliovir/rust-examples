@@ -57,7 +57,7 @@ build/% : %.rs
 lib-stamps/% : %.rs
 	mkdir -p lib
 	mkdir -p lib-stamps ;
-	$(RUSTC) --out-dir lib/ --lib $<  > $@;
+	$(RUSTC) --out-dir lib/ $<  > $@;
 
 build/test-% : %.rs $(LIBSTAMP)
 	mkdir -p build

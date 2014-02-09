@@ -137,8 +137,11 @@ impl IniFile {
 	 */
 	pub fn read(&mut self, filepath: &str) {
 		self.path = Path::new(filepath);
-		let on_error = || fail!("open of {:?} failed", self.path);
-		let file: File = File::open(&self.path).unwrap_or_else(on_error);
+		let file = File::open(&self.path);
+		match file {
+			Err(e) => fail!("open of {:?} failed: {}", self.path, e),
+			_ => debug!("open of {:?} succeeded", self.path)
+		}
 		let mut reader = BufferedReader::new(file);
 		let mut lines: ~[~str] = ~[];
 		for line in reader.lines() {
@@ -268,7 +271,10 @@ impl IniFile {
 	pub fn write(&self, filepath: &str) {
 		// http://static.rust-lang.org/doc/master/std/io/index.html
 		let mut file = File::create(&Path::new(filepath));
-		file.write(self.to_str().into_bytes());
+		match file.write(self.to_str().into_bytes()) {
+			Ok(()) => debug!("INI file {:?} written", self.path),
+			Err(e) => println!("failed to write to {:?}: {}", self.path, e),
+		}
 	}
 }
 
@@ -490,8 +496,11 @@ mod tests {
 	fn to_str() {
 		let filepath = "data/config.ini";
 		let path = Path::new(filepath);
-		let on_error = || fail!("open of {:?} failed", path);
-		let file: File = File::open(&path).unwrap_or_else(on_error);
+		let file = File::open(&path);
+		match file {
+			Err(e) => fail!("open of {:?} failed: {}", path, e),
+			_ => debug!("open of {:?} succeeded", path)
+		}
 		let mut reader = BufferedReader::new(file);
 		let mut lines: ~[~str] = ~[];
 		for line in reader.lines() {
@@ -523,11 +532,14 @@ mod tests {
 		let found = ini2.to_str();
 		let expected = ini.to_str();
 		assert_eq!(expected, found);
-		
+
 		// Clean
 		assert!(path.exists(), format!("{} should exist after reading the new inifile!", writepath));
 		let result: Result<(), ~Any> = task::try(proc() {
-			fs::unlink(&path);
+			match fs::unlink(&path) {
+				Err(e) => fail!("open of {:?} failed: {}", path, e),
+				_ => debug!("open of {:?} succeeded", path)
+			}
 		});
 		assert!(!result.is_err(), format!("Unlinking {} should not fail!", writepath));
 	}
@@ -546,8 +558,11 @@ mod tests {
 		ini.save();
 
 
-		let on_error = || fail!("open of {:?} failed", path);
-		let file: File = File::open(&path).unwrap_or_else(on_error);
+		let file = File::open(&path);
+		match file {
+			Err(e) => fail!("open of {:?} failed: {}", path, e),
+			_ => debug!("open of {:?} succeeded", path)
+		}
 		let mut reader = BufferedReader::new(file);
 		let mut lines: ~[~str] = ~[];
 		for line in reader.lines() {
@@ -557,7 +572,10 @@ mod tests {
 		let found = lines.concat();
 		let expected = ~"[section1]\nkey1=value1\n";
 		assert_eq!(expected, found);
-		fs::unlink(&path);
+		match fs::unlink(&path) {
+			Err(e) => fail!("open of {:?} failed: {}", path, e),
+			_ => debug!("open of {:?} succeeded", path)
+		}
 	}
 }
 #[bench]
