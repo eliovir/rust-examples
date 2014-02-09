@@ -1,4 +1,4 @@
-rust-examples [![Ohloh statistics](https://www.ohloh.net/p/rust-examples/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/rust-examples)
+rust-examples [![Ohloh statistics](http://www.ohloh.net/p/rust-examples/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/rust-examples)
 =============
 
 [![Build Status](https://travis-ci.org/eliovir/rust-examples.png?branch=master)](https://travis-ci.org/eliovir/rust-examples)
