@@ -34,6 +34,7 @@ Examples are tested with version 0.10-pre.
     * Unit testing in Rust: `unittests.rs`
 * API
     * Program to an 'interface', not an 'implementation', by [Josh Davis](http://joshldavis.com/2013/07/01/program-to-an-interface-fool/): `lang-interface.rs`
+    * Lambda expressions: `lang-lambda.rs`
     * Pointer snippets from Dave Herman's talk: `lang-pointers.rs`
     * [getopts](http://static.rust-lang.org/doc/master/getopts/index.html): `api-getopts.rs`
     * [std::from_str::FromStr](http://static.rust-lang.org/doc/master/std/from_str/trait.FromStr.html): `api-std-from_str.rs`
@@ -49,6 +50,7 @@ Examples are tested with version 0.10-pre.
     * Design pattern Decorator: `design_pattern-decorator.rs`
 
 [Tutorial]: http://static.rust-lang.org/doc/master/tutorial.html
+[The Rust Reference Manual]: http://static.rust-lang.org/doc/master/rust.html
 [Rust Tasks and Communication]: http://static.rust-lang.org/doc/master/guide-tasks.html
 [Doc unit testing]: http://static.rust-lang.org/doc/master/guide-testing.html
 

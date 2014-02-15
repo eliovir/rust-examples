@@ -10,6 +10,14 @@ struct Pair {
 }
 fn main() {
 	/*
+	 * An example of a for loop over the contents of a vector:
+	 */
+	let v: &[uint] = &[4, 2, 1];
+	for i in v.iter() {
+		println!("{:u} is an integer!", *i);
+	}
+		
+	/*
 	 * A standard library function that applies a closure to every number between 0 and 10.
 	 */
 	for i in range(0u, 10) {
