@@ -3,7 +3,7 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-extern mod getopts;
+extern crate getopts;
 use getopts::{optopt,optflag,getopts,OptGroup};
 use std::os;
 
