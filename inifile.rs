@@ -17,7 +17,7 @@
 //!
 //! @todo eddyb: you may want that to be Option<&'a str> so you can return None when the option isn't present. Option<T> can be either Some(T) or None. Option<~T> and Option<&T> are nullable pointers semantically (and optimized as such)
 
-extern mod extra;
+extern crate extra;
 
 use std::from_str::FromStr;
 use std::hashmap::HashMap;

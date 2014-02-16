@@ -4,8 +4,8 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-extern mod extra;
-extern mod fibonacci;
+extern crate extra;
+extern crate fibonacci;
 #[cfg(not(test))]
 use std::vec;
 

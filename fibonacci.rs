@@ -9,7 +9,7 @@
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 
-extern mod extra;
+extern crate extra;
 /**
 * Calcule les elements de la suite de Fibonnaci.
 *
