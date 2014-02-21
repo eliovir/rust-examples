@@ -9,7 +9,11 @@
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 
-extern crate extra;
+extern crate test;
+
+#[cfg(test)]
+use test::BenchHarness;
+
 /**
 * Calcule les elements de la suite de Fibonnaci.
 *
@@ -135,13 +139,13 @@ fn RG024_5() {
 	RG024_x(30, 832040);
 }
 #[bench]
-fn bench_fibonacci_reccursive_20(b: &mut extra::test::BenchHarness) {
+fn bench_fibonacci_reccursive_20(b: &mut BenchHarness) {
 	b.iter(|| {
-			fibonacci_reccursive(20);
+		fibonacci_reccursive(20);
 	});
 }
 #[bench]
-fn bench_fibonacci_20(b: &mut extra::test::BenchHarness) {
+fn bench_fibonacci_20(b: &mut BenchHarness) {
 	b.iter(|| {
 		fibonacci(20);
 	});

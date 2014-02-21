@@ -1,18 +1,18 @@
 /**
  * http://static.rust-lang.org/doc/master/guide-testing.html
- * rustc unittest.rs --test -o unittest
- * ./unittest --test
+ * http://static.rust-lang.org/doc/master/test/index.html
+ * rustc unittests.rs --test -o unittests
+ * ./unittests --test
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 #[cfg(test)]
 mod tests {
-	/* This test is commented to avoid false negative tests.
 	#[test]
+	#[should_fail]
 	fn testFail() {
 		assert!(1 == 2, "This test must fail!");
 	}
-	*/
 	#[test]
 	fn testFloat() {
 		let expected = 1f64;
@@ -29,5 +29,5 @@ mod tests {
 }
 #[cfg(not(test))]
 fn main() {
-	println("This program must be build and run with --test");
+	println!("This program must be build and run with --test");
 }

@@ -47,27 +47,6 @@ fn main() {
 	}
 
 	/*
-	 * You can destructure vectors:
-	 *
-	 * `unreachable!()` expands to `fail!("internal error: entered unreachable code")`.
-	 */
-	let v = ~[1, 2, 3, 4, 5];
-	match v {
-		[]                       => println!("empty"),
-		[elem]                   => println!("{}", elem),   // => 1
-		[first, second, ..rest]  => println!("first={}, second={}, rest={:?}", first, second, rest)  // => &[3, 4, 5]
-	}
-	match v {
-		[first, ..] => assert_eq!(first, 1),
-		[.., last]  => assert_eq!(last, 3),
-		_           => unreachable!()
-	}
-	match v {
-		[first, .. middle, last] => println!("first={:?}, middle={:?}, last={:?}", first, middle, last),
-		_                        => unreachable!()
-	}
-
-	/*
 	 * Create a vector in a function.
 	 */
 	let mut strings = fillStrings();
