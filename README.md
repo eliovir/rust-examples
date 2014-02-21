@@ -86,6 +86,17 @@ To get help on commands:
 6. Push to the branch (`git push origin my-new-feature`)
 7. Create new Pull Request
 
+## Links
+
+other projects have similar goals: providing Rust code snippets:
+
+- [Learn Rust](https://github.com/kaseyc/Learn-Rust): Sample programs Kaseyc made to learn the Rust language.
+- [Rust design patterns](https://github.com/jdavis/rust-design-patterns): Implementation of various design patterns in Rust. (MIT)
+- [Rust for real](https://github.com/FlaPer87/rust-for-real): Learning Rust by example. (Apache License v2)
+- [Rust Rosetta](https://github.com/Hoverbear/rust-rosetta): Implementing [Rosetta Code](http://rosettacode.org/) problems in Rust. (Public domain)
+- [Rust sandbox](https://github.com/rntz/rust-sandbox): Playing around with Rust. (DWTFYWT PUBLIC LICENSE v2)
+- [Rustlings](https://github.com/smadhueagle/rustlings): Smadheagle's experiments with Rust Programming Lanugage.
+
 ## License
 
 Rust is primarily distributed under the terms of both the MIT license
