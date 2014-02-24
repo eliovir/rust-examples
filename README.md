@@ -36,9 +36,9 @@ Examples are tested with version 0.10-pre.
     * Program to an 'interface', not an 'implementation', by [Josh Davis](http://joshldavis.com/2013/07/01/program-to-an-interface-fool/): `lang-interface.rs`
     * Lambda expressions: `lang-lambda.rs`
     * Pointer snippets from Dave Herman's talk: `lang-pointers.rs`
+    * [collections:hashmap::HashMap](http://static.rust-lang.org/doc/master/collections/hashmap/struct.HashMap.html): `api-collections-hashmap.rs`
     * [getopts](http://static.rust-lang.org/doc/master/getopts/index.html): `api-getopts.rs`
     * [std::from_str::FromStr](http://static.rust-lang.org/doc/master/std/from_str/trait.FromStr.html): `api-std-from_str.rs`
-    * [std::hashmap::HashMap](http://static.rust-lang.org/doc/master/std/hashmap/struct.HashMap.html): `api-std-hashmap.rs`
     * [std::io::File](http://static.rust-lang.org/doc/master/std/io/index.html): `api-std-io-file.rs`
     * [std::vec](http://static.rust-lang.org/doc/master/std/vec/index.html): OwnedVector, 2D-arrays, ...: `api-std-vec.rs`
 * Some new files:

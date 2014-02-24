@@ -1,10 +1,11 @@
 /**
- * http://static.rust-lang.org/doc/master/std/hashmap/index.html
+ * http://static.rust-lang.org/doc/master/collections/hashmap/struct.HashMap.html
  * https://github.com/mozilla/rust/blob/master/src/test/run-pass/hashmap-memory.rs#L70
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-use std::hashmap::HashMap;
+extern crate collections;
+use collections::hashmap::HashMap;
 
 fn main() {
 	println!("Using borrowed pointers as keys.");

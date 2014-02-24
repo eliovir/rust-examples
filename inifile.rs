@@ -17,10 +17,11 @@
 //!
 //! @todo eddyb: you may want that to be Option<&'a str> so you can return None when the option isn't present. Option<T> can be either Some(T) or None. Option<~T> and Option<&T> are nullable pointers semantically (and optimized as such)
 
+extern crate collections;
 extern crate test;
 
+use collections::hashmap::HashMap;
 use std::from_str::FromStr;
-use std::hashmap::HashMap;
 use std::io::BufferedReader;
 use std::io::fs::File;
 use std::path::Path;
@@ -311,7 +312,7 @@ impl ToStr for IniFile {
 
 #[cfg(test)]
 mod tests {
-	use std::hashmap::HashMap;
+	use collections::hashmap::HashMap;
 	use std::io::BufferedReader;
 	use std::io::fs;
 	use std::io::fs::File;
