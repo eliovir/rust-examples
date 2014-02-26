@@ -20,7 +20,7 @@ help:
 
 clean:
 	# Remove executables, test files, libraries
-	rm -fr $(PROG) $(TESTPROG) *~ build/ html-doc/ lib/ lib-stamps/
+	rm -fr $(PROG) $(TESTPROG) *~ build/ doc/ lib/ lib-stamps/
 
 bench: $(TESTPROG)
 	# Run benchmarks
@@ -28,10 +28,10 @@ bench: $(TESTPROG)
 		./$$EXE --bench;\
 	done
 
-doc: $(SRC) $(LIBSRC)
+docs: $(SRC) $(LIBSRC)
 	# Run rustdoc
 	@for FI in $(SRC) $(LIBSRC); do \
-		rustdoc -o html-doc $$FI;\
+		rustdoc -o doc $$FI;\
 	done
 
 exe: $(PROG)

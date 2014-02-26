@@ -1,6 +1,6 @@
 env:
   global:
-    - secure: VafI80lWQUqaLSVNUPxuiV58d9ecxWX2Wiaq6TiK13tP1G0AJlbh/wx9lPQUWrnz5ABDUb+iDPMaWZ4V6KUqk5uOL9RZ47B2KzrEk36iTyZfgAgb6AWSEoxX6UzfIgVi7mXsU7AGwQiONsd1/4o8q/wqy9ut08G8ouVnhck/LE8=
+    - secure: YuWDOwPGprL6PiBZVeGaLOCHHgC18fQ6nq617tlt7XFCkG17r/xDWq3iiAyNxNUcwsD9CkWi5aXok8SlX3rQx84XC/sya2bi0+8Frt9EztcVxgMwWuX3Ll4mFHO7HnMhazoQYRPd0b0w4s7bFY2WidxCqjsMKRgAM26Gn+6oQto=
 before_install:
   - yes | sudo add-apt-repository ppa:hansjorg/rust
   - sudo apt-get update
@@ -9,5 +9,5 @@ install:
 script:
   - make clean test
 after_script:
-  - make doc
+  - make docs
   - curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
