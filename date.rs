@@ -14,6 +14,7 @@
 //!
 //! @since 2013-10-24
 use std::from_str::FromStr;
+use std::fmt;
 
 /**
  * Simple struct to handle date.
@@ -128,9 +129,9 @@ impl Date {
  *
  * @see http://maniagnosis.crsr.net/2013/04/operator-overloading-in-rust.html
  */
-impl ToStr for Date {
-	fn to_str(&self) -> ~str {
-		format!("{:4d}-{:2d}-{:2d}", self.year, self.month, self.day)
+impl fmt::Show for Date {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		write!(f.buf, "{:4d}-{:2d}-{:2d}", self.year, self.month, self.day)
 	}
 }
 

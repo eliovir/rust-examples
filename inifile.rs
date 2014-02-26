@@ -25,6 +25,7 @@ use std::from_str::FromStr;
 use std::io::BufferedReader;
 use std::io::fs::File;
 use std::path::Path;
+use std::fmt;
 
 #[cfg(test)]
 use test::BenchHarness;
@@ -286,11 +287,8 @@ impl IniFile {
  * Operator overloading
  * @see http://maniagnosis.crsr.net/2013/04/operator-overloading-in-rust.html
  */
-impl ToStr for IniFile {
-	/**
-	 * Converts the value of self to an owned string.
-	 */
-	fn to_str(&self) -> ~str {
+impl fmt::Show for IniFile {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
 		let mut lines = ~"";
 		let sections = self.sections().clone();
 		for section in sections.iter() {
@@ -306,7 +304,7 @@ impl ToStr for IniFile {
 				lines.push_str(format!("{}={}\n", key.to_owned(), self.get(section.to_owned(), key.to_owned())));
 			}
 		}
-		lines
+		write!(f.buf, "{}", lines)
 	}
 }
 
