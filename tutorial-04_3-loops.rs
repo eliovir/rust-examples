@@ -46,6 +46,16 @@ fn main() {
 	}
 
 	/*
+	 * More generally, a for loop works with anything implementing the `Iterator` trait.
+	 * Data structures can provide one or more methods that return iterators over their contents.
+	 * For example, strings support iteration over their contents in various ways:
+	 */
+	let s = "Hello";
+	for c in s.chars() {
+    		println!("{}", c);
+	}
+
+	/*
 	 * Destructuring a struct in for loops:
 	 */
 	let pairs = ~[Pair {x: 10, y: 20}, Pair {x: 30, y: 0}]; 
