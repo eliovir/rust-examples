@@ -13,6 +13,20 @@ fn call_closure_with_ten(b: |int|) {
 	b(10);
 }
 
+// A function that takes a procedure as argument:
+fn call_it(op: proc(v: int)) {
+	op(10)
+}
+
+// |v: &int| is stack closure, not procedure: procedure is allocated at heap, and you can call it only once.
+fn each(v: &[int], op: |v: &int|) {
+	let mut n = 0;
+	while n < v.len() {
+		op(&v[n]);
+		n += 1;
+	}
+}
+
 fn main() {
 	/*
 	 * Simple call of closure
@@ -33,4 +47,14 @@ fn main() {
 	let mut max = 0i;
 	[1, 2, 3].map(|x| if *x > max { max = *x });
 	println!("max={}", max);
+	
+	/*
+	 * As a caller, if we use a closure to provide the final operator argument, we can write it in a way that has a pleasant, block-like structure.
+	 */
+	call_it(proc(n) {
+		println!("{:?}", n);
+	});
+	each([1, 2, 3], |n: &int| {
+		println!("{:?}", n);
+	});
 }
