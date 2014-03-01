@@ -23,7 +23,6 @@ Examples are tested with version 0.10-pre.
     * 5.2 Enums: `tutorial-05_2-enum.rs`
     * 5.3 Tuples: `tutorial-05_3-tuples.rs`
     * 15 Closures: `tutorial-15-closure.rs`
-    * 15.3 Do syntax: `tutorial-15_3-do.rs`
     * 16 Methods, with *constructor*: `tutorial-16-methods.rs`
     * 17 Generics: `tutorial-17-generics.rs`
 * [Rust Tasks and Communication]
