@@ -9,26 +9,25 @@ gather example codes from tutorial and other documentations of
 
 Examples are tested with version 0.10-pre.
 
-
 ## Files
 
 * [Homepage](http://www.rust-lang.org/)
     * `what_it_looks_like.rs`
 * [Tutorial]
-    * 2.1 Compiling your first program: `tutorial-02_1-hello.rs`
-    * 3 Syntax basics: `tutorial-03-syntax_basics.rs`
-    * 4.2 Pattern matching: `tutorial-04_2-pattern-matching.rs`
-    * 4.3 Loops (`for`, `while`, `loop`): `tutorial-04_3-loops.rs`
-    * 5.1 Structs: `tutorial-05_1-structs.rs`
-    * 5.2 Enums: `tutorial-05_2-enum.rs`
-    * 5.3 Tuples: `tutorial-05_3-tuples.rs`
-    * 15 Closures: `tutorial-15-closure.rs`
-    * 16 Methods, with *constructor*: `tutorial-16-methods.rs`
-    * 17 Generics: `tutorial-17-generics.rs`
+    * [2.1](http://static.rust-lang.org/doc/master/tutorial.html#compiling-your-first-program) Compiling your first program: `tutorial-02_1-hello.rs`
+    * [3](http://static.rust-lang.org/doc/master/tutorial.html#syntax-basics) Syntax basics: `tutorial-03-syntax_basics.rs`
+    * [4.2](http://static.rust-lang.org/doc/master/tutorial.html#pattern-matching) Pattern matching: `tutorial-04_2-pattern-matching.rs`
+    * [4.3](http://static.rust-lang.org/doc/master/tutorial.html#loops) Loops (`for`, `while`, `loop`): `tutorial-04_3-loops.rs`
+    * [5.1](http://static.rust-lang.org/doc/master/tutorial.html#structs) Structs: `tutorial-05_1-structs.rs`
+    * [5.2](http://static.rust-lang.org/doc/master/tutorial.html#enums) Enums: `tutorial-05_2-enum.rs`
+    * [5.3](http://static.rust-lang.org/doc/master/tutorial.html#tuples) Tuples: `tutorial-05_3-tuples.rs`
+    * [15](http://static.rust-lang.org/doc/master/tutorial.html#closures) Closures: `tutorial-15-closure.rs`
+    * [16](http://static.rust-lang.org/doc/master/tutorial.html#methods) Methods, with *constructor*: `tutorial-16-methods.rs`
+    * [17](http://static.rust-lang.org/doc/master/tutorial.html#generics) Generics: `tutorial-17-generics.rs`
 * [Rust Tasks and Communication]
-    * 2 Basics: `tutorial-tasks-02-basics.rs`
-    * 2.1 Communication: `tutorial-tasks-02_1-communication.rs`
-    * 2.2 Backgrounding computations: Futures: `tutorial-tasks-02_2-backgrounding_computations.rs`
+    * [2](http://static.rust-lang.org/doc/master/guide-tasks.html#basics) Basics: `tutorial-tasks-02-basics.rs`
+    * [2.1](http://static.rust-lang.org/doc/master/guide-tasks.html#communication) Communication: `tutorial-tasks-02_1-communication.rs`
+    * [2.2](http://static.rust-lang.org/doc/master/guide-tasks.html#backgrounding-computations:-futures) Backgrounding computations: Futures: `tutorial-tasks-02_2-backgrounding_computations.rs`
 * [Doc unit testing]
     * Unit testing in Rust: `unittests.rs`
 * API
