@@ -85,9 +85,9 @@ impl IniFile {
 	 */
 	pub fn get_bool(&self, section: &str, option: &str) -> bool {
 		let value = self.get(section, option);
-		match value {
-			~"1" | ~"yes" | ~"true" | ~"T" | ~"on" => true,
-			~"0" | ~"no" | ~"false" | ~"F" | ~"off" => false,
+		match value.as_slice() {
+			"1" | "yes" | "true" | "T" | "on" => true,
+			"0" | "no" | "false" | "F" | "off" => false,
 			_ => fail!("{} is not a boolean.", value)
 		}
 	}
