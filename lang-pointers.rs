@@ -107,18 +107,19 @@ fn main() {
 	println!("Area of rectangle {:?}: {:f}", rect, area);
 
 	/*
-	 * Managed boxes will be completely removed very soon, so all code
-	 * should begin transitioning to the Rc or Gc types now included in
-	 * the standard library.
+	 * http://static.rust-lang.org/doc/master/std/rc/struct.Rc.html#method.deref
+	 * Note that to get the value inside a Rc box you first call
+	 * the deref() method, with return &T, then dereference that.
 	 *
-	 * Note that to get the value inside one of these boxes you first call
+	 * http://static.rust-lang.org/doc/master/std/gc/struct.Gc.html#method.borrow
+	 * Note that to get the value inside a Gc box you first call
 	 * the borrow() method, which returns &T, then dereference that. 
 	 */
-	let rc1 = Rc::new(1);
+	let rc1 = Rc::new(1u);
 	let rc2 = rc1.clone();
-	println!("{}", *rc1.borrow() + *rc2.borrow());
+	println!("{:u}", *(rc1.deref()) + *(rc2.deref()));
 
-	let gc1 = Gc::new(1);
+	let gc1 = Gc::new(1u);
 	let gc2 = gc1.clone();
-	println!("{}", *gc1.borrow() + *gc2.borrow());
+	println!("{:u}", *(gc1.borrow()) + *(gc2.borrow()));
 }

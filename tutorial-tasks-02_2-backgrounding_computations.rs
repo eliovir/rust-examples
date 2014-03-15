@@ -4,7 +4,7 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-extern crate extra;
+extern crate sync;
 extern crate fibonacci;
 #[cfg(not(test))]
 use std::vec;
@@ -31,14 +31,14 @@ fn main() {
 	/*
 	 * Note that the future needs to be mutable so that it can save the result for next time get is called.
 	 */
-	let mut delayed_fib = extra::future::Future::spawn(proc() fibonacci::fibonacci(n));
+	let mut delayed_fib = sync::future::Future::spawn(proc() fibonacci::fibonacci(n));
 	println("Doing something else");
 	println!("fib({:d}) = {}", n, delayed_fib.get());
 
 	/*
 	 * The workload will be distributed on the available cores.
 	 */
-	let mut futures = vec::from_fn(1000, |ind| extra::future::Future::spawn( proc() { partial_sum(ind) }));
+	let mut futures = vec::from_fn(1000, |ind| sync::future::Future::spawn( proc() { partial_sum(ind) }));
 
 	let mut final_res = 0f64;
 	for ft in futures.mut_iter() {

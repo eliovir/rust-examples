@@ -15,14 +15,14 @@ struct Point {
     y: f64
 }
 fn main() {
-	let (port, channel): (Port<~Point>, Chan<~Point>) = Chan::new();
+	let (tx, rx): (Sender<~Point>, Receiver<~Point>) = channel();
 	// isolate process using spawn
 	spawn(proc() {
 		let s = ~Point { x: 1.0, y: 2.0 };
 		// the channel moves the pointer
-		channel.send(s);
+		tx.send(s);
 	});
-	let s = port.recv();
+	let s = rx.recv();
 	assert!(s.x == 1.0);
 	assert!(s.y == 2.0);
 }

@@ -20,6 +20,9 @@ fn main() {
 	 */
 	let mut file = BufferedReader::new(File::open(&path));
 	for line in file.lines() {
-		print!("{:s}", line);
+		match line {
+			Ok(nread) => println!("{}", nread),
+			Err(e) => println!("error reading: {}", e)
+		}
 	}
 }

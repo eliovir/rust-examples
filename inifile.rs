@@ -150,7 +150,10 @@ impl IniFile {
 		let mut reader = BufferedReader::new(file);
 		let mut lines: ~[~str] = ~[];
 		for line in reader.lines() {
-			lines.push(line);
+			match line {
+				Ok(nread) => lines.push(nread),
+				Err(e) => println!("error reading: {}", e)
+			}
 		}
 		self.read_string(lines);
 	}
@@ -506,7 +509,10 @@ mod tests {
 		let mut reader = BufferedReader::new(file);
 		let mut lines: ~[~str] = ~[];
 		for line in reader.lines() {
-			lines.push(line);
+			match line {
+				Ok(nread) => lines.push(nread),
+				Err(e) => println!("error reading: {}", e)
+			}
 		}
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
@@ -568,7 +574,10 @@ mod tests {
 		let mut reader = BufferedReader::new(file);
 		let mut lines: ~[~str] = ~[];
 		for line in reader.lines() {
-			lines.push(line);
+			match line {
+				Ok(nread) => lines.push(nread),
+				Err(e) => println!("error reading: {}", e)
+			}
 		}
 
 		let found = lines.concat();

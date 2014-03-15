@@ -28,6 +28,7 @@ Examples are tested with version 0.10-pre.
     * [2](http://static.rust-lang.org/doc/master/guide-tasks.html#basics) Basics: `tutorial-tasks-02-basics.rs`
     * [2.1](http://static.rust-lang.org/doc/master/guide-tasks.html#communication) Communication: `tutorial-tasks-02_1-communication.rs`
     * [2.2](http://static.rust-lang.org/doc/master/guide-tasks.html#backgrounding-computations:-futures) Backgrounding computations: Futures: `tutorial-tasks-02_2-backgrounding_computations.rs`
+    * [2.3](http://static.rust-lang.org/doc/master/guide-tasks.html#sharing-immutable-data-without-copy:-arc) Sharing immutable data without copy: Arc: `tutorial-tasks-02_3-arc.rs`
 * [Doc unit testing]
     * Unit testing in Rust: `unittests.rs`
 * API

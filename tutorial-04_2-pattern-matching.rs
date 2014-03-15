@@ -4,9 +4,11 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-use std::rand::{task_rng, Rng};
+extern crate rand;
+use rand::{task_rng, Rng};
 use std::f64;
 use std::num::atan;
+
 struct Point { x: f64, y: f64 }
 
 fn angle(vector: (f64, f64)) -> f64 {

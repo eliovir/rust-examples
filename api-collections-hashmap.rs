@@ -6,6 +6,7 @@
  */
 extern crate collections;
 use collections::hashmap::HashMap;
+use std::vec_ng::Vec;
 
 fn main() {
 	println!("Using borrowed pointers as keys.");
@@ -33,9 +34,9 @@ fn main() {
 	println!("Is there a key baz?  => {}", h.contains_key(&~"baz")); // => true
 
 	// List keys of the HashMap
-	let mut keys: ~[~str] = ~[];
+	let mut keys: Vec<~str> = Vec::new();
 	for (k, _) in h.iter() {
 		keys.push(k.to_owned());
 	}
-	println!("These are the keys: {:?}.", keys);
+	println!("These are the keys: {}.", keys);
 }
