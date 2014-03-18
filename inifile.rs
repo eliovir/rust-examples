@@ -3,6 +3,7 @@
 #[license = "MIT"];
 #[desc = "Library for simple INI file management" ];
 #[comment = "Example of library: INI file management"];
+#[feature(phase)];
 //! INI file management, partial implementation of Python API.
 //!
 //! Tested with rust-0.10-pre
@@ -19,7 +20,7 @@
 
 extern crate collections;
 extern crate test;
-extern crate log;
+#[phase(syntax, link)] extern crate log;
 
 use collections::hashmap::HashMap;
 use std::from_str::FromStr;
