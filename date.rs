@@ -13,6 +13,8 @@
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
 //!
 //! @since 2013-10-24
+//!
+//! @todo : getDayOfWeek(), getWeek(), comparisons
 use std::from_str::FromStr;
 use std::fmt;
 
@@ -65,6 +67,17 @@ impl Date {
 		self.day = day;
 		self.month = month;
 		self.year = year;
+	}
+
+	/**
+	 * Get day of year.
+	 */
+	pub fn getDayOfYear(&self) -> int {
+		let mut doy = self.day;
+		for month in range(1, self.month) {
+			doy += Date::monthLength(self.year, month);
+		}
+		doy
 	}
 
 	/**
@@ -143,9 +156,20 @@ mod tests {
 		let orig = date.to_str();
 		let days = 2;
 		date.addDays(days);
-		let expected="2013-10-26";
-		let found=date.to_str();
+		let expected = "2013-10-26";
+		let found = date.to_str();
 		assert!(expected==found, format!("Adding {:d} days to {} should return {}, not {}", days, orig, expected, found));
+	}
+	#[test]
+	fn getDayOfYear() {
+		let date = ::Date::new(2014, 01, 01);
+		let expected = 1;
+		let found = date.getDayOfYear();
+		assert!(expected==found, format!("{:?} must be day number {} of the year, not {}.", date, expected, found));
+		let date = ::Date::new(2012, 12, 31);
+		let expected = 366;
+		let found = date.getDayOfYear();
+		assert!(expected==found, format!("{:?} must be day number {} of the year, not {}.", date, expected, found));
 	}
 	#[test]
 	fn isLeap() {
