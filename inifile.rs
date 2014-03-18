@@ -19,6 +19,7 @@
 
 extern crate collections;
 extern crate test;
+extern crate log;
 
 use collections::hashmap::HashMap;
 use std::from_str::FromStr;
