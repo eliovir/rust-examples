@@ -46,6 +46,10 @@ test: $(TESTPROG)
 		fi;\
 	done; exit $$EXIT
 
+version:
+	# Display version of source code
+	git describe
+
 build/tutorial-tasks-02_2-backgrounding_computations: tutorial-tasks-02_2-backgrounding_computations.rs $(LIBSTAMP) build
 	$(RUSTC) $(RUSTFLAGS) $< -o $@ -L lib/
 
