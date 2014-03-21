@@ -3,7 +3,8 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-use std::vec;
+
+use std::slice;
 
 /**
  * ~[~str] is an owned pointer, allocated on the send heap, can be sent accross tasks.
@@ -16,10 +17,10 @@ fn fillStrings() -> ~[~str] {
 }
 
 /**
- * Use of vec::from_elem to create a dynamic two dimensional array.
+ * Use of slice::from_elem to create a dynamic two dimensional array.
  */
 fn make2dArray(dim1: uint, dim2: uint, default: int) -> ~[~[int]] {
-	vec::from_elem(dim1, vec::from_elem(dim2, default))
+	slice::from_elem(dim1, slice::from_elem(dim2, default))
 }
 
 fn main() {

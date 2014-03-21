@@ -6,8 +6,6 @@
  */
 extern crate sync;
 extern crate fibonacci;
-#[cfg(not(test))]
-use std::vec;
 
 fn partial_sum(start: uint) -> f64 {
 	let mut local_sum = 0f64;

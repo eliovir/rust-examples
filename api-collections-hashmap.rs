@@ -6,7 +6,6 @@
  */
 extern crate collections;
 use collections::hashmap::HashMap;
-use std::vec_ng::Vec;
 
 fn main() {
 	println!("Using borrowed pointers as keys.");
