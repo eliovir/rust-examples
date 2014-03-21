@@ -1,0 +1,83 @@
+/**
+ * Code from "Introduction to Rust" delivered by Felix S. Klock II at the Rust Meetup Paris on Tuesday February 25, 2014.
+ * http://rust-meetup-paris.github.io/Talks/introduction_to_rust/pnkfelix-meetup-2014feb.pdf
+ * https://github.com/Rust-Meetup-Paris/Talks/tree/master/introduction_to_rust
+ * @license Creative Commons Attribution 4.0 International License.
+ */
+
+/**
+ * Functions and data types can be abstracted over types, not just values.
+ */
+enum Option<T> {
+	Some(T),
+	None
+}
+fn safe_get<T>(opt: Option<T>, default: T) -> T {
+	match opt {
+		Some(contents) => contents,
+		None           => default
+	}
+}
+
+struct Dollars {
+	amount: int
+}
+struct Euros {
+	amount: int
+}
+trait Currency {
+	fn render(&self) -> ~str;
+	fn to_euros(&self) -> Euros;
+}
+/*
+ * Traits implementations
+ */
+impl Currency for Dollars {
+	fn render(&self) -> ~str {
+		format!("${}", self.amount)
+	}
+	fn to_euros(&self) -> Euros {
+		let a = (self.amount as f64) * 0.73;
+		Euros { amount: a as int }
+	}
+}
+impl Currency for Euros {
+	fn render(&self) -> ~str {
+		format!("EUR{}", self.amount)
+	}
+	fn to_euros(&self) -> Euros { *self }
+}
+/*
+ * Static resolution
+ */
+// a and b must have the same types.
+fn add_as_euros<C: Currency>(a: &C, b: &C) -> Euros {
+	let sum = a.to_euros().amount + b.to_euros().amount;
+	Euros{ amount: sum }
+}
+// To add Dollars and Euros, Generics can not be used.
+fn accumeuros(a: &Currency, b: &Currency) -> Euros {
+	let sum = a.to_euros().amount + b.to_euros().amount;
+	Euros{ amount: sum }
+}
+fn main() {
+	let var1 = Some("contents");
+	let default = "default";
+	let res1 = safe_get(var1, default);
+	println!("safe_get({:?}) -> {:?}", var1, res1);
+	let var2 = None;
+	let res2 = safe_get(var2, default);
+	println!("safe_get({:?}) -> {:?}", var2, res2);
+
+	let eu100 = Euros { amount: 100 };
+	let eu200 = Euros { amount: 200 };
+	println!("{:?}", add_as_euros(&eu100, &eu200));
+
+	let us100 = Dollars { amount: 100 };
+	let us200 = Dollars { amount: 200 };
+	println!("{:?}", add_as_euros(&us100, &us200));
+	
+	let us100 = Dollars { amount: 100 };
+	let eu200 = Euros { amount: 200 };
+	println!("{:?}", accumeuros(&us100 as &Currency, &eu200 as &Currency));
+}
