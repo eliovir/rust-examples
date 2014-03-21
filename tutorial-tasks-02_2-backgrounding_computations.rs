@@ -1,6 +1,6 @@
 /**
  * Rust Tasks and Communication Tutorial - 2.2 Backgrounding computations: Futures
- * http://static.rust-lang.org/doc/master/guide-tasks.html#backgrounding-computations-futures
+ * http://static.rust-lang.org/doc/master/guide-tasks.html#backgrounding-computations:-futures
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -24,19 +24,21 @@ fn test_partial_sum_5() {
 }
 #[cfg(not(test))]
 fn main() {
+	use std::slice;
+
 	let n = 40;
-	println("Setting spawn");
+	println!("Setting spawn");
 	/*
 	 * Note that the future needs to be mutable so that it can save the result for next time get is called.
 	 */
-	let mut delayed_fib = sync::future::Future::spawn(proc() fibonacci::fibonacci(n));
-	println("Doing something else");
+	let mut delayed_fib = sync::Future::spawn(proc() fibonacci::fibonacci(n));
+	println!("Doing something else");
 	println!("fib({:d}) = {}", n, delayed_fib.get());
 
 	/*
 	 * The workload will be distributed on the available cores.
 	 */
-	let mut futures = vec::from_fn(1000, |ind| sync::future::Future::spawn( proc() { partial_sum(ind) }));
+	let mut futures = slice::from_fn(1000, |ind| sync::Future::spawn( proc() { partial_sum(ind) }));
 
 	let mut final_res = 0f64;
 	for ft in futures.mut_iter() {
