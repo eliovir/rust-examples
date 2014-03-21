@@ -6,6 +6,7 @@ before_install:
   - sudo apt-get update
 install:
   - sudo apt-get install rust-nightly
+  - rustc --version
 script:
   - make clean test
 after_script:
