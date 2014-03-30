@@ -1,8 +1,8 @@
-#[crate_id="decorator#1.0"];
-#[crate_type = "bin"];
-#[license = "MIT"];
-#[desc = "Implementation of design pattern Decorator" ];
-#[comment = "Implement in Rust the design pattern found in Wikipedia (PHP example)."];
+#![crate_id="decorator#1.0"]
+#![crate_type = "bin"]
+#![license = "MIT"]
+#![desc = "Implementation of design pattern Decorator" ]
+#![comment = "Implement in Rust the design pattern found in Wikipedia (PHP example)."]
 //! Design pattern: Decorator
 //!
 //! Tested with rust-0.10-pre

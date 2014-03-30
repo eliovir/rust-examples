@@ -41,7 +41,7 @@ fn main() {
 	}
 	let output = matches.opt_str("o");
 	let input: &str = if !matches.free.is_empty() {
-		matches.free[0].clone()
+		(*matches.free.get(0)).clone()
 	} else {
 		print_usage(program, opts);
 		return;

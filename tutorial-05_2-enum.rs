@@ -1,4 +1,4 @@
-#[feature(struct_variant)];
+#![feature(struct_variant)]
 /**
  * 5.2 Enums
  * http://static.rust-lang.org/doc/master/tutorial.html#enums

@@ -1,8 +1,8 @@
-#[crate_id = "date#1.0"];
-#[crate_type = "lib"];
-#[license = "MIT"];
-#[desc = "Library for simple date management" ];
-#[comment = "Example of library: date management"];
+#![crate_id = "date#1.0"]
+#![crate_type = "lib"]
+#![license = "MIT"]
+#![desc = "Library for simple date management"]
+#![comment = "Example of library: date management"]
 //! Date management
 //!
 //! Use "constructor", string manipulation

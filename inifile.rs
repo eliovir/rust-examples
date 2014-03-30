@@ -1,9 +1,9 @@
-#[crate_id="inifile#1.0"];
-#[crate_type = "lib"];
-#[license = "MIT"];
-#[desc = "Library for simple INI file management" ];
-#[comment = "Example of library: INI file management"];
-#[feature(phase)];
+#![crate_id="inifile#1.0"]
+#![crate_type = "lib"]
+#![license = "MIT"]
+#![desc = "Library for simple INI file management"]
+#![comment = "Example of library: INI file management"]
+#![feature(phase)]
 //! INI file management, partial implementation of Python API.
 //!
 //! Tested with rust-0.10-pre
@@ -545,7 +545,7 @@ mod tests {
 
 		// Clean
 		assert!(path.exists(), format!("{} should exist after reading the new inifile!", writepath));
-		let result: Result<(), ~Any> = task::try(proc() {
+		let result: Result<(), ~Any:Send> = task::try(proc() {
 			match fs::unlink(&path) {
 				Err(e) => fail!("open of {:?} failed: {}", path, e),
 				_ => debug!("open of {:?} succeeded", path)

@@ -1,4 +1,4 @@
-#[feature(struct_variant)];
+#![feature(struct_variant)]
 /**
  * 16 Methods
  * http://static.rust-lang.org/doc/master/tutorial.html#methods

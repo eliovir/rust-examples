@@ -1,8 +1,9 @@
-#[crate_id="fibonacci#1.1"];
-#[crate_type = "lib"];
-#[license = "MIT"];
-#[desc = "Fibonacci library" ];
-#[comment = "Example of library: compute Fibonacci"];
+#![crate_id="fibonacci#1.1"]
+#![crate_type = "lib"]
+#![license = "MIT"]
+#![desc = "Fibonacci library" ]
+#![comment = "Example of library: compute Fibonacci"]
+#![deny(missing_doc)]
 //! Compute fibonacci.
 //!
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>

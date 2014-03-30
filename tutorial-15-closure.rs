@@ -42,12 +42,17 @@ fn main() {
 	call_closure_with_ten(closure);
 
 	/*
-	 * Use of .map() on a vector
+	 * Use of closure as map on a vector
 	 */
 	let mut max = 0i;
-	[1, 2, 3].map(|x| if *x > max { max = *x });
+	{
+		let find_max = |x: int| if x > max { max = x };
+		for x in [1, 2, 3].iter() {
+			find_max(*x);
+		}
+	}
 	println!("max={}", max);
-	
+
 	/*
 	 * As a caller, if we use a closure to provide the final operator argument, we can write it in a way that has a pleasant, block-like structure.
 	 */
