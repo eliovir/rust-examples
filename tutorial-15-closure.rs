@@ -54,6 +54,12 @@ fn main() {
 	println!("max={}", max);
 
 	/*
+	 * Use of .map() on a vector
+	 */
+	[1, 2, 3].iter().map(|x| if *x > max { max = *x });
+	println!("max={}", max);
+
+	/*
 	 * As a caller, if we use a closure to provide the final operator argument, we can write it in a way that has a pleasant, block-like structure.
 	 */
 	call_it(proc(n) {
