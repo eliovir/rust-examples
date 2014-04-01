@@ -1,7 +1,7 @@
 RUSTC=printf "\033[32;1mRustc:\033[33m %s\033[m\n" $@; rustc
 LIBSRC=date.rs fibonacci.rs inifile.rs
 LIBSTAMP=$(patsubst %.rs,lib-stamps/%,$(LIBSRC))
-TESTSRC=$(LIBSRC) tutorial-tasks-02_2-backgrounding_computations.rs unittests.rs
+TESTSRC=$(LIBSRC) find_max.rs tutorial-tasks-02_2-backgrounding_computations.rs unittests.rs
 TESTPROG:=$(patsubst %.rs,build/test-%,$(TESTSRC))
 SRC=$(wildcard *.rs)
 SRC:=$(filter-out $(TESTSRC),$(SRC))

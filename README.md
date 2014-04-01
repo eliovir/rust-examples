@@ -46,6 +46,7 @@ Examples are tested with version 0.10-pre.
     * `.travis.yml` to add the repository to [Travis CI](https://travis-ci.org/eliovir/rust-examples) and [Rust CI](http://www.rust-ci.org/p/90/)
     * A library and its unit tests and benchmarks for 2 Fibonacci functions (a reccursive and a non reccursive): `fibonacci.rs`
     * A struct to manage dates: `date.rs`
+    * Different syntaxes to find the maximum value in a vector: `find_max.rs`
     * A struct to manage INI files: `inifile.rs`
     * Design pattern Decorator: `design_pattern-decorator.rs`
 
