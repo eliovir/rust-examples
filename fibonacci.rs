@@ -6,6 +6,8 @@
 #![deny(missing_doc)]
 //! Compute fibonacci.
 //!
+//! The Fibonacci sequence is a sequence of numbers starting with 0 and 1 where every subsequent number is the sum of the previous two numbers.
+//!
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
 //!
 //! @author Eliovir <http://github.com/~eliovir>
