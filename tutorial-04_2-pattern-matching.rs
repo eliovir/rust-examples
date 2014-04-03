@@ -20,7 +20,7 @@ fn angle(vector: (f64, f64)) -> f64 {
 	match vector {
 		(0.0, y) if y < 0.0 => 1.5 * pi,
 		(0.0, _) => 0.5 * pi,
-		(x, y) => atan(y / x)
+		(x, y) => (y / x).atan()
 	}
 }
 fn main() {

@@ -7,12 +7,12 @@ rust-examples [![Ohloh statistics](http://www.ohloh.net/p/rust-examples/widgets/
 gather example codes from tutorial and other documentations of
 [Rust](http://www.rust-lang.org/) into files, ready to compile.
 
-Examples are tested with version 0.10-pre.
+Examples are tested with version 0.10.
 
 ## Files
 
 * [Homepage](http://www.rust-lang.org/)
-    * `what_it_looks_like.rs`
+    * `what_it_looks_like.rs`, `what_it_looks_like2.rs`
 * [Tutorial]
     * [2.1](http://static.rust-lang.org/doc/master/tutorial.html#compiling-your-first-program) Compiling your first program: `tutorial-02_1-hello.rs`
     * [3](http://static.rust-lang.org/doc/master/tutorial.html#syntax-basics) Syntax basics: `tutorial-03-syntax_basics.rs`
