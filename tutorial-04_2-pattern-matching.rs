@@ -7,7 +7,6 @@
 extern crate rand;
 use rand::{task_rng, Rng};
 use std::f64;
-use std::num::atan;
 
 struct Point { x: f64, y: f64 }
 
