@@ -31,6 +31,8 @@ Examples are tested with version 0.10.
     * [2.3](http://static.rust-lang.org/doc/master/guide-tasks.html#sharing-immutable-data-without-copy:-arc) Sharing immutable data without copy: Arc: `tutorial-tasks-02_3-arc.rs`
 * [Doc unit testing]
     * Unit testing in Rust: `unittests.rs`
+* [Rust Cheatsheet]
+    * Use Struct to express phantom types: `phantom_type.rs`
 * API
     * Program to an 'interface', not an 'implementation', by [Josh Davis](http://joshldavis.com/2013/07/01/program-to-an-interface-fool/): `lang-interface.rs`
     * Lambda expressions: `lang-lambda.rs`
@@ -54,6 +56,7 @@ Examples are tested with version 0.10.
 [The Rust Reference Manual]: http://static.rust-lang.org/doc/master/rust.html
 [Rust Tasks and Communication]: http://static.rust-lang.org/doc/master/guide-tasks.html
 [Doc unit testing]: http://static.rust-lang.org/doc/master/guide-testing.html
+[Rust Cheatsheet]: http://static.rust-lang.org/doc/master/complement-cheatsheet.html#how-do-i-express-phantom-types?
 
 
 # Compile and running it
