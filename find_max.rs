@@ -7,7 +7,7 @@
 extern crate test;
 
 #[cfg(test)]
-use test::BenchHarness;
+use test::Bencher;
 
 /**
  * Code from Rust MeetUp (March, 31st 2014) at Mozilla Space, Paris.
@@ -88,7 +88,7 @@ fn test_find_max3() {
 }
 
 #[bench]
-fn bench_find_max1(b: &mut BenchHarness) {
+fn bench_find_max1(b: &mut Bencher) {
 	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	b.iter(|| {
 		find_max1(&v);
@@ -96,7 +96,7 @@ fn bench_find_max1(b: &mut BenchHarness) {
 }
 
 #[bench]
-fn bench_find_max2(b: &mut BenchHarness) {
+fn bench_find_max2(b: &mut Bencher) {
 	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	b.iter(|| {
 		find_max2(&v);
@@ -104,7 +104,7 @@ fn bench_find_max2(b: &mut BenchHarness) {
 }
 
 #[bench]
-fn bench_find_max3(b: &mut BenchHarness) {
+fn bench_find_max3(b: &mut Bencher) {
 	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	b.iter(|| {
 		find_max3(&v);

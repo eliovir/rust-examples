@@ -6,7 +6,7 @@
 #![feature(phase)]
 //! INI file management, partial implementation of Python API.
 //!
-//! Tested with rust-0.10-pre
+//! Tested with rust-0.11-pre
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -28,9 +28,10 @@ use std::io::BufferedReader;
 use std::io::fs::File;
 use std::path::Path;
 use std::fmt;
+use std::strbuf::StrBuf;
 
 #[cfg(test)]
-use test::BenchHarness;
+use test::Bencher;
 
 pub struct IniFile {
 	/// Comments on sections and options
@@ -164,7 +165,7 @@ impl IniFile {
 	 */
 	pub fn read_string(&mut self, lines: ~[~str]) {
 		let mut section: ~str = ~"Default";
-		let mut comment_lines: ~str = ~"";
+		let mut comment_lines = StrBuf::new();
 		for line in lines.iter() {
 			let mut line_len = line.len();
 			if line_len > 0 && line.slice_chars(line_len - 1, line_len) == "\n" {
@@ -183,16 +184,16 @@ impl IniFile {
 				section = line.slice_chars(1, line_len - 1).to_owned();
 				if !self.opts.contains_key(&section) {
 					self.add_section(section.clone());
-					self.comments.get_mut(&section).insert(~"__section_comment__", comment_lines);
-					comment_lines = ~"";
+					self.comments.get_mut(&section).insert(~"__section_comment__", comment_lines.into_owned());
+					comment_lines = StrBuf::new();
 				}
 				continue;
 			}
 			let index: uint = line.find_str("=").unwrap();
 			let optkey: ~str = line.slice_chars(0, index).to_owned();
 			let optval: ~str = line.slice_chars(index + 1, line_len).to_owned();
-			self.comments.get_mut(&section).insert(optkey.clone(), comment_lines);
-			comment_lines = ~"";
+			self.comments.get_mut(&section).insert(optkey.clone(), comment_lines.into_owned());
+			comment_lines = StrBuf::new();
 			self.opts.get_mut(&section).insert(optkey.clone(), optval);
 			let section_index = self.sections.position_elem(&section).unwrap();
 			self.options[section_index].push(optkey.clone());
@@ -294,7 +295,7 @@ impl IniFile {
  */
 impl fmt::Show for IniFile {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		let mut lines = ~"";
+		let mut lines = StrBuf::new();
 		let sections = self.sections().clone();
 		for section in sections.iter() {
 			if self.comments.contains_key(section) && self.comments.get(section).contains_key(&~"__section_comment__") {
@@ -592,7 +593,7 @@ mod tests {
 	}
 }
 #[bench]
-fn bench_inifile(b: &mut BenchHarness) {
+fn bench_inifile(b: &mut Bencher) {
 	b.iter(|| {
 		let mut ini = IniFile::new();
 		ini.read("data/config.ini");
