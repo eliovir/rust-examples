@@ -51,6 +51,7 @@ Examples are tested with version 0.11-pre.
     * Different syntaxes to find the maximum value in a vector: `find_max.rs`
     * A struct to manage INI files: `inifile.rs`
     * Design pattern Decorator: `design_pattern-decorator.rs` and `design_pattern-decorator2.rs`
+    * Design pattern Strategy: `design_pattern-strategy.rs`
 
 [Tutorial]: http://static.rust-lang.org/doc/master/tutorial.html
 [The Rust Reference Manual]: http://static.rust-lang.org/doc/master/rust.html
