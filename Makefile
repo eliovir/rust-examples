@@ -4,7 +4,7 @@ LIBSTAMP=$(patsubst %.rs,lib-stamps/%,$(LIBSRC))
 TESTSRC=$(LIBSRC) find_max.rs tutorial-tasks-02_2-backgrounding_computations.rs unittests.rs
 TESTPROG:=$(patsubst %.rs,build/test-%,$(TESTSRC))
 SRC=$(wildcard *.rs)
-SRC:=$(filter-out $(TESTSRC),$(SRC))
+SRC:=$(filter-out unittests.rs,$(SRC))
 PROG:=$(patsubst %.rs,build/%,$(SRC))
 RUSTFLAGS=
 
