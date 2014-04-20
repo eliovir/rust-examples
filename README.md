@@ -54,6 +54,7 @@ Examples are tested with version 0.11-pre.
     * Design pattern Strategy: `design_pattern-strategy.rs`
     * Design pattern Observer: `design_pattern-observer.rs`
     * Design pattern Command: `design_pattern-command.rs`
+    * Design pattern Chain of Command: `design_pattern-chain_of_command.rs`
 
 [Tutorial]: http://static.rust-lang.org/doc/master/tutorial.html
 [The Rust Reference Manual]: http://static.rust-lang.org/doc/master/rust.html
