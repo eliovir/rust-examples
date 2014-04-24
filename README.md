@@ -105,6 +105,7 @@ other projects have similar goals: providing Rust code snippets:
 - [Rust Rosetta](https://github.com/Hoverbear/rust-rosetta): Implementing [Rosetta Code](http://rosettacode.org/) problems in Rust. (Public domain)
 - [Rust sandbox](https://github.com/rntz/rust-sandbox): Playing around with Rust. (DWTFYWT PUBLIC LICENSE v2)
 - [Rustlings](https://github.com/smadhueagle/rustlings): Smadheagle's experiments with Rust Programming Lanugage.
+- [Rust projects](https://github.com/am0d/rust-projects): some programs am0d has written as he set about learning rust. (AS-IS)
 
 ## License
 
