@@ -14,8 +14,16 @@
 
 extern crate test;
 
+use std::mem::replace;
+
 #[cfg(test)]
 use test::Bencher;
+
+// bench: find the `BENCH_SIZE` first terms of the fibonacci sequence
+#[cfg(test)]
+static BENCH_SIZE: uint = 20;
+#[cfg(test)]
+static BENCH_SIZE_INT: int = 20;
 
 /**
 * Calcule les elements de la suite de Fibonnaci.
@@ -80,11 +88,31 @@ pub fn fibonacci(n: int) -> uint {
 	sum
 }
 
-/*
-#[cfg(test)]
-mod tests {
+/**
+ * Iiterative fibonacci
+ * https://github.com/japaric/rust-by-example
+ */
+pub struct Fibonacci {
+	curr: uint,
+	next: uint,
 }
-*/
+
+impl Iterator<uint> for Fibonacci {
+	fn next(&mut self) -> Option<uint> {
+		let new_next = self.curr + self.next;
+		let new_curr = replace(&mut self.next, new_next);
+		
+		Some(replace(&mut self.curr, new_curr))
+	}
+}
+
+/**
+ * A "constructor" for Iiterative fibonacci
+ */
+pub fn iterative_fibonacci() -> Fibonacci {
+	Fibonacci { curr: 1, next: 1 }
+}
+
 #[cfg(test)]
 fn RG024_x(n: int, expected: uint) {
 	let mut found = fibonacci_reccursive(n);
@@ -142,14 +170,22 @@ fn RG024_5() {
 	RG024_x(30, 832040);
 }
 #[bench]
-fn bench_fibonacci_reccursive_20(b: &mut Bencher) {
+fn bench_fibonacci_reccursive(b: &mut Bencher) {
 	b.iter(|| {
-		fibonacci_reccursive(20);
+		fibonacci_reccursive(BENCH_SIZE_INT);
 	});
 }
 #[bench]
-fn bench_fibonacci_20(b: &mut Bencher) {
+fn bench_fibonacci(b: &mut Bencher) {
 	b.iter(|| {
-		fibonacci(20);
+		fibonacci(BENCH_SIZE_INT);
 	});
+}
+#[bench]
+fn bench_iterative_fibonacci(b: &mut Bencher) {
+	b.iter(|| {
+		// http://static.rust-lang.org/doc/master/std/iter/trait.Iterator.html#method.take
+		iterative_fibonacci().take(BENCH_SIZE).last().unwrap()
+		//iterative_fibonacci().take(BENCH_SIZE).collect::<Vec<uint>>()
+	})
 }
