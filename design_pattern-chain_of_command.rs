@@ -18,11 +18,11 @@ trait Command {
 }
 
 struct CommandChain {
-	commands: ~[~Command],
+	commands: Vec<~Command>,
 }
 impl CommandChain {
 	fn new() -> CommandChain {
-		CommandChain{commands: ~[]}
+		CommandChain{commands: Vec::new()}
 	}
 	fn addCommand(&mut self, command: ~Command) {
 		self.commands.push(command);

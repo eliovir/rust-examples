@@ -10,7 +10,7 @@ extern crate fibonacci;
 fn partial_sum(start: uint) -> f64 {
 	let mut local_sum = 0f64;
 	for num in range(start*100000, (start+1)*100000) {
-		local_sum += (num as f64 + 1.0).powf(&-2.0);
+		local_sum += (num as f64 + 1.0).powf(-2.0);
 	}
 	local_sum
 }
@@ -24,8 +24,6 @@ fn test_partial_sum_5() {
 }
 #[cfg(not(test))]
 fn main() {
-	use std::slice;
-
 	let n = 40;
 	println!("Setting spawn");
 	/*
@@ -38,7 +36,7 @@ fn main() {
 	/*
 	 * The workload will be distributed on the available cores.
 	 */
-	let mut futures = slice::from_fn(1000, |ind| sync::Future::spawn( proc() { partial_sum(ind) }));
+	let mut futures = Vec::from_fn(1000, |ind| sync::Future::spawn( proc() { partial_sum(ind) }));
 
 	let mut final_res = 0f64;
 	for ft in futures.mut_iter() {

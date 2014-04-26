@@ -6,15 +6,14 @@
 extern crate rand;
 extern crate sync;
 
-use std::slice;
 use sync::Arc;
 
-fn pnorm(nums: &~[f64], p: uint) -> f64 {
-	nums.iter().fold(0.0, |a,b| a+(*b).powf(&(p as f64)) ).powf(&(1.0 / (p as f64)))
+fn pnorm(nums: &[f64], p: uint) -> f64 {
+	nums.iter().fold(0.0, |a, b| a + b.powf(p as f64)).powf(1.0 / (p as f64))
 }
 
 fn main() {
-	let numbers = slice::from_fn(1000000u, |_| rand::random::<f64>());
+	let numbers = Vec::from_fn(1000000u, |_| rand::random::<f64>());
 	let numbers_arc = Arc::new(numbers);
 
 	for num in range(1u, 10) {
@@ -22,9 +21,9 @@ fn main() {
 		tx.send(numbers_arc.clone());
 
 		spawn(proc() {
-			let local_arc : Arc<~[f64]> = rx.recv();
+			let local_arc : Arc<Vec<f64>> = rx.recv();
 			let task_numbers = &*local_arc;
-			println!("{}-norm = {}", num, pnorm(task_numbers, num));
+			println!("{}-norm = {}", num, pnorm(task_numbers.as_slice(), num));
 		});
 	}
 }

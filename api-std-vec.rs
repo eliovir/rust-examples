@@ -4,23 +4,21 @@
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 
-use std::slice;
-
 /**
  * ~[~str] is an owned pointer, allocated on the send heap, can be sent accross tasks.
+ * Does not handle .push() since 0.11-pre, so I use Vec<~str>
  */
 fn fillStrings() -> ~[~str] {
-	let mut strings: ~[~str] = ~[];
-	strings.push(~"hello");
+	let mut strings = vec!(~"hello");
 	strings.push(~"world");
-	strings
+	strings.move_iter().collect()
 }
 
 /**
- * Use of slice::from_elem to create a dynamic two dimensional array.
+ * Use of Vec::from_elem to create a dynamic two dimensional array.
  */
 fn make2dArray(dim1: uint, dim2: uint, default: int) -> ~[~[int]] {
-	slice::from_elem(dim1, slice::from_elem(dim2, default))
+	Vec::from_elem(dim1, Vec::from_elem(dim2, default).as_slice().to_owned()).as_slice().to_owned()
 }
 
 fn main() {
@@ -39,7 +37,7 @@ fn main() {
 	 * .slice(a, b) returns an immutable "view" into a vector or a vector slice from the interval (a, b)
 	 * .push() adds an item at the end of an OwnedVector
 	 */
-	let mut numbers2 = ~[];
+	let mut numbers2 = Vec::new();
 	for &x in numbers.slice(1, 3).iter() {
 		numbers2.push(x);
 	}

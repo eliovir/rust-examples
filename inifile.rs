@@ -37,13 +37,13 @@ pub struct IniFile {
 	/// Comments on sections and options
 	comments: HashMap<~str, HashMap<~str, ~str>>,
 	/// Option names, used to keep order (as HashMap doesn't).
-	options: ~[~[~str]],
+	options: Vec<Vec<~str>>,
 	/// INI structure: sections contain options (name=>value)
 	opts: HashMap<~str, HashMap<~str, ~str>>,
 	/// File path
 	path: Path,
 	/// Section names, used to keep order (as HashMap doesn't).
-	sections: ~[~str]
+	sections: Vec<~str>
 }
 
 /**
@@ -60,7 +60,7 @@ impl IniFile {
 			self.comments.insert(section.to_owned(), HashMap::new());
 			self.opts.insert(section.to_owned(), HashMap::new());
 			self.sections.push(section.to_owned());
-			self.options.push(~[]);
+			self.options.push(Vec::new());
 		} else {
 			fail!("The section {:?} already exists!", section);
 		}
@@ -131,14 +131,18 @@ impl IniFile {
 		self.opts.contains_key(&section.to_owned())
 	}
 	pub fn new() -> IniFile {
-		IniFile { comments: HashMap::new(), options: ~[~[]], path: Path::new(""), opts: HashMap::new(), sections: ~[]}
+		IniFile { comments: HashMap::new(), options: Vec::new(), path: Path::new(""), opts: HashMap::new(), sections: Vec::new() }
 	}
 	/**
 	 * Return a list of options available in the specified section.
 	 */
 	pub fn options(&self, section: ~str) -> ~[~str] {
-		let section_index = self.sections.position_elem(&section).unwrap();
-		self.options[section_index].clone()
+		match self.sections.as_slice().position_elem(&section) {
+			Some(section_index) => self.options.get(section_index).as_slice().to_owned(),
+			None => {
+				Vec::new().move_iter().collect()
+			},
+		}
 	}
 	/**
 	 * Read and parse configuration data from filepath.
@@ -151,7 +155,7 @@ impl IniFile {
 			_ => debug!("open of {:?} succeeded", self.path)
 		}
 		let mut reader = BufferedReader::new(file);
-		let mut lines: ~[~str] = ~[];
+		let mut lines: Vec<~str> = Vec::new();
 		for line in reader.lines() {
 			match line {
 				Ok(nread) => lines.push(nread),
@@ -163,7 +167,7 @@ impl IniFile {
 	/**
 	 * Parse configuration data from a vector of strings (file lines).
 	 */
-	pub fn read_string(&mut self, lines: ~[~str]) {
+	pub fn read_string(&mut self, lines: Vec<~str>) {
 		let mut section: ~str = ~"Default";
 		let mut comment_lines = StrBuf::new();
 		for line in lines.iter() {
@@ -195,8 +199,8 @@ impl IniFile {
 			self.comments.get_mut(&section).insert(optkey.clone(), comment_lines.into_owned());
 			comment_lines = StrBuf::new();
 			self.opts.get_mut(&section).insert(optkey.clone(), optval);
-			let section_index = self.sections.position_elem(&section).unwrap();
-			self.options[section_index].push(optkey.clone());
+			let section_index = self.sections.as_slice().position_elem(&section).unwrap();
+			self.options.get_mut(section_index).push(optkey.clone());
 		}
 	}
 	/**
@@ -212,8 +216,8 @@ impl IniFile {
 			false
 		}
 	*/
-		let section_index = self.sections.position_elem(&section).unwrap();
-		self.options[section_index].remove(section_index);
+		let section_index = self.sections.as_slice().position_elem(&section).unwrap();
+		self.options.get_mut(section_index).remove(section_index);
 		self.comments.get_mut(&section).pop(&option);
 		self.opts.get_mut(&section).pop(&option);
 	 	true
@@ -230,11 +234,14 @@ impl IniFile {
 	*/
 		self.opts.pop(&section);
 		self.comments.pop(&section);
-		// http://static.rust-lang.org/doc/0.8/std/vec.html
-		let index = self.sections.position_elem(&section).unwrap();
-		self.sections.remove(index);
-		self.options.remove(index);
-		true
+		match self.sections.as_slice().position_elem(&section) {
+			Some(index) => {
+				self.sections.remove(index);
+				self.options.remove(index);
+				true
+			},
+			None => false
+		}
 	}
 	/**
 	 * Save the current configuration into the original file.
@@ -245,7 +252,7 @@ impl IniFile {
 	/**
 	 * Return a list of the available sections.
 	 */
-	pub fn sections(&self) -> ~[~str] {
+	pub fn sections(&self) -> Vec<~str> {
 		/*
 		let mut sections: ~[~str] = ~[];
 		self.opts.iter().advance(|(k, _)| {sections.push(k.to_owned()); true});
@@ -263,8 +270,8 @@ impl IniFile {
 		}
 		if !self.has_option(section.to_owned(), option.to_owned()) {
 			self.opts.get_mut(&section).insert(option.clone(), value);
-			let section_index = self.sections.position_elem(&section).unwrap();
-			self.options[section_index].push(option.clone());
+			let section_index = self.sections.as_slice().position_elem(&section).unwrap();
+			self.options.get_mut(section_index).push(option.clone());
 		} else {
 			self.opts.get_mut(&section).swap(option, value);
 		}
