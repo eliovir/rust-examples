@@ -15,10 +15,10 @@ struct Point {
     y: f64
 }
 fn main() {
-	let (tx, rx): (Sender<~Point>, Receiver<~Point>) = channel();
+	let (tx, rx): (Sender<Box<Point>>, Receiver<Box<Point>>) = channel();
 	// isolate process using spawn
 	spawn(proc() {
-		let s = ~Point { x: 1.0, y: 2.0 };
+		let s = box Point { x: 1.0, y: 2.0 };
 		// the channel moves the pointer
 		tx.send(s);
 	});

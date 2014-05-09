@@ -64,12 +64,12 @@ impl TotalOrd for Duck {
 }
 fn main() {
 	let mut ducks = vec!(
-		Duck::new(~"Daffy", 8f64),
-		Duck::new(~"Dewey", 2f64),
-		Duck::new(~"Howard", 7f64),
-		Duck::new(~"Louie", 2f64),
-		Duck::new(~"Donald", 10f64),
-		Duck::new(~"Huey", 2f64)
+		Duck::new("Daffy".to_owned(), 8f64),
+		Duck::new("Dewey".to_owned(), 2f64),
+		Duck::new("Howard".to_owned(), 7f64),
+		Duck::new("Louie".to_owned(), 2f64),
+		Duck::new("Donald".to_owned(), 10f64),
+		Duck::new("Huey".to_owned(), 2f64)
 	);
 
 	println!("Before sorting:");

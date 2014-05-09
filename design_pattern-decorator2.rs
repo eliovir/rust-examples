@@ -43,7 +43,7 @@ struct Ingredient {
 	description: ~str,
 	price: f64,
 	// to decorate an struct, it must have the common trait
-	drink: ~Drinkable,
+	drink: Box<Drinkable>,
 }
 
 impl Drinkable for Ingredient {
@@ -57,18 +57,18 @@ impl Drinkable for Ingredient {
 
 impl Ingredient {
 	// The "constructor", optional but useful!
-	pub fn new(description: ~str, price: f64, drink: ~Drinkable) -> Ingredient {
+	pub fn new(description: ~str, price: f64, drink: Box<Drinkable>) -> Ingredient {
 		Ingredient { description: description, price: price, drink: drink }
 	}
 }
 
 fn main() {
-	let columbia = Drink::new(~"Columbia", 0.89);
+	let columbia = Drink::new("Columbia".to_owned(), 0.89);
 	println!("{} => {}", columbia.description(), columbia.price());
 
-	let chocolate = Ingredient::new(~"chocolate", 0.2, ~columbia);
+	let chocolate = Ingredient::new("chocolate".to_owned(), 0.2, box columbia);
 	println!("{} => {}", chocolate.description(), chocolate.price());	
 
-	let chantilly = Ingredient::new(~"chantilly", 0.1, ~chocolate);
+	let chantilly = Ingredient::new("chantilly".to_owned(), 0.1, box chocolate);
 	println!("{} => {}", chantilly.description(), chantilly.price());	
 }

@@ -51,8 +51,8 @@ fn main() {
 	let p2 = @Point{x:2.1, y:2.2};
 	print_point(p2);
 	// Owned pointer to T
-	// ~T, in C++ : unique_ptr<T>
-	let p3 = ~Point{x:3.1, y:3.2};
+	// box T, in C++ : unique_ptr<T>
+	let p3 = box Point{x:3.1, y:3.2};
 	print_point(p3);
 	// Unsafe pointer to T
 	// *T
@@ -70,7 +70,7 @@ fn main() {
 	 * http://static.rust-lang.org/doc/master/tutorial.html#dereferencing-pointers
 	 */
 	let managed = @10;
-	let owned = ~20;
+	let owned = box 20;
 	let borrowed = &30;
 	
 	let sum = *managed + *owned + *borrowed;
@@ -81,7 +81,7 @@ fn main() {
 	 * Such an assignment modifies the value that the pointer points to.
 	 */
 	let managed = @10;
-	let mut owned = ~20;
+	let mut owned = box 20;
 
 	let mut value = 30;
 	let borrowed = &mut value;
@@ -101,7 +101,7 @@ fn main() {
 	 * so in most cases, explicitly dereferencing the receiver is not necessary.
 	 */
 	let bottom = @Point { x: 10.0, y: 120.0 };
-	let top = ~Point { x: bottom.x + 100.0, y: bottom.y - 100.0 };
+	let top = box Point { x: bottom.x + 100.0, y: bottom.y - 100.0 };
 	let rect = &Rectangle(*top, *bottom);
 	let area = rect.area();
 	println!("Area of rectangle {:?}: {:f}", rect, area);

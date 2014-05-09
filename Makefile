@@ -1,7 +1,7 @@
 RUSTC=printf "\033[32;1mRustc:\033[33m %s\033[m\n" $@; rustc
 LIBSRC:=$(shell grep -l 'crate_type = "lib"' *rs)
 LIBSTAMP=$(patsubst %.rs,lib-stamps/%,$(LIBSRC))
-TESTSRC:=$(shell grep -l '^\#\[test\]' *.rs)
+TESTSRC:=$(shell grep -l '\#\[test\]' *.rs)
 TESTPROG:=$(patsubst %.rs,build/test-%,$(TESTSRC))
 SRC=$(wildcard *.rs)
 SRC:=$(filter-out unittests.rs,$(SRC))

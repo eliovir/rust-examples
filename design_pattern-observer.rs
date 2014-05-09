@@ -93,10 +93,10 @@ impl<'a, T: Observer+Eq+std::fmt::Show> Observable<'a, T> for Weather<'a, T> {
 
 
 fn main() {
-	let display = Display::new(~"Desktop");
+	let display = Display::new("Desktop".to_owned());
 	let mut weather = Weather{temperature: 19.0, observers: Vec::new()};
 	weather.addObserver(&display);
-	let display2 = Display::new(~"Desktop2");
+	let display2 = Display::new("Desktop2".to_owned());
 	weather.addObserver(&display2);
 	weather.setTemperature(20.0);
 	weather.deleteObserver(&display2);

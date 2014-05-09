@@ -77,13 +77,13 @@ impl Command for LightOffCommand {
 
 // The command will be launched by a remote control.
 struct SimpleRemoteControl {
-	command: ~Command,
+	command: Box<Command>,
 }
 impl SimpleRemoteControl {
 	fn new() -> SimpleRemoteControl {
-		SimpleRemoteControl { command: ~NullCommand::new() }
+		SimpleRemoteControl { command: box NullCommand::new() }
 	}
-	fn setCommand(&mut self, cmd: ~Command) {
+	fn setCommand(&mut self, cmd: Box<Command>) {
 		self.command = cmd;
 	}
 	fn buttonWasPressed(&self) {
@@ -98,8 +98,8 @@ fn main() {
 	let lightOff = LightOffCommand::new(light);
 
 	remote.buttonWasPressed();
-	remote.setCommand(~lightOn);
+	remote.setCommand(box lightOn);
 	remote.buttonWasPressed();
-	remote.setCommand(~lightOff);
+	remote.setCommand(box lightOff);
 	remote.buttonWasPressed();
 }

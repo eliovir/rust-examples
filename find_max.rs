@@ -117,7 +117,7 @@ fn main () {
 	println!("find_max1 -> {}", find_max1(&int_v));
 	println!("find_max2 -> {}", find_max2(&int_v));
 	println!("find_max3 -> {}", find_max3(&int_v));
-	let v = vec!(~"qehgesrhsetha", ~"bqthst", ~"cthersth");
+	let v = vec!("qehgesrhsetha", "bqthst", "cthersth");
 	let b = find_max3(&v);
 	println!("{}", b);
 	

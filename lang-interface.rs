@@ -59,15 +59,15 @@ fn start_fire<T: Burns>(item: T) {
 
 fn main() {
 	let lg = Log {
-		wood_type: ~"Oak",
+		wood_type: "Oak".to_owned(),
 	};
 	let book = Book {
-		title: ~"The Brothers Karamazov",
-		author: ~"Fyodor Dostoevsky",
+		title: "The Brothers Karamazov".to_owned(),
+		author: "Fyodor Dostoevsky".to_owned(),
 	};
 	let nuremberg_chronicle = Book {
-		title: ~"Liber Chronicarum",
-		author: ~"Hartmann Schedel",
+		title: "Liber Chronicarum".to_owned(),
+		author: "Hartmann Schedel".to_owned(),
 	};
 	let incunable = Incunable(nuremberg_chronicle);
 	// Burn the oak log!

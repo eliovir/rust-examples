@@ -24,7 +24,7 @@ fn print_usage(program: &str, _opts: &[OptGroup]) {
 fn main() {
 	let args = os::args();
 
-	let program = args[0].clone();
+	let program = args.get(0).clone();
 
 	let opts = ~[
 		optopt("o", "", "set output file name", "NAME"),

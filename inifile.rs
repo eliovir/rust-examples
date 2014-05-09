@@ -140,7 +140,8 @@ impl IniFile {
 		match self.sections.as_slice().position_elem(&section) {
 			Some(section_index) => self.options.get(section_index).as_slice().to_owned(),
 			None => {
-				Vec::new().move_iter().collect()
+				//Vec::new().move_iter().collect()
+				~[]
 			},
 		}
 	}
@@ -168,7 +169,7 @@ impl IniFile {
 	 * Parse configuration data from a vector of strings (file lines).
 	 */
 	pub fn read_string(&mut self, lines: Vec<~str>) {
-		let mut section: ~str = ~"Default";
+		let mut section: ~str = "Default".to_owned();
 		let mut comment_lines = StrBuf::new();
 		for line in lines.iter() {
 			let mut line_len = line.len();
@@ -188,7 +189,7 @@ impl IniFile {
 				section = line.slice_chars(1, line_len - 1).to_owned();
 				if !self.opts.contains_key(&section) {
 					self.add_section(section.clone());
-					self.comments.get_mut(&section).insert(~"__section_comment__", comment_lines.into_owned());
+					self.comments.get_mut(&section).insert("__section_comment__".to_owned(), comment_lines.into_owned());
 					comment_lines = StrBuf::new();
 				}
 				continue;
@@ -305,8 +306,8 @@ impl fmt::Show for IniFile {
 		let mut lines = StrBuf::new();
 		let sections = self.sections().clone();
 		for section in sections.iter() {
-			if self.comments.contains_key(section) && self.comments.get(section).contains_key(&~"__section_comment__") {
-				lines.push_str(self.comments.get(section).get(&~"__section_comment__").clone());
+			if self.comments.contains_key(section) && self.comments.get(section).contains_key(& "__section_comment__".to_owned()) {
+				lines.push_str(self.comments.get(section).get(& "__section_comment__".to_owned()).clone());
 			}
 			lines.push_str(format!("[{}]\n", section.to_owned()));
 			let options = self.options(section.to_owned()).clone();
@@ -357,7 +358,7 @@ mod tests {
 	fn sections_names() {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		let expected = ~[~"section1", ~"section2", ~"Booleans", ~"Integers", ~"Floats"];
+		let expected = vec!["section1".to_owned(),  "section2".to_owned(),  "Booleans".to_owned(),  "Integers".to_owned(),  "Floats".to_owned()];
 		let found = ini.sections();
 		assert!(expected == found, format!("Sections must be \"{:?}\", not {:?}.", expected, found));
 	}
@@ -429,10 +430,10 @@ mod tests {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
 		let mut test: HashMap<~str, int> = HashMap::new();
-		test.insert(~"integer0", 0i);
-		test.insert(~"integer1", 1i);
-		test.insert(~"integer2", 2i);
-		test.insert(~"integer3", 03i);
+		test.insert("integer0".to_owned(), 0i);
+		test.insert("integer1".to_owned(), 1i);
+		test.insert("integer2".to_owned(), 2i);
+		test.insert("integer3".to_owned(), 03i);
 		for (key, expected) in test.iter() {
 			let found = ini.get_int("Integers", key.to_owned());
 			assert!((expected*1) == found,
@@ -451,10 +452,10 @@ mod tests {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
 		let mut test: HashMap<~str, f64> = HashMap::new();
-		test.insert(~"float01", 0.1f64);
-		test.insert(~"float11", 1.1f64);
-		test.insert(~"float20", 2.0f64);
-		test.insert(~"float30", 3.0f64);
+		test.insert("float01".to_owned(), 0.1f64);
+		test.insert("float11".to_owned(), 1.1f64);
+		test.insert("float20".to_owned(), 2.0f64);
+		test.insert("float30".to_owned(), 3.0f64);
 		for (key, expected) in test.iter() {
 			let found = ini.get_f64("Floats", key.to_owned());
 			assert!((expected*1.0f64) == found,
@@ -465,11 +466,11 @@ mod tests {
 	fn add_section() {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		let expected = ~[~"section1", ~"section2", ~"Booleans", ~"Integers", ~"Floats"];
+		let expected = vec!["section1".to_owned(),  "section2".to_owned(),  "Booleans".to_owned(),  "Integers".to_owned(),  "Floats".to_owned()];
 		let found = ini.sections();
 		assert!(expected == found, format!("Sections must be \"{:?}\", not {:?}.", expected, found));
 		ini.add_section("New section");
-		let expected2 = ~[~"section1", ~"section2", ~"Booleans", ~"Integers", ~"Floats", ~"New section"];
+		let expected2 = vec!["section1".to_owned(),  "section2".to_owned(),  "Booleans".to_owned(),  "Integers".to_owned(),  "Floats".to_owned(),  "New section".to_owned()];
 		let found2 = ini.sections();
 		assert!(expected2 == found2, format!("Sections must be \"{:?}\", not {:?}.", expected2, found2));
 	}
@@ -485,8 +486,8 @@ mod tests {
 	fn remove_section() {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		ini.remove_section(~"section1");
-		let expected = ~[~"section2", ~"Booleans", ~"Integers", ~"Floats"];
+		ini.remove_section("section1".to_owned());
+		let expected = vec!["section2".to_owned(),  "Booleans".to_owned(),  "Integers".to_owned(),  "Floats".to_owned()];
 		let found = ini.sections();
 		assert!(expected == found, format!("Sections must be \"{:?}\", not {:?}.", expected, found));
 	}
@@ -494,7 +495,7 @@ mod tests {
 	fn set() {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		ini.set(~"section1", ~"value2", ~"string 2");
+		ini.set("section1".to_owned(),  "value2".to_owned(),  "string 2".to_owned());
 		let expected = "string 2";
 		let found = ini.get("section1", "value2");
 		assert!(expected == found, format!("[section1] value2 must be \"{}\", not \"{}\".", expected, found));
@@ -503,8 +504,8 @@ mod tests {
 	fn options() {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		let expected = ~[~"value11", ~"value"];
-		let found = ini.options(~"section1");
+		let expected = ~["value11".to_owned(),  "value".to_owned()];
+		let found = ini.options("section1".to_owned());
 		assert!(expected == found, format!("Items of [section1] must be \"{:?}\", not {:?}.", expected, found));
 	}
 	#[test]
@@ -517,7 +518,7 @@ mod tests {
 			_ => debug!("open of {:?} succeeded", path)
 		}
 		let mut reader = BufferedReader::new(file);
-		let mut lines: ~[~str] = ~[];
+		let mut lines: Vec<~str> = Vec::new();
 		for line in reader.lines() {
 			match line {
 				Ok(nread) => lines.push(nread),
@@ -553,7 +554,7 @@ mod tests {
 
 		// Clean
 		assert!(path.exists(), format!("{} should exist after reading the new inifile!", writepath));
-		let result: Result<(), ~Any:Send> = task::try(proc() {
+		let result: Result<(), Box<Any:Send>> = task::try(proc() {
 			match fs::unlink(&path) {
 				Err(e) => fail!("open of {:?} failed: {}", path, e),
 				_ => debug!("open of {:?} succeeded", path)
@@ -563,7 +564,7 @@ mod tests {
 	}
 	#[test]
 	fn save() {
-		let filepath = ~"data/save_test.ini";
+		let filepath = "data/save_test.ini".to_owned();
 		let path = Path::new(filepath);
 		if path.exists() {
 			println!("The file {:?} should not exist before test::save() is executed!", path);
@@ -571,7 +572,7 @@ mod tests {
 
 		let mut ini = super::IniFile::new();
 		ini.add_section("section1");
-		ini.set(~"section1", ~"key1", ~"value1");
+		ini.set("section1".to_owned(),  "key1".to_owned(),  "value1".to_owned());
 		ini.set_path(path.clone());
 		ini.save();
 
@@ -582,7 +583,7 @@ mod tests {
 			_ => debug!("open of {:?} succeeded", path)
 		}
 		let mut reader = BufferedReader::new(file);
-		let mut lines: ~[~str] = ~[];
+		let mut lines: Vec<~str> = Vec::new();
 		for line in reader.lines() {
 			match line {
 				Ok(nread) => lines.push(nread),
@@ -591,7 +592,7 @@ mod tests {
 		}
 
 		let found = lines.concat();
-		let expected = ~"[section1]\nkey1=value1\n";
+		let expected = "[section1]\nkey1=value1\n".to_owned();
 		assert_eq!(expected, found);
 		match fs::unlink(&path) {
 			Err(e) => fail!("open of {:?} failed: {}", path, e),

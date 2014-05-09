@@ -18,13 +18,13 @@ trait Command {
 }
 
 struct CommandChain {
-	commands: Vec<~Command>,
+	commands: Vec<Box<Command>>,
 }
 impl CommandChain {
 	fn new() -> CommandChain {
 		CommandChain{commands: Vec::new()}
 	}
-	fn addCommand(&mut self, command: ~Command) {
+	fn addCommand(&mut self, command: Box<Command>) {
 		self.commands.push(command);
 	}
 	fn runCommand(&self, name: &str, args: &[~str]) {
@@ -66,8 +66,8 @@ impl Command for MailCommand {
 }
 fn main() {
 	let mut cc = CommandChain::new();
-	cc.addCommand(~UserCommand::new());
-	cc.addCommand(~MailCommand::new());
-	cc.runCommand(&"addUser", &[~"Toto", ~"users"]);
-	cc.runCommand(&"mail", &[~"Sender", ~"Subject"]);
+	cc.addCommand(box UserCommand::new());
+	cc.addCommand(box MailCommand::new());
+	cc.runCommand("addUser", &["Toto".to_owned(), "users".to_owned()]);
+	cc.runCommand("mail", &["Sender".to_owned(), "Subject".to_owned()]);
 }

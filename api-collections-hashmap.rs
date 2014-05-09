@@ -12,12 +12,12 @@ fn main() {
 	let mut h: HashMap<&str, int>;
 	h = HashMap::new();
 	h.insert("foo", 42);
-	println!("Is there a key foo?  => {}", h.contains_key(& &"foo")); // => true
-	println!("Is there a key baz?  => {}", h.contains_key(& &"baz")); // => false
-	println!("The value for foo is => {:?}", h.find(& &"foo")); // => Some(&42)
+	println!("Is there a key foo?  => {}", h.contains_key(&("foo"))); // => true
+	println!("Is there a key baz?  => {}", h.contains_key(&("baz"))); // => false
+	println!("The value for foo is => {:?}", h.find(&("foo"))); // => Some(&42)
 	let key = "baz";
 	h.insert(key, 1);
-	println!("Is there a key baz?  => {}", h.contains_key(& &"baz")); // => false
+	println!("Is there a key baz?  => {}", h.contains_key(&("baz"))); // => false
 
 	// You don't actually need the HashMap to own the keys (but
 	// unless all keys are static, this will be likely to lead
@@ -25,12 +25,12 @@ fn main() {
 
 	println!("Using owned pointers as keys.");
 	let mut h: HashMap<~str, int> = HashMap::new();
-	h.insert(~"foo", 42);
-	println!("Is there a key foo?  => {}", h.contains_key(&~"foo")); // => true
-	println!("Is there a key baz?  => {}", h.contains_key(&~"baz")); // => false
-	println!("The value for foo is => {:?}", h.find(&~"foo")); // => Some(&42)
+	h.insert("foo".to_owned(), 42);
+	println!("Is there a key foo?  => {}", h.contains_key(&"foo".to_owned())); // => true
+	println!("Is there a key baz?  => {}", h.contains_key(&"baz".to_owned())); // => false
+	println!("The value for foo is => {:?}", h.find(&"foo".to_owned())); // => Some(&42)
 	h.insert(key.to_owned(), 1);
-	println!("Is there a key baz?  => {}", h.contains_key(&~"baz")); // => true
+	println!("Is there a key baz?  => {}", h.contains_key(&"baz".to_owned())); // => true
 
 	// List keys of the HashMap
 	let mut keys: Vec<~str> = Vec::new();

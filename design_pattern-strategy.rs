@@ -36,7 +36,7 @@ impl FlyBehaviour for DoNotFly {
 
 // The object has reference to the variation.
 struct Duck {
-	flyBehaviour: ~FlyBehaviour,
+	flyBehaviour: Box<FlyBehaviour>,
 }
 
 impl Duck {
@@ -44,7 +44,7 @@ impl Duck {
 	fn fly(&self) {
 		self.flyBehaviour.fly();
 	}
-	fn setFlyBehaviour(&mut self, flyBehaviour: ~FlyBehaviour) {
+	fn setFlyBehaviour(&mut self, flyBehaviour: Box<FlyBehaviour>) {
 		self.flyBehaviour = flyBehaviour;
 	}
 }
@@ -52,9 +52,9 @@ impl Duck {
 fn main() {
 	let dnf = DoNotFly;
 	let fww = FlyWithWings;
-	let mut ducky = Duck { flyBehaviour: ~fww };
+	let mut ducky = Duck { flyBehaviour: box fww };
 	ducky.fly();
 	// so functions can change dynamically
-	ducky.setFlyBehaviour(~dnf);
+	ducky.setFlyBehaviour(box dnf);
 	ducky.fly();
 }

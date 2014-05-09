@@ -9,9 +9,9 @@
  * Does not handle .push() since 0.11-pre, so I use Vec<~str>
  */
 fn fillStrings() -> ~[~str] {
-	let mut strings = vec!(~"hello");
-	strings.push(~"world");
-	strings.move_iter().collect()
+	let mut strings = vec!("hello".to_owned());
+	strings.push("world".to_owned());
+	strings.as_slice().to_owned()
 }
 
 /**
@@ -50,7 +50,7 @@ fn main() {
 	 */
 	let mut strings = fillStrings();
 	println!("strings[1] = {}", strings[1]);
-	strings[1] = ~"me";
+	strings[1] = "me".to_owned();
 	println!("strings[1] = {}", strings[1]);
 
 	/*
