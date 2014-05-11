@@ -1,6 +1,7 @@
 /**
  * http://static.rust-lang.org/doc/master/collections/hashmap/struct.HashMap.html
  * https://github.com/mozilla/rust/blob/master/src/test/run-pass/hashmap-memory.rs#L70
+ * https://github.com/mozilla/rust/blob/master/src/libcollections/hashmap.rs
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -18,6 +19,16 @@ fn main() {
 	let key = "baz";
 	h.insert(key, 1);
 	println!("Is there a key baz?  => {}", h.contains_key(&("baz"))); // => false
+
+	// Doing a find, inserting with a `proc()`, using the key to construct the value
+	let mut map = HashMap::<~str, ~str>::new();
+	map.find_or_insert_with("foo".to_owned(), |k| *k + "bar".to_owned());
+	println!("The value for foo is => {:?}", map.find(&("foo".to_owned()))); // => Some(&~"foobar")
+	// running this for the first time, will add "foo" with the value 1
+	// running the same for the second time, will add +1 to "foo"
+	h.insert_or_update_with("foo", 1, |_k, v| *v += 1);
+	println!("foo={}", h.get(&("foo")));
+	assert_eq!(*h.get(&("foo")), 43);
 
 	// You don't actually need the HashMap to own the keys (but
 	// unless all keys are static, this will be likely to lead
@@ -38,4 +49,10 @@ fn main() {
 		keys.push(k.to_owned());
 	}
 	println!("These are the keys: {}.", keys);
+	let keys = h.keys().map(|v| v.clone()).collect::<Vec<~str>>();
+	println!("These are the keys: {}.", keys);
+
+	// List values of the HashMap
+	let values = h.values().map(|v| v.clone()).collect::<Vec<int>>();
+	println!("These are the values: {}.", values);
 }
