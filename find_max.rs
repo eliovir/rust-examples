@@ -15,7 +15,7 @@ use test::Bencher;
  */
 fn find_max1<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
 	let mut max = None;
-	
+
 	for i in lst.iter() {
 		max = match max {
 			None => Some(i),
@@ -34,7 +34,7 @@ fn find_max1<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
  */
 fn find_max2<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
 	let mut max = None;
-	
+
 	let find_max = |i: &'a T| {
 		max = match max {
 			None => Some(i),
@@ -120,7 +120,9 @@ fn main () {
 	let v = vec!("qehgesrhsetha", "bqthst", "cthersth");
 	let b = find_max3(&v);
 	println!("{}", b);
-	
+
 	println!("{}", v);
 	println!("{}", b);
-} 
+	// simply using stdlib:
+	println!("{}", v.iter().max_by(|x| *x).unwrap())
+}
