@@ -14,17 +14,17 @@
 
 // This design pattern needs a common trait for Drinks and Ingredients
 trait Drinkable {
-	fn description(&self) -> ~str;
+	fn description(&self) -> StrBuf;
 	fn price(&self) -> f64;
 }
 
-struct Drink{
+struct Drink<'a> {
 	price: f64,
-	description: ~str
+	description: &'a str
 }
 
-impl Drinkable for Drink {
-	fn description(&self) -> ~str {
+impl<'a> Drinkable for Drink<'a> {
+	fn description(&self) -> StrBuf {
 		self.description.to_owned()
 	}
 	fn price(&self) -> f64 {
@@ -32,43 +32,43 @@ impl Drinkable for Drink {
 	}
 }
 
-impl Drink {
+impl<'a> Drink<'a> {
 	// The "constructor", optional but useful!
-	pub fn new(description: ~str, price: f64) -> Drink {
+	pub fn new(description: &'a str, price: f64) -> Drink<'a> {
 		Drink { description: description, price: price }
 	}
 }
 
-struct Ingredient {
-	description: ~str,
+struct Ingredient<'a> {
+	description: &'a str,
 	price: f64,
 	// to decorate an struct, it must have the common trait
 	drink: Box<Drinkable>,
 }
 
-impl Drinkable for Ingredient {
-	fn description(&self) -> ~str {
-		self.drink.description() + ", " + self.description
+impl<'a> Drinkable for Ingredient<'a> {
+	fn description(&self) -> StrBuf {
+		self.drink.description().append(", ").append(self.description)
 	}
 	fn price(&self) -> f64 {
 		self.price + self.drink.price()
 	}
 }
 
-impl Ingredient {
+impl<'a> Ingredient<'a> {
 	// The "constructor", optional but useful!
-	pub fn new(description: ~str, price: f64, drink: Box<Drinkable>) -> Ingredient {
+	pub fn new(description: &'a str, price: f64, drink: Box<Drinkable>) -> Ingredient<'a> {
 		Ingredient { description: description, price: price, drink: drink }
 	}
 }
 
 fn main() {
-	let columbia = Drink::new("Columbia".to_owned(), 0.89);
+	let columbia = Drink::new("Columbia", 0.89);
 	println!("{} => {}", columbia.description(), columbia.price());
 
-	let chocolate = Ingredient::new("chocolate".to_owned(), 0.2, box columbia);
+	let chocolate = Ingredient::new("chocolate", 0.2, box columbia);
 	println!("{} => {}", chocolate.description(), chocolate.price());	
 
-	let chantilly = Ingredient::new("chantilly".to_owned(), 0.1, box chocolate);
+	let chantilly = Ingredient::new("chantilly", 0.1, box chocolate);
 	println!("{} => {}", chantilly.description(), chantilly.price());	
 }

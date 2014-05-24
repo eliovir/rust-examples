@@ -144,7 +144,7 @@ impl Date {
  */
 impl fmt::Show for Date {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		write!(f.buf, "{:4d}-{:2d}-{:2d}", self.year, self.month, self.day)
+		write!(f, "{:4d}-{:2d}-{:2d}", self.year, self.month, self.day)
 	}
 }
 
@@ -156,7 +156,7 @@ mod tests {
 		let orig = date.to_str();
 		let days = 2;
 		date.addDays(days);
-		let expected = "2013-10-26";
+		let expected = "2013-10-26".to_strbuf();
 		let found = date.to_str();
 		assert!(expected==found, format!("Adding {:d} days to {} should return {}, not {}", days, orig, expected, found));
 	}
@@ -191,7 +191,8 @@ mod tests {
 	fn to_str() {
 		let date = ::Date::new(2013, 10, 24);
 		let expected = "2013-10-24";
-		let found = date.to_str();
+		let date_str = date.to_str();
+		let found = date_str.as_slice();
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 	/*
@@ -208,14 +209,14 @@ mod tests {
 	#[test]
 	fn new() {
 		let date = ::Date::new(2013, 10, 24);
-		let expected = "2013-10-24";
+		let expected = "2013-10-24".to_strbuf();
 		let found = date.to_str();
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 	#[test]
 	fn newFromString() {
 		let date = ::Date::newFromString("2013-10-24 23:24:34");
-		let expected = "2013-10-24";
+		let expected = "2013-10-24".to_strbuf();
 		let found = date.to_str();
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}

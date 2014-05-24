@@ -1,7 +1,7 @@
 #![crate_id="tutorial-tasks-02_3-arc.rs"]
 //! Rust Tasks and Communication Tutorial - 2.3 Sharing immutable data without copy: Arc
 //!
-//! http://static.rust-lang.org/doc/master/guide-tasks.html#sharing-immutable-data-without-copy:-arc
+//! http://doc.rust-lang.org/guide-tasks.html#sharing-immutable-data-without-copy:-arc
 
 extern crate rand;
 extern crate sync;

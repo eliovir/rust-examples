@@ -184,7 +184,7 @@ fn bench_fibonacci(b: &mut Bencher) {
 #[bench]
 fn bench_iterative_fibonacci(b: &mut Bencher) {
 	b.iter(|| {
-		// http://static.rust-lang.org/doc/master/std/iter/trait.Iterator.html#method.take
+		// http://doc.rust-lang.org/std/iter/trait.Iterator.html#method.take
 		iterative_fibonacci().take(BENCH_SIZE).last().unwrap()
 		//iterative_fibonacci().take(BENCH_SIZE).collect::<Vec<uint>>()
 	})

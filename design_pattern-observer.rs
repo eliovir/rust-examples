@@ -28,7 +28,7 @@ trait Observable<'a, T: Observer> {
 
 // Define Observer and Observable
 struct Display {
-	name: ~str,
+	name: StrBuf,
 }
 struct Weather<'a, T> {
 	temperature: f64,
@@ -50,7 +50,7 @@ impl Observer for Display {
 	}
 }
 impl Display {
-	fn new(name: ~str) -> Display {
+	fn new(name: StrBuf) -> Display {
 		Display{name: name}
 	}
 }
@@ -61,7 +61,7 @@ impl std::cmp::Eq for Display {
 }
 impl std::fmt::Show for Display {
 	fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-		write!(f.buf, "Display {}", self.name)
+		write!(f, "Display {}", self.name)
 	}
 }
 impl<'a, T: Observer+Eq+std::fmt::Show> Observable<'a, T> for Weather<'a, T> {

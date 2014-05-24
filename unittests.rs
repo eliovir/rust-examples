@@ -1,6 +1,6 @@
 /**
- * http://static.rust-lang.org/doc/master/guide-testing.html
- * http://static.rust-lang.org/doc/master/test/index.html
+ * http://doc.rust-lang.org/guide-testing.html
+ * http://doc.rust-lang.org/test/index.html
  * rustc unittests.rs --test -o unittests
  * ./unittests --test
  *

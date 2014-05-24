@@ -1,8 +1,8 @@
 #![feature(struct_variant)]
 /**
  * 5.2 Enums
- * http://static.rust-lang.org/doc/master/tutorial.html#enums
- * http://static.rust-lang.org/doc/master/rust.html#compiler-features
+ * http://doc.rust-lang.org/tutorial.html#enums
+ * http://doc.rust-lang.org/rust.html#compiler-features
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */

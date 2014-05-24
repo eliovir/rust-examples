@@ -1,5 +1,5 @@
 /**
- * http://static.rust-lang.org/doc/master/std/io/index.html
+ * http://doc.rust-lang.org/std/io/index.html
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  **/

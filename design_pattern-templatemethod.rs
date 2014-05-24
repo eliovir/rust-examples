@@ -15,22 +15,22 @@
 use std::fmt;
 
 struct Duck {
-	name: ~str,
+	name: StrBuf,
 	weight: f64,
 }
 impl Duck {
-	fn new(name: ~str, weight: f64) -> Duck {
+	fn new(name: StrBuf, weight: f64) -> Duck {
 		Duck { name: name, weight: weight }
 	}
 }
 impl fmt::Show for Duck {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		write!(f.buf, "The duck {} weights {:.2f} kg.", self.name, self.weight)
+		write!(f, "The duck {} weights {:.2f} kg.", self.name, self.weight)
 	}
 }
 // To order a Vec, we need to implement TotalOrd to call sort()
-// http://static.rust-lang.org/doc/master/std/vec/struct.Vec.html
-// http://static.rust-lang.org/doc/master/std/cmp/trait.TotalOrd.html
+// http://doc.rust-lang.org/std/vec/struct.Vec.html
+// http://doc.rust-lang.org/std/cmp/trait.TotalOrd.html
 impl Eq for Duck {
     #[inline]
     fn eq(&self, other: &Duck) -> bool {

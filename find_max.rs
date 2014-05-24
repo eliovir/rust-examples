@@ -30,7 +30,7 @@ fn find_max1<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
  * Using a closure.
  *
  * Inspired by tutorial "15 Closure"
- * http://static.rust-lang.org/doc/master/tutorial.html#closures
+ * http://doc.rust-lang.org/tutorial.html#closures
  */
 fn find_max2<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
 	let mut max = None;

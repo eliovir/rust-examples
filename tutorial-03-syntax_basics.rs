@@ -1,6 +1,6 @@
 /**
  * 3 Syntax basics
- * http://static.rust-lang.org/doc/master/tutorial.html#syntax-basics
+ * http://doc.rust-lang.org/tutorial.html#syntax-basics
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -31,7 +31,7 @@ fn main() {
 
 	/*
 	 * 3.4 Syntax extensions
-	 * http://static.rust-lang.org/doc/master/tutorial.html#syntax-extensions
+	 * http://doc.rust-lang.org/tutorial.html#syntax-extensions
 	 */
 	// {} will print the "default format" of a type
 	println!("{} is {}", "the answer", 43);

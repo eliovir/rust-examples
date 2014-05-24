@@ -1,6 +1,6 @@
 /**
  * Rust Tasks and Communication Tutorial - 2.2 Backgrounding computations: Futures
- * http://static.rust-lang.org/doc/master/guide-tasks.html#backgrounding-computations:-futures
+ * http://doc.rust-lang.org/guide-tasks.html#backgrounding-computations:-futures
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */

@@ -1,9 +1,9 @@
 //!
-//! http://static.rust-lang.org/doc/master/complement-cheatsheet.html#how-do-i-express-phantom-types?
+//! http://doc.rust-lang.org/complement-cheatsheet.html#how-do-i-express-phantom-types?
 
 // Phantom types are useful for enforcing state at compile time. For example:
 
-struct Door<State>(~str);
+struct Door<State>(StrBuf);
 
 struct Open;
 struct Closed;

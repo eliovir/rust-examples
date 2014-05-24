@@ -1,7 +1,7 @@
 /**
  * The Rust Reference Manual
  * 7.2.14 Lambda expressions
- * http://static.rust-lang.org/doc/master/rust.html#lambda-expressions
+ * http://doc.rust-lang.org/rust.html#lambda-expressions
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */

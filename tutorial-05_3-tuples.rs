@@ -1,6 +1,6 @@
 /**
  * 5.3 Tuples
- * http://static.rust-lang.org/doc/master/tutorial.html#tuples
+ * http://doc.rust-lang.org/tutorial.html#tuples
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */

@@ -1,5 +1,5 @@
 /**
- * http://static.rust-lang.org/doc/master/getopts/index.html
+ * http://doc.rust-lang.org/getopts/index.html
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -7,7 +7,7 @@ extern crate getopts;
 use getopts::{optopt,optflag,getopts,OptGroup};
 use std::os;
 
-fn do_work(inp: &str, out: Option<~str>) {
+fn do_work(inp: &str, out: Option<StrBuf>) {
 	println!("{}", inp);
 	match out {
 		Some(x) => println!("{}", x),
@@ -22,7 +22,9 @@ fn print_usage(program: &str, _opts: &[OptGroup]) {
 }
 
 fn main() {
-	let args = os::args();
+	let args: Vec<StrBuf> = os::args().iter()
+						.map(|x| x.to_strbuf())
+						.collect();
 
 	let program = args.get(0).clone();
 
@@ -36,15 +38,15 @@ fn main() {
 		Err(f) => { fail!(f.to_err_msg()) }
 	};
 	if matches.opt_present("h") {
-		print_usage(program, opts);
+		print_usage(program.as_slice(), opts);
 		return;
 	}
 	let output = matches.opt_str("o");
-	let input: &str = if !matches.free.is_empty() {
+	let input = if !matches.free.is_empty() {
 		(*matches.free.get(0)).clone()
 	} else {
-		print_usage(program, opts);
+		print_usage(program.as_slice(), opts);
 		return;
 	};
-	do_work(input, output);
+	do_work(input.as_slice(), output);
 }

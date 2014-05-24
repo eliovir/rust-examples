@@ -14,7 +14,7 @@
 //! @since 2014-04-20
 
 trait Command {
-	fn onCommand(&self, name: &str, args: &[~str]);
+	fn onCommand(&self, name: &str, args: &[&str]);
 }
 
 struct CommandChain {
@@ -27,7 +27,7 @@ impl CommandChain {
 	fn addCommand(&mut self, command: Box<Command>) {
 		self.commands.push(command);
 	}
-	fn runCommand(&self, name: &str, args: &[~str]) {
+	fn runCommand(&self, name: &str, args: &[&str]) {
 		for command in self.commands.iter() {
 			command.onCommand(name, args);
 		}
@@ -42,7 +42,7 @@ impl UserCommand {
 }
 impl Command for UserCommand {
 	#[allow(unused_variable)]
-	fn onCommand(&self, name: &str, args: &[~str]) {
+	fn onCommand(&self, name: &str, args: &[&str]) {
 		if name == "addUser" {
 			println!("UserCommand handling '{}'.", name);
 		}
@@ -56,7 +56,7 @@ impl MailCommand {
 	}
 }
 impl Command for MailCommand {
-	fn onCommand(&self, name: &str, args: &[~str]) {
+	fn onCommand(&self, name: &str, args: &[&str]) {
 		if name == "addUser" {
 			println!("MailCommand handling '{}' with args {}.", name, args);
 		} else if name == "mail" {
@@ -68,6 +68,6 @@ fn main() {
 	let mut cc = CommandChain::new();
 	cc.addCommand(box UserCommand::new());
 	cc.addCommand(box MailCommand::new());
-	cc.runCommand("addUser", &["Toto".to_owned(), "users".to_owned()]);
-	cc.runCommand("mail", &["Sender".to_owned(), "Subject".to_owned()]);
+	cc.runCommand("addUser", &["Toto", "users"]);
+	cc.runCommand("mail", &["Sender", "Subject"]);
 }

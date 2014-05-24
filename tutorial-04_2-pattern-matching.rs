@@ -1,6 +1,6 @@
 /**
  * 4.2 Pattern matching
- * http://static.rust-lang.org/doc/master/tutorial.html#pattern-matching
+ * http://doc.rust-lang.org/tutorial.html#pattern-matching
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -62,7 +62,7 @@ fn main() {
 
 	/*
 	 * To destructure a struct, use `..`.
-	 * http://static.rust-lang.org/doc/master/tutorial.html#structs
+	 * http://doc.rust-lang.org/tutorial.html#structs
 	 */
 	let mypoint = Point { x: 0.0, y: 0.0 };
 	match mypoint {

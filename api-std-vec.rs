@@ -1,5 +1,5 @@
 /**
- * http://static.rust-lang.org/doc/master/std/vec/index.html
+ * http://doc.rust-lang.org/std/vec/
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
@@ -8,7 +8,7 @@
  * ~[~str] is an owned pointer, allocated on the send heap, can be sent accross tasks.
  * Does not handle .push() since 0.11-pre, so I use Vec<~str>
  */
-fn fillStrings() -> ~[~str] {
+fn fillStrings() -> ~[StrBuf] {
 	let mut strings = vec!("hello".to_owned());
 	strings.push("world".to_owned());
 	strings.as_slice().to_owned()

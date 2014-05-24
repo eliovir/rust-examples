@@ -1,6 +1,6 @@
 /**
  * Converting from String 
- * http://static.rust-lang.org/doc/master/std/from_str/trait.FromStr.html
+ * http://doc.rust-lang.org/std/from_str/trait.FromStr.html
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  **/

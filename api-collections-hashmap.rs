@@ -1,5 +1,5 @@
 /**
- * http://static.rust-lang.org/doc/master/collections/hashmap/struct.HashMap.html
+ * http://doc.rust-lang.org/collections/hashmap/struct.HashMap.html
  * https://github.com/mozilla/rust/blob/master/src/test/run-pass/hashmap-memory.rs#L70
  * https://github.com/mozilla/rust/blob/master/src/libcollections/hashmap.rs
  *
@@ -21,8 +21,8 @@ fn main() {
 	println!("Is there a key baz?  => {}", h.contains_key(&("baz"))); // => false
 
 	// Doing a find, inserting with a `proc()`, using the key to construct the value
-	let mut map = HashMap::<~str, ~str>::new();
-	map.find_or_insert_with("foo".to_owned(), |k| *k + "bar".to_owned());
+	let mut map = HashMap::<StrBuf, StrBuf>::new();
+	map.find_or_insert_with("foo".to_strbuf(), |k| k.clone().append("bar"));
 	println!("The value for foo is => {:?}", map.find(&("foo".to_owned()))); // => Some(&~"foobar")
 	// running this for the first time, will add "foo" with the value 1
 	// running the same for the second time, will add +1 to "foo"
@@ -35,7 +35,7 @@ fn main() {
 	// to problems, so I don't suggest you do it in reality)
 
 	println!("Using owned pointers as keys.");
-	let mut h: HashMap<~str, int> = HashMap::new();
+	let mut h = HashMap::<StrBuf, int>::new();
 	h.insert("foo".to_owned(), 42);
 	println!("Is there a key foo?  => {}", h.contains_key(&"foo".to_owned())); // => true
 	println!("Is there a key baz?  => {}", h.contains_key(&"baz".to_owned())); // => false
@@ -44,12 +44,12 @@ fn main() {
 	println!("Is there a key baz?  => {}", h.contains_key(&"baz".to_owned())); // => true
 
 	// List keys of the HashMap
-	let mut keys: Vec<~str> = Vec::new();
+	let mut keys: Vec<StrBuf> = Vec::new();
 	for (k, _) in h.iter() {
 		keys.push(k.to_owned());
 	}
 	println!("These are the keys: {}.", keys);
-	let keys = h.keys().map(|v| v.clone()).collect::<Vec<~str>>();
+	let keys = h.keys().map(|v| v.clone()).collect::<Vec<StrBuf>>();
 	println!("These are the keys: {}.", keys);
 
 	// List values of the HashMap

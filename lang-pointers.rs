@@ -9,7 +9,7 @@ use std::gc::Gc;
  * Dave Herman talks about Mozilla Rust and some of the features that make it safe, concurrent, and fast.
  * 
  * 13. Dereferencing pointers
- * http://static.rust-lang.org/doc/master/tutorial.html#dereferencing-pointers
+ * http://doc.rust-lang.org/tutorial.html#dereferencing-pointers
  *
  * The deprecation of @, its alternatives
  * https://github.com/mozilla/rust/wiki/Doc-detailed-release-notes
@@ -67,7 +67,7 @@ fn main() {
 
 	/*
 	 * 13. Dereferencing pointers
-	 * http://static.rust-lang.org/doc/master/tutorial.html#dereferencing-pointers
+	 * http://doc.rust-lang.org/tutorial.html#dereferencing-pointers
 	 */
 	let managed = @10;
 	let owned = box 20;
@@ -107,11 +107,11 @@ fn main() {
 	println!("Area of rectangle {:?}: {:f}", rect, area);
 
 	/*
-	 * http://static.rust-lang.org/doc/master/std/rc/struct.Rc.html#method.deref
+	 * http://doc.rust-lang.org/std/rc/struct.Rc.html#method.deref
 	 * Note that to get the value inside a Rc box you first call
 	 * the deref() method, with return &T, then dereference that.
 	 *
-	 * http://static.rust-lang.org/doc/master/std/gc/struct.Gc.html#method.borrow
+	 * http://doc.rust-lang.org/std/gc/struct.Gc.html#method.borrow
 	 * Note that to get the value inside a Gc box you first call
 	 * the borrow() method, which returns &T, then dereference that. 
 	 */

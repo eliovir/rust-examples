@@ -1,6 +1,6 @@
 /**
  * 2.1 Compiling your first program
- * http://static.rust-lang.org/doc/master/tutorial.html#compiling-your-first-program
+ * http://doc.rust-lang.org/tutorial.html#compiling-your-first-program
  *
  * Run `rustc hello.rs` to produce an executable called `hello` (or `hello.exe` on Windows).
  *

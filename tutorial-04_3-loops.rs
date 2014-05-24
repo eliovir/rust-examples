@@ -1,6 +1,6 @@
 /**
  * 4.3 Loops
- * http://static.rust-lang.org/doc/master/tutorial.html#loops
+ * http://doc.rust-lang.org/tutorial.html#loops
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */

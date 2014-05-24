@@ -1,6 +1,6 @@
 /**
  * 15 Closure
- * http://static.rust-lang.org/doc/master/tutorial.html#closures
+ * http://doc.rust-lang.org/tutorial.html#closures
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
