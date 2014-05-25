@@ -26,24 +26,22 @@ use collections::hashmap::HashMap;
 use std::from_str::FromStr;
 use std::io::BufferedReader;
 use std::io::fs::File;
-use std::path::Path;
 use std::fmt;
-use std::strbuf::StrBuf;
 
 #[cfg(test)]
 use test::Bencher;
 
 pub struct IniFile {
 	/// Comments on sections and options
-	comments: HashMap<~str, HashMap<~str, ~str>>,
+	comments: HashMap<StrBuf, HashMap<StrBuf, StrBuf>>,
 	/// Option names, used to keep order (as HashMap doesn't).
-	options: Vec<Vec<~str>>,
+	options: Vec<Vec<StrBuf>>,
 	/// INI structure: sections contain options (name=>value)
-	opts: HashMap<~str, HashMap<~str, ~str>>,
+	opts: HashMap<StrBuf, HashMap<StrBuf, StrBuf>>,
 	/// File path
 	path: Path,
 	/// Section names, used to keep order (as HashMap doesn't).
-	sections: Vec<~str>
+	sections: Vec<StrBuf>
 }
 
 /**
@@ -56,7 +54,7 @@ impl IniFile {
 	 * If a section by the given name already exists, fail!()
 	 */
 	pub fn add_section(&mut self, section: &str) {
-		if !self.has_section(section.to_owned()) {
+		if !self.has_section(section) {
 			self.comments.insert(section.to_owned(), HashMap::new());
 			self.opts.insert(section.to_owned(), HashMap::new());
 			self.sections.push(section.to_owned());
@@ -68,14 +66,14 @@ impl IniFile {
 	/**
 	 * Getter on filepath.
 	 */
-	pub fn filepath(&self) -> ~str {
+	pub fn filepath(&self) -> StrBuf {
 		format!("{}", self.path.display())
 	}
 	/**
 	 * Get an option value for the named section.
 	 */
-	pub fn get(&self, section: &str, option: &str) -> ~str {
-	//pub fn get<'a>(&'a self, section: &str, option: &str) -> &'a str {
+	//pub fn get<'a>(&self, section: &'a str, option: &'a str) -> StrBuf {
+	pub fn get(&self, section: &str, option: &str) -> StrBuf {
 		if !self.has_option(section, option) {
 			()
 		}
@@ -98,7 +96,8 @@ impl IniFile {
 	 * A convenience method which coerces the option in the specified section to a float f64.
 	 */
 	pub fn get_f64(&self, section: &str, option: &str) -> f64 {
-		let value = self.get(section, option);
+		let val = self.get(section, option);
+		let value = val.as_slice();
 		let x: Option<f64> = FromStr::from_str(value);
 		match x {
 			None => fail!("{} is not a float.", value),
@@ -109,7 +108,8 @@ impl IniFile {
 	 * A convenience method which coerces the option in the specified section to an integer.
 	 */
 	pub fn get_int(&self, section: &str, option: &str) -> int {
-		let value = self.get(section, option);
+		let val = self.get(section, option);
+		let value = val.as_slice();
 		// https://github.com/mozilla/rust/wiki/Doc-FAQ-Cheatsheet#string-to-int
 		let x: Option<int> = FromStr::from_str(value);
 		match x {
@@ -136,7 +136,7 @@ impl IniFile {
 	/**
 	 * Return a list of options available in the specified section.
 	 */
-	pub fn options(&self, section: ~str) -> ~[~str] {
+	pub fn options(&self, section: StrBuf) -> ~[StrBuf] {
 		match self.sections.as_slice().position_elem(&section) {
 			Some(section_index) => self.options.get(section_index).as_slice().to_owned(),
 			None => {
@@ -156,7 +156,7 @@ impl IniFile {
 			_ => debug!("open of {:?} succeeded", self.path)
 		}
 		let mut reader = BufferedReader::new(file);
-		let mut lines: Vec<~str> = Vec::new();
+		let mut lines: Vec<StrBuf> = Vec::new();
 		for line in reader.lines() {
 			match line {
 				Ok(nread) => lines.push(nread),
@@ -168,35 +168,36 @@ impl IniFile {
 	/**
 	 * Parse configuration data from a vector of strings (file lines).
 	 */
-	pub fn read_string(&mut self, lines: Vec<~str>) {
-		let mut section: ~str = "Default".to_owned();
+	pub fn read_string(&mut self, lines: Vec<StrBuf>) {
+		let mut section: StrBuf = "Default".to_strbuf();
 		let mut comment_lines = StrBuf::new();
 		for line in lines.iter() {
 			let mut line_len = line.len();
-			if line_len > 0 && line.slice_chars(line_len - 1, line_len) == "\n" {
+			let line_slice = line.as_slice();
+			if line_len > 0 && line_slice.slice_chars(line_len - 1, line_len) == "\n" {
 				line_len = line_len - 1;
 			}
 			if line_len == 0 {
-				comment_lines.push_str(line.clone());
+				comment_lines.push_str(line_slice);
 				continue;
 			}
-			if line.slice_chars(0, 1) == "#" ||
-			line.slice_chars(0, 1) == ";" {
-				comment_lines.push_str(line.clone());
+			if line_slice.slice_chars(0, 1) == "#" ||
+			line_slice.slice_chars(0, 1) == ";" {
+				comment_lines.push_str(line_slice);
 				continue;
 			}
-			if line.slice_chars(0, 1) == "[" {
-				section = line.slice_chars(1, line_len - 1).to_owned();
+			if line_slice.slice_chars(0, 1) == "[" {
+				section = line_slice.slice_chars(1, line_len - 1).to_owned();
 				if !self.opts.contains_key(&section) {
-					self.add_section(section.clone());
+					self.add_section(section.as_slice());
 					self.comments.get_mut(&section).insert("__section_comment__".to_owned(), comment_lines.into_owned());
 					comment_lines = StrBuf::new();
 				}
 				continue;
 			}
-			let index: uint = line.find_str("=").unwrap();
-			let optkey: ~str = line.slice_chars(0, index).to_owned();
-			let optval: ~str = line.slice_chars(index + 1, line_len).to_owned();
+			let index = line_slice.find_str("=").unwrap();
+			let optkey = line_slice.slice_chars(0, index).to_owned();
+			let optval = line_slice.slice_chars(index + 1, line_len).to_owned();
 			self.comments.get_mut(&section).insert(optkey.clone(), comment_lines.into_owned());
 			comment_lines = StrBuf::new();
 			self.opts.get_mut(&section).insert(optkey.clone(), optval);
@@ -208,8 +209,8 @@ impl IniFile {
 	 * Remove the specified option from the specified section. If the section does not exist, fails.
 	 * If the option existed to be removed, return True; otherwise return False.
 	 */
-	 pub fn remove_option(&mut self, section: ~str, option: ~str) -> bool {
-		if !self.has_section(section.clone()) {
+	 pub fn remove_option(&mut self, section: StrBuf, option: StrBuf) -> bool {
+		if !self.has_section(section.as_slice()) {
 			fail!("Section [{:?}] does not exist!");
 		}
 	/*
@@ -227,7 +228,7 @@ impl IniFile {
 	 * Remove the specified section from the configuration.
 	 * If the section in fact existed, return True; otherwise return False.
 	 */
-	pub fn remove_section(&mut self, section: ~str) -> bool {
+	pub fn remove_section(&mut self, section: StrBuf) -> bool {
 	/*
 		if (!self.has_section(section.clone())) {
 			false
@@ -248,12 +249,12 @@ impl IniFile {
 	 * Save the current configuration into the original file.
 	 */
 	pub fn save(&self) {
-		self.write(self.filepath());
+		self.write(self.filepath().as_slice());
 	}
 	/**
 	 * Return a list of the available sections.
 	 */
-	pub fn sections(&self) -> Vec<~str> {
+	pub fn sections(&self) -> Vec<StrBuf> {
 		/*
 		let mut sections: ~[~str] = ~[];
 		self.opts.iter().advance(|(k, _)| {sections.push(k.to_owned()); true});
@@ -264,12 +265,13 @@ impl IniFile {
 	/**
 	 * If the given section exists, set the given option to the specified value; otherwise fail!().
 	 */
-	pub fn set(&mut self, section: ~str, option: ~str, value: ~str) {
-		if !self.has_section(section.to_owned()) {
-			//self.add_section(section.to_owned());
+	pub fn set(&mut self, section: StrBuf, option: StrBuf, value: StrBuf) {
+		let asection = section.as_slice();
+//		let aoption = option.as_slice();
+		if !self.has_section(asection) {
 			fail!("Section [{:?}] does not exist!");
 		}
-		if !self.has_option(section.to_owned(), option.to_owned()) {
+		if !self.has_option(asection, option.as_slice()) {
 			self.opts.get_mut(&section).insert(option.clone(), value);
 			let section_index = self.sections.as_slice().position_elem(&section).unwrap();
 			self.options.get_mut(section_index).push(option.clone());
@@ -288,9 +290,9 @@ impl IniFile {
 	 * This representation can be parsed by a future read() call.
 	 */
 	pub fn write(&self, filepath: &str) {
-		// http://static.rust-lang.org/doc/master/std/io/index.html
+		// http://doc.rust-lang.org/std/io/
 		let mut file = File::create(&Path::new(filepath));
-		match file.write(self.to_str().into_bytes()) {
+		match file.write(self.to_str().as_bytes()) {
 			Ok(()) => debug!("INI file {:?} written", self.path),
 			Err(e) => println!("failed to write to {:?}: {}", self.path, e),
 		}
@@ -307,18 +309,19 @@ impl fmt::Show for IniFile {
 		let sections = self.sections().clone();
 		for section in sections.iter() {
 			if self.comments.contains_key(section) && self.comments.get(section).contains_key(& "__section_comment__".to_owned()) {
-				lines.push_str(self.comments.get(section).get(& "__section_comment__".to_owned()).clone());
+				lines.push_str(self.comments.get(section).get(& "__section_comment__".to_owned()).as_slice());
 			}
-			lines.push_str(format!("[{}]\n", section.to_owned()));
-			let options = self.options(section.to_owned()).clone();
+			let line = format!("[{}]\n", section);
+			lines.push_str(line.as_slice());
+			let options = self.options(section.clone()).clone();
 			for key in options.iter() {
 				if self.comments.contains_key(section) && self.comments.get(section).contains_key(key) {
-					lines.push_str(self.comments.get(section).get(key).clone());
+					lines.push_str(self.comments.get(section).get(key).as_slice());
 				}
-				lines.push_str(format!("{}={}\n", key.to_owned(), self.get(section.to_owned(), key.to_owned())));
+				lines.push_str(format!("{}={}\n", key.to_owned(), self.get(section.as_slice(), key.as_slice())).as_slice());
 			}
 		}
-		write!(f.buf, "{}", lines)
+		write!(f, "{}", lines)
 	}
 }
 
@@ -328,11 +331,10 @@ mod tests {
 	use std::io::BufferedReader;
 	use std::io::fs;
 	use std::io::fs::File;
-	use std::path::Path;
 	#[test]
 	fn defaultFilepathIsEmpty() {
 		let ini = super::IniFile::new();
-		let expected = ".";
+		let expected = ".".to_strbuf();
 		let found = ini.filepath();
 		assert!(expected == found, format!("Default file path must be \"\", not \"{}\".", found));
 	}
@@ -341,7 +343,7 @@ mod tests {
 		let mut ini = super::IniFile::new();
 		let filepath = "data/config.ini";
 		ini.read(filepath);
-		let expected = "data/config.ini";
+		let expected = "data/config.ini".to_strbuf();
 		let found=ini.filepath();
 		assert!(expected == found, format!("Default file path must be \"{}\", not \"{}\".", expected, found));
 	}
@@ -394,7 +396,7 @@ mod tests {
 	fn get() {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		let expected = "string 11";
+		let expected = "string 11".to_strbuf();
 		let found = ini.get("section1", "value11");
 		assert!(expected == found, format!("[section1] value11 must be \"{}\", not \"{}\".", expected, found));
 	}
@@ -404,7 +406,7 @@ mod tests {
 		ini.read("data/config.ini");
 		let options = ["true1", "true2", "true3"];
 		for key in options.iter() {
-			let found = ini.get_bool("Booleans", key.to_owned());
+			let found = ini.get_bool("Booleans", key.as_slice());
 			assert!(found, format!("[Booleans] {:?} must be true.", key));
 		}
 	}
@@ -414,7 +416,7 @@ mod tests {
 		ini.read("data/config.ini");
 		let options = ["false1", "false2", "false3"];
 		for key in options.iter() {
-			let found = ini.get_bool("Booleans", key.to_owned());
+			let found = ini.get_bool("Booleans", key.as_slice());
 			assert!(!found, format!("[Booleans] {:?} must be false.", key));
 		}
 	}
@@ -429,13 +431,13 @@ mod tests {
 	fn get_int() {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		let mut test: HashMap<~str, int> = HashMap::new();
+		let mut test: HashMap<StrBuf, int> = HashMap::new();
 		test.insert("integer0".to_owned(), 0i);
 		test.insert("integer1".to_owned(), 1i);
 		test.insert("integer2".to_owned(), 2i);
 		test.insert("integer3".to_owned(), 03i);
 		for (key, expected) in test.iter() {
-			let found = ini.get_int("Integers", key.to_owned());
+			let found = ini.get_int("Integers", key.as_slice());
 			assert!((expected*1) == found,
 				format!("[Integers] {:?} must be \"{:?}\", not \"{:?}\".", key, expected, found));
 		}
@@ -451,13 +453,13 @@ mod tests {
 	fn get_f64() {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		let mut test: HashMap<~str, f64> = HashMap::new();
+		let mut test: HashMap<StrBuf, f64> = HashMap::new();
 		test.insert("float01".to_owned(), 0.1f64);
 		test.insert("float11".to_owned(), 1.1f64);
 		test.insert("float20".to_owned(), 2.0f64);
 		test.insert("float30".to_owned(), 3.0f64);
 		for (key, expected) in test.iter() {
-			let found = ini.get_f64("Floats", key.to_owned());
+			let found = ini.get_f64("Floats", key.as_slice());
 			assert!((expected*1.0f64) == found,
 				format!("[Floats] {:?} must be \"{:?}\", not \"{:?}\".", key, expected, found));
 		}
@@ -496,7 +498,7 @@ mod tests {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
 		ini.set("section1".to_owned(),  "value2".to_owned(),  "string 2".to_owned());
-		let expected = "string 2";
+		let expected = "string 2".to_strbuf();
 		let found = ini.get("section1", "value2");
 		assert!(expected == found, format!("[section1] value2 must be \"{}\", not \"{}\".", expected, found));
 	}
@@ -518,7 +520,7 @@ mod tests {
 			_ => debug!("open of {:?} succeeded", path)
 		}
 		let mut reader = BufferedReader::new(file);
-		let mut lines: Vec<~str> = Vec::new();
+		let mut lines: Vec<StrBuf> = Vec::new();
 		for line in reader.lines() {
 			match line {
 				Ok(nread) => lines.push(nread),
@@ -583,7 +585,7 @@ mod tests {
 			_ => debug!("open of {:?} succeeded", path)
 		}
 		let mut reader = BufferedReader::new(file);
-		let mut lines: Vec<~str> = Vec::new();
+		let mut lines: Vec<StrBuf> = Vec::new();
 		for line in reader.lines() {
 			match line {
 				Ok(nread) => lines.push(nread),
