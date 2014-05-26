@@ -15,14 +15,14 @@
 //! @since 2013-11-06
 
 struct Message {
-	message: StrBuf,
+	message: String,
 }
 
 trait Printable {
-	fn print(&self) -> StrBuf;
+	fn print(&self) -> String;
 }
 impl Printable for Message {
-	fn print(&self) -> StrBuf {
+	fn print(&self) -> String {
 		self.message.clone()
 	}
 }
@@ -34,7 +34,7 @@ struct UnderlinedMessage<T> {
 // 17.2 Declaring and implementing traits
 // http://doc.rust-lang.org/tutorial.html#declaring-and-implementing-traits
 impl<T:Printable> Printable for UnderlinedMessage<T> {
-	fn print(&self) -> StrBuf {
+	fn print(&self) -> String {
 		// http://doc.rust-lang.org/std/str/trait.StrSlice.html#tymethod.char_len
 		let message = self.decorated.print();
 		let length = message.len();
@@ -48,7 +48,7 @@ struct IndentedMessage<T> {
 }
 
 impl<T:Printable> Printable for IndentedMessage<T> {
-	fn print(&self) -> StrBuf {
+	fn print(&self) -> String {
 		let message = self.decorated.print();
 		message.append("    ")
 			.replace("\n", "\n    ")

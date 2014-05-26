@@ -14,7 +14,7 @@
 
 // This design pattern needs a common trait for Drinks and Ingredients
 trait Drinkable {
-	fn description(&self) -> StrBuf;
+	fn description(&self) -> String;
 	fn price(&self) -> f64;
 }
 
@@ -24,7 +24,7 @@ struct Drink<'a> {
 }
 
 impl<'a> Drinkable for Drink<'a> {
-	fn description(&self) -> StrBuf {
+	fn description(&self) -> String {
 		self.description.to_owned()
 	}
 	fn price(&self) -> f64 {
@@ -47,7 +47,7 @@ struct Ingredient<'a> {
 }
 
 impl<'a> Drinkable for Ingredient<'a> {
-	fn description(&self) -> StrBuf {
+	fn description(&self) -> String {
 		self.drink.description().append(", ").append(self.description)
 	}
 	fn price(&self) -> f64 {

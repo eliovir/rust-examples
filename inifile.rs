@@ -33,15 +33,15 @@ use test::Bencher;
 
 pub struct IniFile {
 	/// Comments on sections and options
-	comments: HashMap<StrBuf, HashMap<StrBuf, StrBuf>>,
+	comments: HashMap<String, HashMap<String, String>>,
 	/// Option names, used to keep order (as HashMap doesn't).
-	options: Vec<Vec<StrBuf>>,
+	options: Vec<Vec<String>>,
 	/// INI structure: sections contain options (name=>value)
-	opts: HashMap<StrBuf, HashMap<StrBuf, StrBuf>>,
+	opts: HashMap<String, HashMap<String, String>>,
 	/// File path
 	path: Path,
 	/// Section names, used to keep order (as HashMap doesn't).
-	sections: Vec<StrBuf>
+	sections: Vec<String>
 }
 
 /**
@@ -66,14 +66,14 @@ impl IniFile {
 	/**
 	 * Getter on filepath.
 	 */
-	pub fn filepath(&self) -> StrBuf {
+	pub fn filepath(&self) -> String {
 		format!("{}", self.path.display())
 	}
 	/**
 	 * Get an option value for the named section.
 	 */
-	//pub fn get<'a>(&self, section: &'a str, option: &'a str) -> StrBuf {
-	pub fn get(&self, section: &str, option: &str) -> StrBuf {
+	//pub fn get<'a>(&self, section: &'a str, option: &'a str) -> String {
+	pub fn get(&self, section: &str, option: &str) -> String {
 		if !self.has_option(section, option) {
 			()
 		}
@@ -136,7 +136,7 @@ impl IniFile {
 	/**
 	 * Return a list of options available in the specified section.
 	 */
-	pub fn options(&self, section: StrBuf) -> ~[StrBuf] {
+	pub fn options(&self, section: String) -> ~[String] {
 		match self.sections.as_slice().position_elem(&section) {
 			Some(section_index) => self.options.get(section_index).as_slice().to_owned(),
 			None => {
@@ -156,7 +156,7 @@ impl IniFile {
 			_ => debug!("open of {:?} succeeded", self.path)
 		}
 		let mut reader = BufferedReader::new(file);
-		let mut lines: Vec<StrBuf> = Vec::new();
+		let mut lines: Vec<String> = Vec::new();
 		for line in reader.lines() {
 			match line {
 				Ok(nread) => lines.push(nread),
@@ -168,9 +168,9 @@ impl IniFile {
 	/**
 	 * Parse configuration data from a vector of strings (file lines).
 	 */
-	pub fn read_string(&mut self, lines: Vec<StrBuf>) {
-		let mut section: StrBuf = "Default".to_strbuf();
-		let mut comment_lines = StrBuf::new();
+	pub fn read_string(&mut self, lines: Vec<String>) {
+		let mut section: String = "Default".to_strbuf();
+		let mut comment_lines = String::new();
 		for line in lines.iter() {
 			let mut line_len = line.len();
 			let line_slice = line.as_slice();
@@ -191,7 +191,7 @@ impl IniFile {
 				if !self.opts.contains_key(&section) {
 					self.add_section(section.as_slice());
 					self.comments.get_mut(&section).insert("__section_comment__".to_owned(), comment_lines.into_owned());
-					comment_lines = StrBuf::new();
+					comment_lines = String::new();
 				}
 				continue;
 			}
@@ -199,7 +199,7 @@ impl IniFile {
 			let optkey = line_slice.slice_chars(0, index).to_owned();
 			let optval = line_slice.slice_chars(index + 1, line_len).to_owned();
 			self.comments.get_mut(&section).insert(optkey.clone(), comment_lines.into_owned());
-			comment_lines = StrBuf::new();
+			comment_lines = String::new();
 			self.opts.get_mut(&section).insert(optkey.clone(), optval);
 			let section_index = self.sections.as_slice().position_elem(&section).unwrap();
 			self.options.get_mut(section_index).push(optkey.clone());
@@ -209,7 +209,7 @@ impl IniFile {
 	 * Remove the specified option from the specified section. If the section does not exist, fails.
 	 * If the option existed to be removed, return True; otherwise return False.
 	 */
-	 pub fn remove_option(&mut self, section: StrBuf, option: StrBuf) -> bool {
+	 pub fn remove_option(&mut self, section: String, option: String) -> bool {
 		if !self.has_section(section.as_slice()) {
 			fail!("Section [{:?}] does not exist!");
 		}
@@ -228,7 +228,7 @@ impl IniFile {
 	 * Remove the specified section from the configuration.
 	 * If the section in fact existed, return True; otherwise return False.
 	 */
-	pub fn remove_section(&mut self, section: StrBuf) -> bool {
+	pub fn remove_section(&mut self, section: String) -> bool {
 	/*
 		if (!self.has_section(section.clone())) {
 			false
@@ -254,7 +254,7 @@ impl IniFile {
 	/**
 	 * Return a list of the available sections.
 	 */
-	pub fn sections(&self) -> Vec<StrBuf> {
+	pub fn sections(&self) -> Vec<String> {
 		/*
 		let mut sections: ~[~str] = ~[];
 		self.opts.iter().advance(|(k, _)| {sections.push(k.to_owned()); true});
@@ -265,7 +265,7 @@ impl IniFile {
 	/**
 	 * If the given section exists, set the given option to the specified value; otherwise fail!().
 	 */
-	pub fn set(&mut self, section: StrBuf, option: StrBuf, value: StrBuf) {
+	pub fn set(&mut self, section: String, option: String, value: String) {
 		let asection = section.as_slice();
 //		let aoption = option.as_slice();
 		if !self.has_section(asection) {
@@ -305,7 +305,7 @@ impl IniFile {
  */
 impl fmt::Show for IniFile {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		let mut lines = StrBuf::new();
+		let mut lines = String::new();
 		let sections = self.sections().clone();
 		for section in sections.iter() {
 			if self.comments.contains_key(section) && self.comments.get(section).contains_key(& "__section_comment__".to_owned()) {
@@ -431,7 +431,7 @@ mod tests {
 	fn get_int() {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		let mut test: HashMap<StrBuf, int> = HashMap::new();
+		let mut test: HashMap<String, int> = HashMap::new();
 		test.insert("integer0".to_owned(), 0i);
 		test.insert("integer1".to_owned(), 1i);
 		test.insert("integer2".to_owned(), 2i);
@@ -453,7 +453,7 @@ mod tests {
 	fn get_f64() {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		let mut test: HashMap<StrBuf, f64> = HashMap::new();
+		let mut test: HashMap<String, f64> = HashMap::new();
 		test.insert("float01".to_owned(), 0.1f64);
 		test.insert("float11".to_owned(), 1.1f64);
 		test.insert("float20".to_owned(), 2.0f64);
@@ -520,7 +520,7 @@ mod tests {
 			_ => debug!("open of {:?} succeeded", path)
 		}
 		let mut reader = BufferedReader::new(file);
-		let mut lines: Vec<StrBuf> = Vec::new();
+		let mut lines: Vec<String> = Vec::new();
 		for line in reader.lines() {
 			match line {
 				Ok(nread) => lines.push(nread),
@@ -585,7 +585,7 @@ mod tests {
 			_ => debug!("open of {:?} succeeded", path)
 		}
 		let mut reader = BufferedReader::new(file);
-		let mut lines: Vec<StrBuf> = Vec::new();
+		let mut lines: Vec<String> = Vec::new();
 		for line in reader.lines() {
 			match line {
 				Ok(nread) => lines.push(nread),

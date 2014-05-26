@@ -3,7 +3,7 @@
 
 // Phantom types are useful for enforcing state at compile time. For example:
 
-struct Door<State>(StrBuf);
+struct Door<State>(String);
 
 struct Open;
 struct Closed;

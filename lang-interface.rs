@@ -14,12 +14,12 @@
  * Therefore thinking in terms of OOP, a book has a method called `burn()`.
  */
 struct Book {
-	title: StrBuf,
-	author: StrBuf,
+	title: String,
+	author: String,
 }
 
 struct Log {
-	wood_type: StrBuf,
+	wood_type: String,
 }
 
 trait Burns {

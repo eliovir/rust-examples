@@ -15,11 +15,11 @@
 use std::fmt;
 
 struct Duck {
-	name: StrBuf,
+	name: String,
 	weight: f64,
 }
 impl Duck {
-	fn new(name: StrBuf, weight: f64) -> Duck {
+	fn new(name: String, weight: f64) -> Duck {
 		Duck { name: name, weight: weight }
 	}
 }

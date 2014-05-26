@@ -8,7 +8,7 @@
  * ~[~str] is an owned pointer, allocated on the send heap, can be sent accross tasks.
  * Does not handle .push() since 0.11-pre, so I use Vec<~str>
  */
-fn fillStrings() -> ~[StrBuf] {
+fn fillStrings() -> ~[String] {
 	let mut strings = vec!("hello".to_owned());
 	strings.push("world".to_owned());
 	strings.as_slice().to_owned()

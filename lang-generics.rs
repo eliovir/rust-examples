@@ -26,14 +26,14 @@ struct Euros {
 	amount: int
 }
 trait Currency {
-	fn render(&self) -> StrBuf;
+	fn render(&self) -> String;
 	fn to_euros(&self) -> Euros;
 }
 /*
  * Traits implementations
  */
 impl Currency for Dollars {
-	fn render(&self) -> StrBuf {
+	fn render(&self) -> String {
 		format!("${}", self.amount)
 	}
 	fn to_euros(&self) -> Euros {
@@ -42,7 +42,7 @@ impl Currency for Dollars {
 	}
 }
 impl Currency for Euros {
-	fn render(&self) -> StrBuf {
+	fn render(&self) -> String {
 		format!("EUR{}", self.amount)
 	}
 	fn to_euros(&self) -> Euros { *self }

@@ -28,7 +28,7 @@ trait Observable<'a, T: Observer> {
 
 // Define Observer and Observable
 struct Display {
-	name: StrBuf,
+	name: String,
 }
 struct Weather<'a, T> {
 	temperature: f64,
@@ -50,7 +50,7 @@ impl Observer for Display {
 	}
 }
 impl Display {
-	fn new(name: StrBuf) -> Display {
+	fn new(name: String) -> Display {
 		Display{name: name}
 	}
 }

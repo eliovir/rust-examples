@@ -7,7 +7,7 @@ extern crate getopts;
 use getopts::{optopt,optflag,getopts,OptGroup};
 use std::os;
 
-fn do_work(inp: &str, out: Option<StrBuf>) {
+fn do_work(inp: &str, out: Option<String>) {
 	println!("{}", inp);
 	match out {
 		Some(x) => println!("{}", x),
@@ -22,7 +22,7 @@ fn print_usage(program: &str, _opts: &[OptGroup]) {
 }
 
 fn main() {
-	let args: Vec<StrBuf> = os::args().iter()
+	let args: Vec<String> = os::args().iter()
 						.map(|x| x.to_strbuf())
 						.collect();
 
