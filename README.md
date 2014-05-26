@@ -50,6 +50,7 @@ Examples are tested with version 0.11-pre.
     * A struct to manage dates: `date.rs`
     * Different syntaxes to find the maximum value in a vector: `find_max.rs`
     * A struct to manage INI files: `inifile.rs`
+    * A script to print TBX entries from CSV terminology: `datumbazo2tbx.rs`
     * Design pattern Decorator: `design_pattern-decorator.rs` and `design_pattern-decorator2.rs`
     * Design pattern Strategy: `design_pattern-strategy.rs`
     * Design pattern Observer: `design_pattern-observer.rs`
