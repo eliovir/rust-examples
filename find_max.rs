@@ -66,6 +66,13 @@ fn find_max3<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
 	lst.iter().map(find_max).last().unwrap()
 }
 
+/**
+ * Using std lib
+ */
+fn find_maxstd<'a, T: TotalOrd>(lst: &'a Vec<T>) -> Option<&'a T> {
+	lst.iter().max_by(|x| *x)
+}
+
 #[test]
 fn test_find_max1() {
 	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
@@ -85,6 +92,13 @@ fn test_find_max3() {
 	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	let nine = 9;
 	assert_eq!(Some(&nine), find_max3(&v));
+}
+
+#[test]
+fn test_find_maxstd() {
+	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	let nine = 9;
+	assert_eq!(Some(&nine), find_maxstd(&v));
 }
 
 #[bench]
@@ -111,18 +125,25 @@ fn bench_find_max3(b: &mut Bencher) {
 	});
 }
 
+#[bench]
+fn bench_find_maxstd(b: &mut Bencher) {
+	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	b.iter(|| {
+		find_maxstd(&v);
+	});
+}
+
 #[cfg(not(test))]
 fn main () {
 	let int_v = vec!(5, 2, 0, 8, 2);
 	println!("find_max1 -> {}", find_max1(&int_v));
 	println!("find_max2 -> {}", find_max2(&int_v));
 	println!("find_max3 -> {}", find_max3(&int_v));
+	println!("find_maxstd -> {}", find_maxstd(&int_v));
 	let v = vec!("qehgesrhsetha", "bqthst", "cthersth");
 	let b = find_max3(&v);
 	println!("{}", b);
 
 	println!("{}", v);
 	println!("{}", b);
-	// simply using stdlib:
-	println!("{}", v.iter().max_by(|x| *x).unwrap())
 }
