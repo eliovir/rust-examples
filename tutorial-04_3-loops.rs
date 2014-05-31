@@ -16,7 +16,7 @@ fn main() {
 	for i in v.iter() {
 		println!("{:u} is an integer!", *i);
 	}
-		
+
 	/*
 	 * A standard library function that applies a closure to every number between 0 and 10.
 	 */
@@ -58,7 +58,7 @@ fn main() {
 	/*
 	 * Destructuring a struct in for loops:
 	 */
-	let pairs = ~[Pair {x: 10, y: 20}, Pair {x: 30, y: 0}]; 
+	let pairs = ~[Pair {x: 10, y: 20}, Pair {x: 30, y: 0}];
 
 	for &Pair {x, y} in pairs.iter() {
 		assert_eq!(x + y, 30);

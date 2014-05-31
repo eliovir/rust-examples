@@ -34,7 +34,7 @@ impl Date {
 	pub fn addDays(&mut self, days: int) {
 		let mut day = self.day;
 		let mut month = self.month;
-		let mut year = self.year; 
+		let mut year = self.year;
 		day = day + days;
 		if days > 0 {
 			while day > Date::monthLength(year, month) {

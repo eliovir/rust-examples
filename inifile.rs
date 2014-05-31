@@ -82,7 +82,7 @@ impl IniFile {
 	/**
 	 * A convenience method which coerces the option in the specified section to a boolean.
 	 * Note that the accepted values for the option are '1', 'yes', 'true', and 'on', which cause this method to return True, and '0', 'no', 'false', and 'off', which cause it to return False.
-	 * @todo These string values are checked in a case-insensitive manner. 
+	 * @todo These string values are checked in a case-insensitive manner.
 	 */
 	pub fn get_bool(&self, section: &str, option: &str) -> bool {
 		let value = self.get(section, option);

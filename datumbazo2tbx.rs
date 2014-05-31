@@ -18,12 +18,12 @@ use std::os;
 
 fn main() {
 	let args: Vec<String> = os::args();
-	let path = {			
+	let path = {
 		if args.len() == 2 {
 			Path::new(args.get(1).as_slice())
 		} else {
 			Path::new("data/datumbazo.csv")
-		}	
+		}
 	};
 	let mut reader = match File::open(&path) {
 		Err(e) => fail!("open of {:?} failed: {}", path, e),

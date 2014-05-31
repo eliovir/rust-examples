@@ -76,7 +76,7 @@ fn main() {
 	let us100 = Dollars { amount: 100 };
 	let us200 = Dollars { amount: 200 };
 	println!("{:?}", add_as_euros(&us100, &us200));
-	
+
 	let us100 = Dollars { amount: 100 };
 	let eu200 = Euros { amount: 200 };
 	println!("{:?}", accumeuros(&us100 as &Currency, &eu200 as &Currency));

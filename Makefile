@@ -11,7 +11,7 @@ RUSTFLAGS=
 .SILENT:
 .PRECIOUS: $(LIBSTAMP)
 
-all: exe test bench
+all: exe test bench trailing
 	# Build executables, run tests and benchmarks
 
 help:
@@ -45,6 +45,16 @@ test: $(TESTPROG)
 			EXIT=$$RET;\
 		fi;\
 	done; exit $$EXIT
+
+trailing: $(SRC)
+	# Check trailing spaces
+	@NB=0; for FI in $(SRC); do \
+		grep -n '\s\+$$' $$FI; RET=$$?; \
+		if test "$$RET" == "0"; then \
+			echo $$FI; \
+			NB=1; \
+		fi; \
+	done; exit $$NB
 
 version:
 	# Display version of source code

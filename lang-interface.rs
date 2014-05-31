@@ -72,7 +72,7 @@ fn main() {
 	let incunable = Incunable(nuremberg_chronicle);
 	// Burn the oak log!
 	start_fire(lg);
-	
+
 	// Burn the book!
 	start_fire(book);
 	start_fire(incunable);

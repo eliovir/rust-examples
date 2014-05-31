@@ -66,6 +66,6 @@ fn main() {
 	 */
 	let mypoint = Point { x: 0.0, y: 0.0 };
 	match mypoint {
-		Point { x, .. } => println!("{}", x),	
+		Point { x, .. } => println!("{}", x),
 	}
 }

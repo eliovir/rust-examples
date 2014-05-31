@@ -19,7 +19,7 @@ fn main() {
 
 	mypoint.y += 1.0; // mypoint is mutable, and its fields as well
 	//origin.y += 1.0; // ERROR: assigning to immutable field
-	
+
 	// `match` patterns destructure structs.
 	match mypoint {
 		Point { x: 0.0, y: yy } => println!("{}", yy),
@@ -27,10 +27,10 @@ fn main() {
 	}
 
 	// When you are not interested in all the fields of a struct,
-	// a struct pattern may end with `, _` 
+	// a struct pattern may end with `, _`
 	// (as in `Name { field1, _ }`) to indicate that you're
 	// ignoring all other fields.
-	// Additionally, struct fields have a shorthand matching form 
+	// Additionally, struct fields have a shorthand matching form
 	// that simply reuses the field name as the binding name.
 	match mypoint {
 		Point { x, .. } => println!("{}", x),

@@ -67,8 +67,8 @@ fn main() {
 	println!("{} => {}", columbia.description(), columbia.price());
 
 	let chocolate = Ingredient::new("chocolate", 0.2, box columbia);
-	println!("{} => {}", chocolate.description(), chocolate.price());	
+	println!("{} => {}", chocolate.description(), chocolate.price());
 
 	let chantilly = Ingredient::new("chantilly", 0.1, box chocolate);
-	println!("{} => {}", chantilly.description(), chantilly.price());	
+	println!("{} => {}", chantilly.description(), chantilly.price());
 }

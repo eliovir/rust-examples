@@ -5,7 +5,7 @@
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 fn main() {
-	// A Tuple is an immutable fixed-size collection of values. 
+	// A Tuple is an immutable fixed-size collection of values.
 
 	let tuple0 = ();
 	println!("{:?}", tuple0);

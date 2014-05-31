@@ -48,7 +48,7 @@ impl TotalOrd for Duck {
 	#[inline]
 	fn cmp(&self, other: &Duck) -> Ordering {
 		if self.weight < other.weight {
-			return Less; 
+			return Less;
 		}
 		if self.weight > other.weight {
 			return Greater;

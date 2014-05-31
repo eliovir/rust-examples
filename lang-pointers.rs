@@ -7,8 +7,8 @@ use std::gc::Gc;
  * http://www.infoq.com/presentations/Rust
  *
  * Dave Herman talks about Mozilla Rust and some of the features that make it safe, concurrent, and fast.
- * 
- * 13. Dereferencing pointers
+ *
+ * 12. Dereferencing pointers
  * http://doc.rust-lang.org/tutorial.html#dereferencing-pointers
  *
  * The deprecation of @, its alternatives
@@ -59,7 +59,7 @@ fn main() {
 	/*
 	let p4; // uninitialized
 	print_point(p4); // error
-	
+
 	let p5 = ~Point {x:5.1, y:5.2};
 	box.topLeft = move p5; // deinitialized
 	print_point(p); // error
@@ -72,7 +72,7 @@ fn main() {
 	let managed = @10;
 	let owned = box 20;
 	let borrowed = &30;
-	
+
 	let sum = *managed + *owned + *borrowed;
 	println!("{} + {} + {} = {}", *managed, *owned, *borrowed, sum);
 
@@ -95,7 +95,7 @@ fn main() {
 	 * Pointers have high operator precedence, but lower precedence than the dot
 	 * operator used for field and method access. This precedence order can
 	 * sometimes make code awkward and parenthesis-filled.
-	 * 
+	 *
 	 * To combat this ugliness the dot operator applies automatic pointer
 	 * dereferencing to the receiver (the value on the left-hand side of the dot),
 	 * so in most cases, explicitly dereferencing the receiver is not necessary.
@@ -113,7 +113,7 @@ fn main() {
 	 *
 	 * http://doc.rust-lang.org/std/gc/struct.Gc.html#method.borrow
 	 * Note that to get the value inside a Gc box you first call
-	 * the borrow() method, which returns &T, then dereference that. 
+	 * the borrow() method, which returns &T, then dereference that.
 	 */
 	let rc1 = Rc::new(1u);
 	let rc2 = rc1.clone();

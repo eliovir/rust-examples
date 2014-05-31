@@ -23,7 +23,7 @@ trait Observer {
 trait Observable<'a, T: Observer> {
 	fn addObserver(&mut self, observer: &'a T);
 	fn deleteObserver(&mut self, observer: &'a T);
-	fn notifyObservers(&self); 
+	fn notifyObservers(&self);
 }
 
 // Define Observer and Observable
@@ -90,7 +90,6 @@ impl<'a, T: Observer+Eq+std::fmt::Show> Observable<'a, T> for Weather<'a, T> {
 		}
 	}
 }
-
 
 fn main() {
 	let display = Display::new("Desktop".to_owned());

@@ -1,5 +1,5 @@
 /**
- * Converting from String 
+ * Converting from String
  * http://doc.rust-lang.org/std/from_str/trait.FromStr.html
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>

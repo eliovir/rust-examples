@@ -35,7 +35,7 @@ fn main() {
 	 */
 	// {} will print the "default format" of a type
 	println!("{} is {}", "the answer", 43);
-	
+
 	// // {:?} will conveniently print any type
 	println!("what is this thing: {:?}", monster_size);
 }
