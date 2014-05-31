@@ -5,8 +5,8 @@
 //! http://www.infoq.com/presentations/Rust
 //!
 //! Dave Herman talks about Mozilla Rust and some of the features that make it safe, concurrent, and fast.
-//! 
-//! Corrected to 0.10-pre
+//!
+//! Corrected to 0.11-pre
 //! http://doc.rust-lang.org/guide-tasks.html#communication
 
 //! Simple struct to test data exchange.
