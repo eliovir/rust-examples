@@ -83,10 +83,10 @@ impl SimpleRemoteControl {
 	fn new() -> SimpleRemoteControl {
 		SimpleRemoteControl { command: box NullCommand::new() }
 	}
-	fn setCommand(&mut self, cmd: Box<Command>) {
+	fn set_command(&mut self, cmd: Box<Command>) {
 		self.command = cmd;
 	}
-	fn buttonWasPressed(&self) {
+	fn button_was_pressed(&self) {
 		self.command.execute();
 	}
 }
@@ -97,9 +97,9 @@ fn main() {
 	let lightOn = LightOnCommand::new(light);
 	let lightOff = LightOffCommand::new(light);
 
-	remote.buttonWasPressed();
-	remote.setCommand(box lightOn);
-	remote.buttonWasPressed();
-	remote.setCommand(box lightOff);
-	remote.buttonWasPressed();
+	remote.button_was_pressed();
+	remote.set_command(box lightOn);
+	remote.button_was_pressed();
+	remote.set_command(box lightOff);
+	remote.button_was_pressed();
 }

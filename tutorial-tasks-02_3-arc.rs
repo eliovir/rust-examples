@@ -3,10 +3,10 @@
 //!
 //! http://doc.rust-lang.org/guide-tasks.html#sharing-immutable-data-without-copy:-arc
 
-extern crate rand;
 extern crate sync;
 
 use sync::Arc;
+use std::rand;
 
 fn pnorm(nums: &[f64], p: uint) -> f64 {
 	nums.iter().fold(0.0, |a, b| a + b.powf(p as f64)).powf(1.0 / (p as f64))

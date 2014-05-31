@@ -14,7 +14,7 @@
 //! @since 2014-04-20
 
 trait Command {
-	fn onCommand(&self, name: &str, args: &[&str]);
+	fn on_command(&self, name: &str, args: &[&str]);
 }
 
 struct CommandChain {
@@ -24,12 +24,12 @@ impl CommandChain {
 	fn new() -> CommandChain {
 		CommandChain{commands: Vec::new()}
 	}
-	fn addCommand(&mut self, command: Box<Command>) {
+	fn add_command(&mut self, command: Box<Command>) {
 		self.commands.push(command);
 	}
-	fn runCommand(&self, name: &str, args: &[&str]) {
+	fn run_command(&self, name: &str, args: &[&str]) {
 		for command in self.commands.iter() {
-			command.onCommand(name, args);
+			command.on_command(name, args);
 		}
 	}
 }
@@ -42,7 +42,7 @@ impl UserCommand {
 }
 impl Command for UserCommand {
 	#[allow(unused_variable)]
-	fn onCommand(&self, name: &str, args: &[&str]) {
+	fn on_command(&self, name: &str, args: &[&str]) {
 		if name == "addUser" {
 			println!("UserCommand handling '{}'.", name);
 		}
@@ -56,7 +56,7 @@ impl MailCommand {
 	}
 }
 impl Command for MailCommand {
-	fn onCommand(&self, name: &str, args: &[&str]) {
+	fn on_command(&self, name: &str, args: &[&str]) {
 		if name == "addUser" {
 			println!("MailCommand handling '{}' with args {}.", name, args);
 		} else if name == "mail" {
@@ -66,8 +66,8 @@ impl Command for MailCommand {
 }
 fn main() {
 	let mut cc = CommandChain::new();
-	cc.addCommand(box UserCommand::new());
-	cc.addCommand(box MailCommand::new());
-	cc.runCommand("addUser", &["Toto", "users"]);
-	cc.runCommand("mail", &["Sender", "Subject"]);
+	cc.add_command(box UserCommand::new());
+	cc.add_command(box MailCommand::new());
+	cc.run_command("addUser", &["Toto", "users"]);
+	cc.run_command("mail", &["Sender", "Subject"]);
 }

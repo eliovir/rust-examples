@@ -13,7 +13,7 @@ use test::Bencher;
  * Code from Rust MeetUp (March, 31st 2014) at Mozilla Space, Paris.
  * https://reps.mozilla.org/e/meetup-rust-paris-02/
  */
-fn find_max1<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
+fn find_max1<'a, T: TotalOrd>(lst: &'a Vec<T>) -> Option<&'a T> {
 	let mut max = None;
 
 	for i in lst.iter() {
@@ -32,7 +32,7 @@ fn find_max1<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
  * Inspired by tutorial "15 Closure"
  * http://doc.rust-lang.org/tutorial.html#closures
  */
-fn find_max2<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
+fn find_max2<'a, T: TotalOrd>(lst: &'a Vec<T>) -> Option<&'a T> {
 	let mut max = None;
 
 	let find_max = |i: &'a T| {
@@ -52,7 +52,7 @@ fn find_max2<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
 /**
  * Using a closure and .map().
  */
-fn find_max3<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
+fn find_max3<'a, T: TotalOrd>(lst: &'a Vec<T>) -> Option<&'a T> {
 	let mut max = None;
 
 	let find_max = |i: &'a T| {

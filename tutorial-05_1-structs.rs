@@ -4,6 +4,7 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
+extern crate debug;
 /*
  * Rust struct types must be declared before they are used using the struct syntax.
  */

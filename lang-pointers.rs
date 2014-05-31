@@ -1,4 +1,5 @@
 #![feature(managed_boxes)]
+extern crate debug;
 use std::rc::Rc;
 use std::gc::Gc;
 

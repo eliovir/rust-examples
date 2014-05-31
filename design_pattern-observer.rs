@@ -21,9 +21,9 @@ trait Observer {
 
 // Observable memorizes all Observers and send notifications
 trait Observable<'a, T: Observer> {
-	fn addObserver(&mut self, observer: &'a T);
-	fn deleteObserver(&mut self, observer: &'a T);
-	fn notifyObservers(&self);
+	fn add_observer(&mut self, observer: &'a T);
+	fn delete_observer(&mut self, observer: &'a T);
+	fn notify_observers(&self);
 }
 
 // Define Observer and Observable
@@ -35,9 +35,9 @@ struct Weather<'a, T> {
 	observers: Vec<&'a T>
 }
 impl<'a> Weather<'a, Display> {
-	fn setTemperature(&mut self, temperature: f64) {
+	fn set_temperature(&mut self, temperature: f64) {
 		self.temperature = temperature;
-		self.notifyObservers();
+		self.notify_observers();
 	}
 }
 /*
@@ -54,7 +54,7 @@ impl Display {
 		Display{name: name}
 	}
 }
-impl std::cmp::Eq for Display {
+impl std::cmp::PartialEq for Display {
 	fn eq(&self, other: &Display) -> bool {
 		self.name == other.name
 	}
@@ -64,17 +64,17 @@ impl std::fmt::Show for Display {
 		write!(f, "Display {}", self.name)
 	}
 }
-impl<'a, T: Observer+Eq+std::fmt::Show> Observable<'a, T> for Weather<'a, T> {
-	fn addObserver(&mut self, observer: &'a T) {
-		println!("addObserver({});", observer);
+impl<'a, T: Observer+PartialEq+std::fmt::Show> Observable<'a, T> for Weather<'a, T> {
+	fn add_observer(&mut self, observer: &'a T) {
+		println!("add_observer({});", observer);
 		self.observers.push(observer);
 	}
-	fn deleteObserver(&mut self, observer: &'a T) {
+	fn delete_observer(&mut self, observer: &'a T) {
 		let mut index = 0u;
 		let mut found = false;
 		for &obs in self.observers.iter() {
 			if obs == observer {
-				println!("deleteObserver({});", observer);
+				println!("delete_observer({});", observer);
 				found = true;
 				break;
 			}
@@ -84,7 +84,7 @@ impl<'a, T: Observer+Eq+std::fmt::Show> Observable<'a, T> for Weather<'a, T> {
 			self.observers.remove(index);
 		}
 	}
-	fn notifyObservers(&self) {
+	fn notify_observers(&self) {
 		for &observer in self.observers.iter() {
 			observer.update();
 		}
@@ -92,13 +92,13 @@ impl<'a, T: Observer+Eq+std::fmt::Show> Observable<'a, T> for Weather<'a, T> {
 }
 
 fn main() {
-	let display = Display::new("Desktop".to_owned());
+	let display = Display::new("Desktop".to_string());
 	let mut weather = Weather{temperature: 19.0, observers: Vec::new()};
-	weather.addObserver(&display);
-	let display2 = Display::new("Desktop2".to_owned());
-	weather.addObserver(&display2);
-	weather.setTemperature(20.0);
-	weather.deleteObserver(&display2);
-	weather.setTemperature(21.0);
+	weather.add_observer(&display);
+	let display2 = Display::new("Desktop2".to_string());
+	weather.add_observer(&display2);
+	weather.set_temperature(20.0);
+	weather.delete_observer(&display2);
+	weather.set_temperature(21.0);
 }
 

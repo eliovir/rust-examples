@@ -4,8 +4,8 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-extern crate rand;
-use rand::{task_rng, Rng};
+extern crate debug;
+use std::rand::{task_rng, Rng};
 use std::f64;
 
 struct Point { x: f64, y: f64 }

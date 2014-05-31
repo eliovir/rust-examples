@@ -14,7 +14,8 @@
 //!
 //! @since 2013-10-24
 //!
-//! @todo : getDayOfWeek(), getWeek(), comparisons
+//! @todo : get_day_of_week(), get_week(), comparisons
+extern crate debug;
 use std::from_str::FromStr;
 use std::fmt;
 
@@ -31,14 +32,14 @@ impl Date {
 	/**
 	 * Add days to the current day. Use negative to remove day.
 	 */
-	pub fn addDays(&mut self, days: int) {
+	pub fn add_days(&mut self, days: int) {
 		let mut day = self.day;
 		let mut month = self.month;
 		let mut year = self.year;
 		day = day + days;
 		if days > 0 {
-			while day > Date::monthLength(year, month) {
-				day = day - Date::monthLength(year, month);
+			while day > Date::month_length(year, month) {
+				day = day - Date::month_length(year, month);
 				month = month + 1;
 				if month > 12 {
 					year = year + 1;
@@ -52,7 +53,7 @@ impl Date {
 				month = 12;
 				year = year - 1;
 			}
-			day = Date::monthLength(year, month);
+			day = Date::month_length(year, month);
 		}
 		if days < 0 {
 			while day < 1 {
@@ -61,7 +62,7 @@ impl Date {
 					year = year - 1;
 					month = 12;
 				}
-				day = day + Date::monthLength(year, month);
+				day = day + Date::month_length(year, month);
 			}
 		}
 		self.day = day;
@@ -72,10 +73,10 @@ impl Date {
 	/**
 	 * Get day of year.
 	 */
-	pub fn getDayOfYear(&self) -> int {
+	pub fn get_day_of_year(&self) -> int {
 		let mut doy = self.day;
 		for month in range(1, self.month) {
-			doy += Date::monthLength(self.year, month);
+			doy += Date::month_length(self.year, month);
 		}
 		doy
 	}
@@ -83,10 +84,10 @@ impl Date {
 	/**
 	 * Check if defined date is valid.
 	 */
-	pub fn isValid(&self) -> bool {
+	pub fn is_valid(&self) -> bool {
 		if self.month < 1 || self.month > 12 {
 			false
-		} else if self.day < 1 || self.day > Date::monthLength(self.year, self.month) {
+		} else if self.day < 1 || self.day > Date::month_length(self.year, self.month) {
 			false
 		} else {
 			true
@@ -100,17 +101,17 @@ impl Date {
 	/**
 	 * Static method to know if the year is a leap year.
 	 */
-	pub fn isLeap(year: int) -> bool {
+	pub fn is_leap(year: int) -> bool {
 		(year % 4 == 0 && year % 100 != 0) || year % 400 == 0
 	}
 
 	/**
 	 * Static method to get the number of days in the month.
 	 */
-	pub fn monthLength(year: int, month: int) -> int {
+	pub fn month_length(year: int, month: int) -> int {
 		match  month {
 			1 | 3 | 5 | 7 | 8 | 10 | 12 => 31,
-			2 => if Date::isLeap(year) { 29 } else { 28 },
+			2 => if Date::is_leap(year) { 29 } else { 28 },
 			4 | 6 | 9 | 11 => 30,
 			_ => fail!("Wrong month")
 		}
@@ -126,7 +127,7 @@ impl Date {
 	/**
 	 * "Constructor" using string like "2013-10-24".
 	 */
-	pub fn newFromString(string: &str) -> Date {
+	pub fn new_from_string(string: &str) -> Date {
 		if string.len() < 10 {
 			fail!("Wrong format!");
 		}
@@ -151,41 +152,41 @@ impl fmt::Show for Date {
 #[cfg(test)]
 mod tests {
 	#[test]
-	fn addDays() {
+	fn add_days() {
 		let mut date = ::Date::new(2013, 10, 24);
 		let orig = date.to_str();
 		let days = 2;
-		date.addDays(days);
-		let expected = "2013-10-26".to_strbuf();
+		date.add_days(days);
+		let expected = "2013-10-26".to_string();
 		let found = date.to_str();
 		assert!(expected==found, format!("Adding {:d} days to {} should return {}, not {}", days, orig, expected, found));
 	}
 	#[test]
-	fn getDayOfYear() {
+	fn get_day_of_year() {
 		let date = ::Date::new(2014, 01, 01);
 		let expected = 1;
-		let found = date.getDayOfYear();
+		let found = date.get_day_of_year();
 		assert!(expected==found, format!("{:?} must be day number {} of the year, not {}.", date, expected, found));
 		let date = ::Date::new(2012, 12, 31);
 		let expected = 366;
-		let found = date.getDayOfYear();
+		let found = date.get_day_of_year();
 		assert!(expected==found, format!("{:?} must be day number {} of the year, not {}.", date, expected, found));
 	}
 	#[test]
-	fn isLeap() {
-		assert!(!::Date::isLeap(1900), "1900 is not a leap year");
-		assert!(!::Date::isLeap(1901), "1901 is not a leap year");
-		assert!(::Date::isLeap(2000), "2000 is leap year");
-		assert!(::Date::isLeap(2004), "2004 is leap year");
+	fn is_leap() {
+		assert!(!::Date::is_leap(1900), "1900 is not a leap year");
+		assert!(!::Date::is_leap(1901), "1901 is not a leap year");
+		assert!(::Date::is_leap(2000), "2000 is leap year");
+		assert!(::Date::is_leap(2004), "2004 is leap year");
 	}
 	#[test]
-	fn isValid() {
+	fn is_valid() {
 		let mut date = ::Date::new(2013, 10, 24);
-		assert!(date.isValid(), "2013-10-24 is a valid date");
+		assert!(date.is_valid(), "2013-10-24 is a valid date");
 		date = ::Date::new(2013, 02, 29);
-		assert!(!date.isValid(), "2013-02-29 isn't a valid date");
+		assert!(!date.is_valid(), "2013-02-29 isn't a valid date");
 		date = ::Date::new(2012, 02, 29);
-		assert!(date.isValid(), "2012-02-29 isn't a valid date");
+		assert!(date.is_valid(), "2012-02-29 isn't a valid date");
 	}
 	#[test]
 	fn to_str() {
@@ -199,24 +200,24 @@ mod tests {
 	 * Static methods
 	 */
 	#[test]
-	fn monthLength() {
-		assert!(::Date::monthLength(2000, 2) == 29, "February 2000 has 29 days");
-		assert!(::Date::monthLength(2001, 2) == 28, "February 2001 has 28 days");
-		assert!(::Date::monthLength(2013, 2) == 28, "February 2013 has 28 days");
-		assert!(::Date::monthLength(2013, 9) == 30, "September 2013 has 30 days");
-		assert!(::Date::monthLength(2013, 10) == 31, "October 2013 has 31 days");
+	fn month_length() {
+		assert!(::Date::month_length(2000, 2) == 29, "February 2000 has 29 days");
+		assert!(::Date::month_length(2001, 2) == 28, "February 2001 has 28 days");
+		assert!(::Date::month_length(2013, 2) == 28, "February 2013 has 28 days");
+		assert!(::Date::month_length(2013, 9) == 30, "September 2013 has 30 days");
+		assert!(::Date::month_length(2013, 10) == 31, "October 2013 has 31 days");
 	}
 	#[test]
 	fn new() {
 		let date = ::Date::new(2013, 10, 24);
-		let expected = "2013-10-24".to_strbuf();
+		let expected = "2013-10-24".to_string();
 		let found = date.to_str();
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 	#[test]
-	fn newFromString() {
-		let date = ::Date::newFromString("2013-10-24 23:24:34");
-		let expected = "2013-10-24".to_strbuf();
+	fn new_from_string() {
+		let date = ::Date::new_from_string("2013-10-24 23:24:34");
+		let expected = "2013-10-24".to_string();
 		let found = date.to_str();
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}

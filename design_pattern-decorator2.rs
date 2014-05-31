@@ -25,7 +25,7 @@ struct Drink<'a> {
 
 impl<'a> Drinkable for Drink<'a> {
 	fn description(&self) -> String {
-		self.description.to_owned()
+		self.description.to_string()
 	}
 	fn price(&self) -> f64 {
 		self.price

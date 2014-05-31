@@ -4,6 +4,7 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
+extern crate debug;
 fn main() {
 	/*
 	 * The let keyword introduces a local variable.

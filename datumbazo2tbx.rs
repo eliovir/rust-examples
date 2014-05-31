@@ -10,6 +10,7 @@
 //! @author Eliovir <http://github.com/~eliovir>
 //!
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+extern crate debug;
 #[phase(syntax, link)] extern crate log;
 
 use std::io::BufferedReader;

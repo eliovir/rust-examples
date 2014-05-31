@@ -6,6 +6,7 @@
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 extern crate collections;
+extern crate debug;
 use collections::hashmap::HashMap;
 
 fn main() {
@@ -22,8 +23,8 @@ fn main() {
 
 	// Doing a find, inserting with a `proc()`, using the key to construct the value
 	let mut map = HashMap::<String, String>::new();
-	map.find_or_insert_with("foo".to_strbuf(), |k| k.clone().append("bar"));
-	println!("The value for foo is => {:?}", map.find(&("foo".to_owned()))); // => Some(&~"foobar")
+	map.find_or_insert_with("foo".to_string(), |k| k.clone().append("bar"));
+	println!("The value for foo is => {:?}", map.find(&("foo".to_string()))); // => Some(&~"foobar")
 	// running this for the first time, will add "foo" with the value 1
 	// running the same for the second time, will add +1 to "foo"
 	h.insert_or_update_with("foo", 1, |_k, v| *v += 1);
@@ -36,17 +37,17 @@ fn main() {
 
 	println!("Using owned pointers as keys.");
 	let mut h = HashMap::<String, int>::new();
-	h.insert("foo".to_owned(), 42);
-	println!("Is there a key foo?  => {}", h.contains_key(&"foo".to_owned())); // => true
-	println!("Is there a key baz?  => {}", h.contains_key(&"baz".to_owned())); // => false
-	println!("The value for foo is => {:?}", h.find(&"foo".to_owned())); // => Some(&42)
-	h.insert(key.to_owned(), 1);
-	println!("Is there a key baz?  => {}", h.contains_key(&"baz".to_owned())); // => true
+	h.insert("foo".to_string(), 42);
+	println!("Is there a key foo?  => {}", h.contains_key(&"foo".to_string())); // => true
+	println!("Is there a key baz?  => {}", h.contains_key(&"baz".to_string())); // => false
+	println!("The value for foo is => {:?}", h.find(&"foo".to_string())); // => Some(&42)
+	h.insert(key.to_string(), 1);
+	println!("Is there a key baz?  => {}", h.contains_key(&"baz".to_string())); // => true
 
 	// List keys of the HashMap
 	let mut keys: Vec<String> = Vec::new();
 	for (k, _) in h.iter() {
-		keys.push(k.to_owned());
+		keys.push(k.to_string());
 	}
 	println!("These are the keys: {}.", keys);
 	let keys = h.keys().map(|v| v.clone()).collect::<Vec<String>>();

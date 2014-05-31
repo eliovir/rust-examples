@@ -10,11 +10,11 @@
 mod tests {
 	#[test]
 	#[should_fail]
-	fn testFail() {
+	fn test_fail() {
 		assert!(1 == 2, "This test must fail!");
 	}
 	#[test]
-	fn testFloat() {
+	fn test_float() {
 		let expected = 1f64;
 		let mut actual = 1f64;
 		let precision = 0.1f64;
@@ -22,7 +22,7 @@ mod tests {
 		assert!((expected - actual).abs() < precision);
 	}
 	#[test]
-	fn testSuccess() {
+	fn test_success() {
 		assert!(1 == 1);
 		assert_eq!(1, 1);
 	}

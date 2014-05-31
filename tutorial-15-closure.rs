@@ -4,6 +4,7 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
+extern crate debug;
 
 fn apply(i: int, f: |int|->int) -> int {
 	f(i)

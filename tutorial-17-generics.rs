@@ -14,6 +14,6 @@ fn map<T, U>(vector: &[T], function: |v: &T| -> U) -> Vec<U> {
 }
 fn main() {
 	let strings = ~["a", "b", "c"];
-	let new_strings = map(strings, |&x| x.to_strbuf().append(x));
+	let new_strings = map(strings, |&x| x.to_string().append(x));
 	println!("{} -> {}", strings, new_strings);
 }

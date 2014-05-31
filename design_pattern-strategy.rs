@@ -44,7 +44,7 @@ impl Duck {
 	fn fly(&self) {
 		self.flyBehaviour.fly();
 	}
-	fn setFlyBehaviour(&mut self, flyBehaviour: Box<FlyBehaviour>) {
+	fn set_fly_behaviour(&mut self, flyBehaviour: Box<FlyBehaviour>) {
 		self.flyBehaviour = flyBehaviour;
 	}
 }
@@ -55,6 +55,6 @@ fn main() {
 	let mut ducky = Duck { flyBehaviour: box fww };
 	ducky.fly();
 	// so functions can change dynamically
-	ducky.setFlyBehaviour(box dnf);
+	ducky.set_fly_behaviour(box dnf);
 	ducky.fly();
 }

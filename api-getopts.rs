@@ -23,7 +23,7 @@ fn print_usage(program: &str, _opts: &[OptGroup]) {
 
 fn main() {
 	let args: Vec<String> = os::args().iter()
-						.map(|x| x.to_strbuf())
+						.map(|x| x.to_string())
 						.collect();
 
 	let program = args.get(0).clone();

@@ -27,7 +27,7 @@ fn do_not_compile() {
 
 #[cfg(not(test))]
 fn main() {
-	let opened_front_door = Door::<Open>("front".to_owned());
+	let opened_front_door = Door::<Open>("front".to_string());
 	let closed_front_door = close(opened_front_door);
 	let _ = open(closed_front_door);
 }

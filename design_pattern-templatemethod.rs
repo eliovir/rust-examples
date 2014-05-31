@@ -31,14 +31,14 @@ impl fmt::Show for Duck {
 // To order a Vec, we need to implement TotalOrd to call sort()
 // http://doc.rust-lang.org/std/vec/struct.Vec.html
 // http://doc.rust-lang.org/std/cmp/trait.TotalOrd.html
-impl Eq for Duck {
+impl PartialEq for Duck {
     #[inline]
     fn eq(&self, other: &Duck) -> bool {
         match self.cmp(other) { Equal => true, _ => false }
     }
 }
 impl TotalEq for Duck {}
-impl Ord for Duck {
+impl PartialOrd for Duck {
     #[inline]
     fn lt(&self, other: &Duck) -> bool {
         match self.cmp(other) { Less => true, _ => false}
@@ -64,12 +64,12 @@ impl TotalOrd for Duck {
 }
 fn main() {
 	let mut ducks = vec!(
-		Duck::new("Daffy".to_owned(), 8f64),
-		Duck::new("Dewey".to_owned(), 2f64),
-		Duck::new("Howard".to_owned(), 7f64),
-		Duck::new("Louie".to_owned(), 2f64),
-		Duck::new("Donald".to_owned(), 10f64),
-		Duck::new("Huey".to_owned(), 2f64)
+		Duck::new("Daffy".to_string(), 8f64),
+		Duck::new("Dewey".to_string(), 2f64),
+		Duck::new("Howard".to_string(), 7f64),
+		Duck::new("Louie".to_string(), 2f64),
+		Duck::new("Donald".to_string(), 10f64),
+		Duck::new("Huey".to_string(), 2f64)
 	);
 
 	println!("Before sorting:");

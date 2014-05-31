@@ -28,21 +28,21 @@ static BENCH_SIZE_INT: int = 20;
 /**
 * Calcule les elements de la suite de Fibonnaci.
 *
-* REGLE RG024 Le projet permet de calculer les membres de la Suite de
+* REGLE rg_024 Le projet permet de calculer les membres de la Suite de
 * Fibonacci.
 *
-* REGLE RG024.1 : f(1) = 1
-* REGLE RG024.2 : f(2) = 1
+* REGLE rg_024.1 : f(1) = 1
+* REGLE rg_024.2 : f(2) = 1
 *
-* REGLE RG024.3 : f(n) = f(n-1) + f(n-2) si n > 2
+* REGLE rg_024.3 : f(n) = f(n-1) + f(n-2) si n > 2
 *
-* REGLE RG024.4 : il n'est pas possible de calculer la valeur de la Suite
+* REGLE rg_024.4 : il n'est pas possible de calculer la valeur de la Suite
 * de Fibonacci pour un rang negatif.
 *
-* REGLE RG024.5 : le calcul de n'importe quel element de la Suite de
+* REGLE rg_024.5 : le calcul de n'importe quel element de la Suite de
 * Fibonacci doit s'effectuer en moins de deux secondes.
 *
-* REGLE RG024.6 : le calcul de n'importe quel element de la Suite de
+* REGLE rg_024.6 : le calcul de n'importe quel element de la Suite de
 * Fibonacci, pour un rang inferieur a 50, doit s'effectuer en moins d'une
 * seconde.
 *
@@ -114,7 +114,7 @@ pub fn iterative_fibonacci() -> Fibonacci {
 }
 
 #[cfg(test)]
-fn RG024_x(n: int, expected: uint) {
+fn rg_024_x(n: int, expected: uint) {
 	let mut found = fibonacci_reccursive(n);
 	assert!(expected == found, format!("fibibonacci_reccursive({:d}): expected ({:u}) != found ({:u})", n, expected, found));
 	found = fibonacci(n);
@@ -123,51 +123,51 @@ fn RG024_x(n: int, expected: uint) {
 /**
  * Test du calcul de la suite de Fibonnaci.
  *
- * REGLE RG024.1 : f(1) = 1
+ * REGLE rg_024.1 : f(1) = 1
  */
 #[test]
-fn RG024_1() {
-	RG024_x(1, 1);
+fn rg_024_1() {
+	rg_024_x(1, 1);
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
  *
- * REGLE RG024.2 : f(2) = 1
+ * REGLE rg_024.2 : f(2) = 1
  */
 #[test]
-fn RG024_2() {
-	RG024_x(2, 1);
+fn rg_024_2() {
+	rg_024_x(2, 1);
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
  *
- * REGLE RG024.3.a : f(3) = 2
+ * REGLE rg_024.3.a : f(3) = 2
  */
 #[test]
-fn RG024_3_a() {
-	RG024_x(3, 2);
+fn rg_024_3_a() {
+	rg_024_x(3, 2);
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
  *
- * REGLE RG024.4.a : il n'est pas possible de calculer la valeur de la Suite
+ * REGLE rg_024.4.a : il n'est pas possible de calculer la valeur de la Suite
  * de Fibonacci pour un rang negatif ou nul.
  */
 #[test]
 #[should_fail]
-fn RG024_4_a() {
+fn rg_024_4_a() {
 	fibonacci(-1);
 	fibonacci(0);
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
  *
- * REGLE RG024.5 : f(55) = 139583862445
+ * REGLE rg_024.5 : f(55) = 139583862445
  */
 #[test]
-fn RG024_5() {
-	/*RG024_x(55, 139583862445);*/
-	RG024_x(30, 832040);
+fn rg_024_5() {
+	/*rg_024_x(55, 139583862445);*/
+	rg_024_x(30, 832040);
 }
 #[bench]
 fn bench_fibonacci_reccursive(b: &mut Bencher) {

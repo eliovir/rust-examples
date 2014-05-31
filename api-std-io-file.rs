@@ -2,7 +2,8 @@
  * http://doc.rust-lang.org/std/io/index.html
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- **/
+ */
+extern crate debug;
 use std::io::File;
 use std::io::BufferedReader;
 

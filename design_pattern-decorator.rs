@@ -56,12 +56,12 @@ impl<T:Printable> Printable for IndentedMessage<T> {
 }
 
 fn main() {
-	let message = Message{message: "The first message is underlined then intended.".to_owned()};
+	let message = Message{message: "The first message is underlined then intended.".to_string()};
 	let underlined = UnderlinedMessage{decorated: message};
 	let indented = IndentedMessage{decorated: underlined};
 	println!("{}", indented.print());
 
-	let message2 = Message{message: "The second message is indented then underlined.".to_owned()};
+	let message2 = Message{message: "The second message is indented then underlined.".to_string()};
 	let indented2 = IndentedMessage{decorated: message2};
 	let underlined2 = UnderlinedMessage{decorated: indented2};
 	println!("{}", underlined2.print());

@@ -4,6 +4,7 @@
  * https://github.com/Rust-Meetup-Paris/Talks/tree/master/introduction_to_rust
  * @license Creative Commons Attribution 4.0 International License.
  */
+extern crate debug;
 
 /**
  * Functions and data types can be abstracted over types, not just values.
