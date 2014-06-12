@@ -11,7 +11,7 @@
 //!
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
 extern crate debug;
-#[phase(syntax, link)] extern crate log;
+#[phase(plugin, link)] extern crate log;
 
 use std::io::BufferedReader;
 use std::io::fs::File;

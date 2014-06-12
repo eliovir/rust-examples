@@ -13,7 +13,7 @@ fn map<T, U>(vector: &[T], function: |v: &T| -> U) -> Vec<U> {
 	return accumulator;
 }
 fn main() {
-	let strings = ~["a", "b", "c"];
+	let strings = ["a", "b", "c"];
 	let new_strings = map(strings, |&x| x.to_string().append(x));
-	println!("{} -> {}", strings, new_strings);
+	println!("{} -> {}", strings.as_slice(), new_strings);
 }

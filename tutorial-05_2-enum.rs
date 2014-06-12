@@ -1,4 +1,5 @@
 #![feature(struct_variant)]
+#![allow(dead_code)]
 /**
  * 5.2 Enums
  * http://doc.rust-lang.org/tutorial.html#enums

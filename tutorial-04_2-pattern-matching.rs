@@ -68,4 +68,7 @@ fn main() {
 	match mypoint {
 		Point { x, .. } => println!("{}", x),
 	}
+	match mypoint {
+		Point { y, .. } => println!("y={}", y),
+	}
 }

@@ -4,8 +4,9 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-extern crate sync;
 extern crate fibonacci;
+
+use std::sync;
 
 fn partial_sum(start: uint) -> f64 {
 	let mut local_sum = 0f64;

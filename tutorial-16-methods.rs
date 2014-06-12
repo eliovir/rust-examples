@@ -1,4 +1,5 @@
 #![feature(struct_variant)]
+#![allow(dead_code)]
 /**
  * 16 Methods
  * http://doc.rust-lang.org/tutorial.html#methods
