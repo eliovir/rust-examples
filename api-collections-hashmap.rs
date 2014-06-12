@@ -5,9 +5,8 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-extern crate collections;
 extern crate debug;
-use collections::hashmap::HashMap;
+use std::collections::hashmap::HashMap;
 
 fn main() {
 	println!("Using borrowed pointers as keys.");

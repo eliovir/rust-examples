@@ -28,23 +28,23 @@ impl fmt::Show for Duck {
 		write!(f, "The duck {} weights {:.2f} kg.", self.name, self.weight)
 	}
 }
-// To order a Vec, we need to implement TotalOrd to call sort()
+// To order a Vec, we need to implement Ord to call sort()
 // http://doc.rust-lang.org/std/vec/struct.Vec.html
-// http://doc.rust-lang.org/std/cmp/trait.TotalOrd.html
+// http://doc.rust-lang.org/std/cmp/trait.Ord.html
 impl PartialEq for Duck {
     #[inline]
     fn eq(&self, other: &Duck) -> bool {
         match self.cmp(other) { Equal => true, _ => false }
     }
 }
-impl TotalEq for Duck {}
+impl Eq for Duck {}
 impl PartialOrd for Duck {
     #[inline]
     fn lt(&self, other: &Duck) -> bool {
         match self.cmp(other) { Less => true, _ => false}
     }
 }
-impl TotalOrd for Duck {
+impl Ord for Duck {
 	#[inline]
 	fn cmp(&self, other: &Duck) -> Ordering {
 		if self.weight < other.weight {
