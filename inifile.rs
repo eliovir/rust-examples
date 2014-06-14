@@ -20,7 +20,7 @@
 
 extern crate debug;
 extern crate test;
-#[phase(syntax, link)] extern crate log;
+#[phase(plugin, link)] extern crate log;
 
 use std::collections::hashmap::HashMap;
 use std::from_str::FromStr;
@@ -136,12 +136,11 @@ impl IniFile {
 	/**
 	 * Return a list of options available in the specified section.
 	 */
-	pub fn options(&self, section: String) -> ~[String] {
+	pub fn options(&self, section: String) -> Vec<String> {
 		match self.sections.as_slice().position_elem(&section) {
-			Some(section_index) => self.options.get(section_index).as_slice().to_owned(),
+			Some(section_index) => self.options.get(section_index).to_owned(),
 			None => {
-				//Vec::new().move_iter().collect()
-				~[]
+				vec!()
 			},
 		}
 	}
@@ -506,7 +505,7 @@ mod tests {
 	fn options() {
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		let expected = ~["value11".to_string(),  "value".to_string()];
+		let expected = vec!("value11".to_string(),  "value".to_string());
 		let found = ini.options("section1".to_string());
 		assert!(expected == found, format!("Items of [section1] must be \"{:?}\", not {:?}.", expected, found));
 	}

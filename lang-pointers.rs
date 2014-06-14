@@ -1,7 +1,7 @@
 #![feature(managed_boxes)]
 extern crate debug;
 use std::rc::Rc;
-use std::gc::Gc;
+use std::gc::GC;
 
 /**
  * Snippets from the Dave Herman's presentation (2013-01-06)
@@ -112,15 +112,13 @@ fn main() {
 	 * Note that to get the value inside a Rc box you first call
 	 * the deref() method, with return &T, then dereference that.
 	 *
-	 * http://doc.rust-lang.org/std/gc/struct.Gc.html#method.borrow
-	 * Note that to get the value inside a Gc box you first call
-	 * the borrow() method, which returns &T, then dereference that.
+	 * http://doc.rust-lang.org/std/gc/index.html
 	 */
 	let rc1 = Rc::new(1u);
 	let rc2 = rc1.clone();
 	println!("{:u}", *(rc1.deref()) + *(rc2.deref()));
 
-	let gc1 = Gc::new(1u);
+	let gc1 = box(GC) 1u;
 	let gc2 = gc1.clone();
-	println!("{:u}", *(gc1.borrow()) + *(gc2.borrow()));
+	println!("{:u}", *gc1 + *gc2);
 }

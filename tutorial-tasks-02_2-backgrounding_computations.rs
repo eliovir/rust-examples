@@ -6,8 +6,6 @@
  */
 extern crate fibonacci;
 
-use std::sync;
-
 fn partial_sum(start: uint) -> f64 {
 	let mut local_sum = 0f64;
 	for num in range(start*100000, (start+1)*100000) {
@@ -25,6 +23,8 @@ fn test_partial_sum_5() {
 }
 #[cfg(not(test))]
 fn main() {
+	use std::sync;
+
 	let n = 40;
 	println!("Setting spawn");
 	/*
