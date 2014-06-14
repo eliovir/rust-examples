@@ -35,15 +35,21 @@ fn find_max1<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
 fn find_max2<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
 	let mut max = None;
 
-	let find_max = |i: &'a T| {
-		max = match max {
-			None => Some(i),
-			Some(ref m) if i > *m => Some(i),
-			_ => max
+	// huon said:
+	// place the closure and the loop into its own scope
+	// to constrain the borrow from the closure.
+	// (to be able to modify `max` it has to take an `&mut` borrow to it)
+	{
+		let find_max = |i: &'a T| {
+			max = match max {
+				None => Some(i),
+				Some(ref m) if i > *m => Some(i),
+				_ => max
+			}
+		};
+		for x in lst.iter() {
+			find_max(x);
 		}
-	};
-	for x in lst.iter() {
-		find_max(x);
 	}
 
 	max
