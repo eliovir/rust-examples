@@ -6,19 +6,19 @@
 
 /**
  * ~[~str] is an owned pointer, allocated on the send heap, can be sent accross tasks.
- * Does not handle .push() since 0.11-pre, so I use Vec<~str>
+ * Vec<T> is what ~[T] was before it was removed.
  */
-fn fill_strings() -> ~[String] {
+fn fill_strings() -> Vec<String> {
 	let mut strings = vec!("hello".to_string());
 	strings.push("world".to_string());
-	strings.as_slice().to_owned()
+	strings
 }
 
 /**
  * Use of Vec::from_elem to create a dynamic two dimensional array.
  */
-fn make_2d_array(dim1: uint, dim2: uint, default: int) -> ~[~[int]] {
-	Vec::from_elem(dim1, Vec::from_elem(dim2, default).as_slice().to_owned()).as_slice().to_owned()
+fn make_2d_array(dim1: uint, dim2: uint, default: int) -> Vec<Vec<int>> {
+	Vec::from_elem(dim1, Vec::from_elem(dim2, default))
 }
 
 fn main() {
@@ -48,7 +48,8 @@ fn main() {
 	/*
 	 * Create a vector in a function.
 	 */
-	let mut strings = fill_strings();
+	let mut ret = fill_strings();
+	let strings = ret.as_mut_slice();
 	println!("strings[1] = {}", strings[1]);
 	strings[1] = "me".to_string();
 	println!("strings[1] = {}", strings[1]);
@@ -65,8 +66,8 @@ fn main() {
 	 * Create a two dimensional dynamic vector.
 	 */
 	let mut anotherArray2d = make_2d_array(2, 3, -1);
-	println!("anotherArray2d[0][0] = {}", anotherArray2d[0][0]);
-	anotherArray2d[0][1] = 1;
-	println!("anotherArray2d[0][1] = {}", anotherArray2d[0][1]);
+	println!("anotherArray2d[0][0] = {}", anotherArray2d.get(0).get(0));
+	*(anotherArray2d.get_mut(0).get_mut(1)) = 1;
+	println!("anotherArray2d[0][1] = {}", anotherArray2d.get(0).get(1));
 }
 
