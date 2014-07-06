@@ -38,7 +38,7 @@ fn main() {
 	/*
 	 * Call with captured variable
 	 */
-	let captured_var = 20;
+	let captured_var = 20i;
 	let closure = |arg| println!("captured_var={}, arg={}", captured_var, arg);
 	call_closure_with_ten(closure);
 

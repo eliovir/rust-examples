@@ -81,35 +81,35 @@ fn find_maxstd<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
 
 #[test]
 fn test_find_max1() {
-	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-	let nine = 9;
+	let v = vec!(0i, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	let nine = 9i;
 	assert_eq!(Some(&nine), find_max1(&v));
 }
 
 #[test]
 fn test_find_max2() {
-	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-	let nine = 9;
+	let v = vec!(0i, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	let nine = 9i;
 	assert_eq!(Some(&nine), find_max2(&v));
 }
 
 #[test]
 fn test_find_max3() {
-	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-	let nine = 9;
+	let v = vec!(0i, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	let nine = 9i;
 	assert_eq!(Some(&nine), find_max3(&v));
 }
 
 #[test]
 fn test_find_maxstd() {
-	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-	let nine = 9;
+	let v = vec!(0i, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	let nine = 9i;
 	assert_eq!(Some(&nine), find_maxstd(&v));
 }
 
 #[bench]
 fn bench_find_max1(b: &mut Bencher) {
-	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	let v = vec!(0i, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	b.iter(|| {
 		find_max1(&v);
 	});
@@ -117,7 +117,7 @@ fn bench_find_max1(b: &mut Bencher) {
 
 #[bench]
 fn bench_find_max2(b: &mut Bencher) {
-	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	let v = vec!(0i, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	b.iter(|| {
 		find_max2(&v);
 	});
@@ -125,7 +125,7 @@ fn bench_find_max2(b: &mut Bencher) {
 
 #[bench]
 fn bench_find_max3(b: &mut Bencher) {
-	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	let v = vec!(0i, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	b.iter(|| {
 		find_max3(&v);
 	});
@@ -133,7 +133,7 @@ fn bench_find_max3(b: &mut Bencher) {
 
 #[bench]
 fn bench_find_maxstd(b: &mut Bencher) {
-	let v = vec!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	let v = vec!(0i, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	b.iter(|| {
 		find_maxstd(&v);
 	});
@@ -141,7 +141,7 @@ fn bench_find_maxstd(b: &mut Bencher) {
 
 #[cfg(not(test))]
 fn main () {
-	let int_v = vec!(5, 2, 0, 8, 2);
+	let int_v = vec!(5i, 2, 0, 8, 2);
 	println!("find_max1 -> {}", find_max1(&int_v));
 	println!("find_max2 -> {}", find_max2(&int_v));
 	println!("find_max3 -> {}", find_max3(&int_v));

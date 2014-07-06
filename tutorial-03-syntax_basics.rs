@@ -12,11 +12,11 @@ fn main() {
 	 * To introduce a local variable that you can re-assign later, use let mut instead.
 	 */
 	let hi = "hi";
-	let mut count = 0;
+	let mut count = 0i;
 
 	while count < 10 {
-		    println!("{}, count: {}", hi, count);
-		        count += 1;
+		println!("{}, count: {}", hi, count);
+		count += 1;
 	}
 
 	/*
@@ -35,7 +35,7 @@ fn main() {
 	 * http://doc.rust-lang.org/tutorial.html#syntax-extensions
 	 */
 	// {} will print the "default format" of a type
-	println!("{} is {}", "the answer", 43);
+	println!("{} is {}", "the answer", 43i);
 
 	// // {:?} will conveniently print any type
 	println!("what is this thing: {:?}", monster_size);

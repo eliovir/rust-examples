@@ -534,8 +534,6 @@ mod tests {
 	}
 	#[test]
 	fn write() {
-		use std::task;
-		use std::any::Any;
 		// Copy config.ini to write_test.ini using `write()`.
 		let writepath = "data/write_test.ini";
 		let mut ini = super::IniFile::new();
@@ -555,12 +553,7 @@ mod tests {
 
 		// Clean
 		assert!(path.exists(), format!("{} should exist after reading the new inifile!", writepath));
-		let result: Result<(), Box<Any:Send>> = task::try(proc() {
-			match fs::unlink(&path) {
-				Err(e) => fail!("open of {:?} failed: {}", path, e),
-				_ => debug!("open of {:?} succeeded", path)
-			}
-		});
+		let result = fs::unlink(&path);
 		assert!(!result.is_err(), format!("Unlinking {} should not fail!", writepath));
 	}
 	#[test]

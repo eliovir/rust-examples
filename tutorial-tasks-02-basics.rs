@@ -29,7 +29,7 @@ fn main() {
 
 	/*
 	 */
-	for child_task_number in range(0, 20) {
+	for child_task_number in range(0u, 20) {
 		spawn( proc()
 			print!("I am child number {}\n", child_task_number)
 		);

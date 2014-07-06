@@ -7,7 +7,7 @@ rust-examples [![Ohloh statistics](http://www.ohloh.net/p/rust-examples/widgets/
 gather example codes from tutorial and other documentations of
 [Rust](http://www.rust-lang.org/) into files, ready to compile.
 
-Examples are tested with version 0.11-pre.
+Examples are tested with version 0.11.0.
 
 ## Files
 
@@ -67,7 +67,7 @@ Examples are tested with version 0.11-pre.
 
 # Compile and running it
 
-You will need the version 0.11-pre of the rust compiler.
+You will need the version 0.11.0 of the rust compiler.
 If you encounter problems, make sure you have the right version before creating an issue.
 
 The simplest way to build **rust-examples** is to do a clone and use ``make`` to compile:

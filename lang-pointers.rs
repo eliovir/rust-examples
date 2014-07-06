@@ -13,7 +13,7 @@ use std::gc::GC;
  * http://doc.rust-lang.org/tutorial.html#dereferencing-pointers
  *
  * The deprecation of @, its alternatives
- * https://github.com/mozilla/rust/wiki/Doc-detailed-release-notes
+ * https://github.com/rust-lang/rust/wiki/Doc-detailed-release-notes
  */
 struct Point {
 	x: f64,
@@ -49,7 +49,8 @@ fn main() {
 	print_point(&p);
 	// Managed pointer to T
 	// @T, in C++ : shared_ptr<T>
-	let p2 = @Point{x:2.1, y:2.2};
+	// The type syntax @T was replaced by Gc<T> which lives in std::gc.
+	let p2 = box(GC) Point{x:2.1, y:2.2};
 	print_point(p2);
 	// Owned pointer to T
 	// box T, in C++ : unique_ptr<T>
@@ -70,7 +71,7 @@ fn main() {
 	 * 13. Dereferencing pointers
 	 * http://doc.rust-lang.org/tutorial.html#dereferencing-pointers
 	 */
-	let managed = @10;
+	let managed = box(GC) 10i;
 	let owned = box 20;
 	let borrowed = &30;
 
@@ -81,7 +82,7 @@ fn main() {
 	 * Dereferenced mutable pointers may appear on the left hand side of assignments.
 	 * Such an assignment modifies the value that the pointer points to.
 	 */
-	let managed = @10;
+	let managed = box(GC) 10i;
 	let mut owned = box 20;
 
 	let mut value = 30;
@@ -101,7 +102,7 @@ fn main() {
 	 * dereferencing to the receiver (the value on the left-hand side of the dot),
 	 * so in most cases, explicitly dereferencing the receiver is not necessary.
 	 */
-	let bottom = @Point { x: 10.0, y: 120.0 };
+	let bottom = box(GC) Point { x: 10.0, y: 120.0 };
 	let top = box Point { x: bottom.x + 100.0, y: bottom.y - 100.0 };
 	let rect = &Rectangle(*top, *bottom);
 	let area = rect.area();

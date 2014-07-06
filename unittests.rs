@@ -11,7 +11,7 @@ mod tests {
 	#[test]
 	#[should_fail]
 	fn test_fail() {
-		assert!(1 == 2, "This test must fail!");
+		assert!(1i == 2i, "This test must fail!");
 	}
 	#[test]
 	fn test_float() {
@@ -24,7 +24,7 @@ mod tests {
 	#[test]
 	fn test_success() {
 		assert!(1 == 1);
-		assert_eq!(1, 1);
+		assert_eq!(1i, 1i);
 	}
 }
 #[cfg(not(test))]

@@ -1,7 +1,7 @@
 /**
- * http://doc.rust-lang.org/collections/hashmap/struct.HashMap.html
- * https://github.com/mozilla/rust/blob/master/src/test/run-pass/hashmap-memory.rs#L70
- * https://github.com/mozilla/rust/blob/master/src/libcollections/hashmap.rs
+ * http://doc.rust-lang.org/std/collections/hashmap/struct.HashMap.html
+ * https://github.com/rust-lang/rust/blob/master/src/test/run-pass/hashmap-memory.rs#L39
+ * https://github.com/rust-lang/rust/blob/master/src/libstd/collections/hashmap.rs
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */

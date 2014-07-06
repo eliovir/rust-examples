@@ -22,9 +22,7 @@ fn print_usage(program: &str, _opts: &[OptGroup]) {
 }
 
 fn main() {
-	let args: Vec<String> = os::args().iter()
-						.map(|x| x.to_string())
-						.collect();
+	let args: Vec<String> = os::args();
 
 	let program = args.get(0).clone();
 
@@ -32,10 +30,9 @@ fn main() {
 		optopt("o", "", "set output file name", "NAME"),
 		optflag("h", "help", "print this help menu")
 	];
-
 	let matches = match getopts(args.tail(), opts) {
 		Ok(m) => { m }
-		Err(f) => { fail!(f.to_err_msg()) }
+		Err(f) => { fail!(f.to_str()) }
 	};
 	if matches.opt_present("h") {
 		print_usage(program.as_slice(), opts);

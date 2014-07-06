@@ -28,7 +28,7 @@ fn main() {
 	 *  The iterator yields borrowed pointers to the vector's elements,
 	 *  so if the element type of the vector is int, the element type of the iterator is &int.
 	 */
-	let numbers = [0, 1, 2];
+	let numbers = [0i, 1, 2];
 	for &x in numbers.iter() {
 		println!("element in numbers: {}", x);
 	}
