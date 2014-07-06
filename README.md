@@ -37,6 +37,7 @@ Examples are tested with version 0.11.0.
     * Program to an 'interface', not an 'implementation', by [Josh Davis](http://joshldavis.com/2013/07/01/program-to-an-interface-fool/): `lang-interface.rs`
     * Lambda expressions: `lang-lambda.rs`
     * Generics, Polymorphism, by [Felix S. Klock II](https://github.com/Rust-Meetup-Paris/Talks/tree/master/introduction_to_rust): `lang-generics.rs`
+    * Overloading by [Rust By Example](http://rustbyexample.com/ops.html): `lang-overloading.rs`
     * Pointer snippets from Dave Herman's talk: `lang-pointers.rs`
     * [collections:hashmap::HashMap](http://doc.rust-lang.org/collections/hashmap/struct.HashMap.html): `api-collections-hashmap.rs`
     * [getopts](http://doc.rust-lang.org/getopts/index.html): `api-getopts.rs`
