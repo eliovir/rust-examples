@@ -1,0 +1,5 @@
+[package]
+
+name = "rust-examples"
+version = "0.0.1"
+authors = ["Eliovir <eliovir@gmail.com>"]
