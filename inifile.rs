@@ -1,5 +1,4 @@
 #![crate_name="inifile"]
-#![crate_version="1.0"]
 #![crate_type = "lib"]
 #![license = "MIT"]
 #![desc = "Library for simple INI file management"]
@@ -139,7 +138,7 @@ impl IniFile {
 	 */
 	pub fn options(&self, section: String) -> Vec<String> {
 		match self.sections.as_slice().position_elem(&section) {
-			Some(section_index) => self.options.get(section_index).to_owned(),
+			Some(section_index) => self.options[section_index].to_vec(),
 			None => {
 				vec!()
 			},

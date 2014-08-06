@@ -1,5 +1,4 @@
 #![crate_name="design_pattern-templatemethod"]
-#![crate_version="1.0"]
 #![crate_type = "bin"]
 #![license = "MIT"]
 #![desc = "Example of design pattern inspired from Head First Design Patterns"]
@@ -44,6 +43,9 @@ impl PartialOrd for Duck {
     fn lt(&self, other: &Duck) -> bool {
         match self.cmp(other) { Less => true, _ => false}
     }
+    fn partial_cmp(&self, other: &Duck) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
 }
 impl Ord for Duck {
 	#[inline]
@@ -61,7 +63,7 @@ impl Ord for Duck {
 			return Greater;
 		}
 		return Equal;
-        }
+    }
 }
 fn main() {
 	let mut ducks = vec!(

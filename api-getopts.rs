@@ -24,7 +24,7 @@ fn print_usage(program: &str, _opts: &[OptGroup]) {
 fn main() {
 	let args: Vec<String> = os::args();
 
-	let program = args.get(0).clone();
+	let program = args[0].clone();
 
 	let opts = [
 		optopt("o", "", "set output file name", "NAME"),
@@ -40,7 +40,7 @@ fn main() {
 	}
 	let output = matches.opt_str("o");
 	let input = if !matches.free.is_empty() {
-		(*matches.free.get(0)).clone()
+		matches.free[0].clone()
 	} else {
 		print_usage(program.as_slice(), opts);
 		return;

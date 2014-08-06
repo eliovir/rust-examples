@@ -21,7 +21,7 @@ fn main() {
 	let args: Vec<String> = os::args();
 	let path = {
 		if args.len() == 2 {
-			Path::new(args.get(1).as_slice())
+			Path::new(args[1].as_slice())
 		} else {
 			Path::new("data/datumbazo.csv")
 		}

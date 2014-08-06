@@ -1,5 +1,4 @@
 #![crate_name = "date"]
-#![crate_version = "1.0"]
 #![crate_type = "lib"]
 #![license = "MIT"]
 #![desc = "Library for simple date management"]

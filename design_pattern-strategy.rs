@@ -1,5 +1,4 @@
 #![crate_name="design_pattern-strategy"]
-#![crate_version="1.0"]
 #![crate_type = "bin"]
 #![license = "MIT"]
 #![desc = "Example of design pattern inspired from Head First Design Patterns"]
