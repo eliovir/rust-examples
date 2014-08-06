@@ -7,7 +7,7 @@ rust-examples [![Ohloh statistics](http://www.ohloh.net/p/rust-examples/widgets/
 gather example codes from tutorial and other documentations of
 [Rust](http://www.rust-lang.org/) into files, ready to compile.
 
-Examples are tested with version 0.11.0.
+Examples are tested with version 0.12-pre-nightly.
 
 ## Files
 

@@ -1,4 +1,5 @@
-#![crate_id="inifile#1.0"]
+#![crate_name="inifile"]
+#![crate_version="1.0"]
 #![crate_type = "lib"]
 #![license = "MIT"]
 #![desc = "Library for simple INI file management"]
@@ -6,7 +7,7 @@
 #![feature(phase)]
 //! INI file management, partial implementation of Python API.
 //!
-//! Tested with rust-0.11-pre
+//! Tested with rust-0.12-pre
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -291,7 +292,7 @@ impl IniFile {
 	pub fn write(&self, filepath: &str) {
 		// http://doc.rust-lang.org/std/io/
 		let mut file = File::create(&Path::new(filepath));
-		match file.write(self.to_str().as_bytes()) {
+		match file.write(self.to_string().as_bytes()) {
 			Ok(()) => debug!("INI file {:?} written", self.path),
 			Err(e) => println!("failed to write to {:?}: {}", self.path, e),
 		}
