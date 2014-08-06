@@ -511,7 +511,7 @@ mod tests {
 		assert!(expected == found, format!("Items of [section1] must be \"{:?}\", not {:?}.", expected, found));
 	}
 	#[test]
-	fn to_str() {
+	fn to_string() {
 		let filepath = "data/config.ini";
 		let path = Path::new(filepath);
 		let file = File::open(&path);
@@ -529,7 +529,7 @@ mod tests {
 		}
 		let mut ini = super::IniFile::new();
 		ini.read("data/config.ini");
-		let found = ini.to_str();
+		let found = ini.to_string();
 		let expected = lines.concat();
 		assert_eq!(expected, found);
 	}
@@ -548,8 +548,8 @@ mod tests {
 		// Check the contents
 		let mut ini2 = super::IniFile::new();
 		ini2.read(writepath);
-		let found = ini2.to_str();
-		let expected = ini.to_str();
+		let found = ini2.to_string();
+		let expected = ini.to_string();
 		assert_eq!(expected, found);
 
 		// Clean

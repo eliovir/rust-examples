@@ -155,11 +155,11 @@ mod tests {
 	#[test]
 	fn add_days() {
 		let mut date = ::Date::new(2013, 10, 24);
-		let orig = date.to_str();
+		let orig = date.to_string();
 		let days = 2;
 		date.add_days(days);
 		let expected = "2013-10-26".to_string();
-		let found = date.to_str();
+		let found = date.to_string();
 		assert!(expected==found, format!("Adding {:d} days to {} should return {}, not {}", days, orig, expected, found));
 	}
 	#[test]
@@ -190,10 +190,10 @@ mod tests {
 		assert!(date.is_valid(), "2012-02-29 isn't a valid date");
 	}
 	#[test]
-	fn to_str() {
+	fn to_string() {
 		let date = ::Date::new(2013, 10, 24);
 		let expected = "2013-10-24";
-		let date_str = date.to_str();
+		let date_str = date.to_string();
 		let found = date_str.as_slice();
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}
@@ -212,14 +212,14 @@ mod tests {
 	fn new() {
 		let date = ::Date::new(2013, 10, 24);
 		let expected = "2013-10-24".to_string();
-		let found = date.to_str();
+		let found = date.to_string();
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 	#[test]
 	fn new_from_string() {
 		let date = ::Date::new_from_string("2013-10-24 23:24:34");
 		let expected = "2013-10-24".to_string();
-		let found = date.to_str();
+		let found = date.to_string();
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 }
