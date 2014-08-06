@@ -23,7 +23,7 @@ mod tests {
 	}
 	#[test]
 	fn test_success() {
-		assert!(1 == 1);
+		assert!(1i == 1i);
 		assert_eq!(1i, 1i);
 	}
 }
