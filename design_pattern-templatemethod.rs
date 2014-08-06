@@ -1,10 +1,11 @@
-#![crate_id="design_pattern-templatemethod#1.0"]
+#![crate_name="design_pattern-templatemethod"]
+#![crate_version="1.0"]
 #![crate_type = "bin"]
 #![license = "MIT"]
 #![desc = "Example of design pattern inspired from Head First Design Patterns"]
 //! Example of design pattern inspired from Head First Design Patterns
 //!
-//! Tested with rust-0.11-pre
+//! Tested with rust-0.12-pre
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!

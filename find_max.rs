@@ -1,4 +1,4 @@
-#![crate_id="find_max"]
+#![crate_name="find_max"]
 //! Test various syntaxes to find the maximum value of a vector using generic function.
 //!
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>

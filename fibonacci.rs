@@ -1,4 +1,5 @@
-#![crate_id="fibonacci#1.1"]
+#![crate_name="fibonacci"]
+#![crate_version="1.1"]
 #![crate_type = "lib"]
 #![license = "MIT"]
 #![desc = "Fibonacci library" ]

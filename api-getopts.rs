@@ -32,7 +32,7 @@ fn main() {
 	];
 	let matches = match getopts(args.tail(), opts) {
 		Ok(m) => { m }
-		Err(f) => { fail!(f.to_str()) }
+		Err(f) => { fail!(f.to_string()) }
 	};
 	if matches.opt_present("h") {
 		print_usage(program.as_slice(), opts);

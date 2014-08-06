@@ -1,11 +1,12 @@
-#![crate_id="design_pattern-chain_of_command#1.0"]
+#![crate_name="design_pattern-chain_of_command"]
+#![crate_version="1.0"]
 #![crate_type = "bin"]
 #![license = "MIT"]
 #![desc = "Example of design pattern inspired from Head First Design Patterns"]
 //! Example of design pattern inspired from PHP code of
 //! http://codersview.blogspot.fr/2009/05/chain-of-command-pattern-using-php.html
 //!
-//! Tested with rust-0.11-pre
+//! Tested with rust-0.12-pre
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!

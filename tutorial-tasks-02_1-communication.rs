@@ -1,4 +1,4 @@
-#![crate_id="tutorial-tasks-02_1-communication"]
+#![crate_name="tutorial-tasks-02_1-communication"]
 //! Rust Tasks and Communication Tutorial - 2.1 Communication
 //!
 //! Originally, snippets from the Dave Herman's presentation (2013-01-06) about concurrency
@@ -6,7 +6,7 @@
 //!
 //! Dave Herman talks about Mozilla Rust and some of the features that make it safe, concurrent, and fast.
 //!
-//! Corrected to 0.11-pre
+//! Corrected to 0.12-pre
 //! http://doc.rust-lang.org/guide-tasks.html#communication
 
 //! Simple struct to test data exchange.

@@ -1,4 +1,4 @@
-#![crate_id="tutorial-tasks-02_3-arc.rs"]
+#![crate_name="tutorial-tasks-02_3-arc"]
 //! Rust Tasks and Communication Tutorial - 2.3 Sharing immutable data without copy: Arc
 //!
 //! http://doc.rust-lang.org/guide-tasks.html#sharing-immutable-data-without-copy:-arc

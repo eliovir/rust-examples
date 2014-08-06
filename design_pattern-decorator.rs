@@ -1,4 +1,5 @@
-#![crate_id="decorator#1.0"]
+#![crate_name="decorator"]
+#![crate_version="1.0"]
 #![crate_type = "bin"]
 #![license = "MIT"]
 #![desc = "Implementation of design pattern Decorator" ]

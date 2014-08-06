@@ -51,11 +51,11 @@ fn main() {
 	// @T, in C++ : shared_ptr<T>
 	// The type syntax @T was replaced by Gc<T> which lives in std::gc.
 	let p2 = box(GC) Point{x:2.1, y:2.2};
-	print_point(p2);
+	print_point(&*p2);
 	// Owned pointer to T
 	// box T, in C++ : unique_ptr<T>
 	let p3 = box Point{x:3.1, y:3.2};
-	print_point(p3);
+	print_point(&*p3);
 	// Unsafe pointer to T
 	// *T
 	/*
