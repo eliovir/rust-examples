@@ -77,7 +77,7 @@ impl IniFile {
 		if !self.has_option(section, option) {
 			()
 		}
-		self.opts.get(&section.to_string()).get(&option.to_string()).to_string()
+		self.opts[section.to_string()][option.to_string()].to_string()
 	}
 	/**
 	 * A convenience method which coerces the option in the specified section to a boolean.
@@ -122,7 +122,7 @@ impl IniFile {
 	 */
 	pub fn has_option(&self, section: &str, option: &str) -> bool {
 		self.has_section(section) &&
-			self.opts.get(&section.to_string()).contains_key(&option.to_string())
+			self.opts[section.to_string()].contains_key(&option.to_string())
 	}
 	/**
 	 * Indicates whether the named section is present in the configuration.
@@ -307,15 +307,15 @@ impl fmt::Show for IniFile {
 		let mut lines = String::new();
 		let sections = self.sections().clone();
 		for section in sections.iter() {
-			if self.comments.contains_key(section) && self.comments.get(section).contains_key(& "__section_comment__".to_string()) {
-				lines.push_str(self.comments.get(section).get(& "__section_comment__".to_string()).as_slice());
+			if self.comments.contains_key(section) && self.comments[*section].contains_key(& "__section_comment__".to_string()) {
+				lines.push_str(self.comments[*section]["__section_comment__".to_string()].as_slice());
 			}
 			let line = format!("[{}]\n", section);
 			lines.push_str(line.as_slice());
 			let options = self.options(section.clone()).clone();
 			for key in options.iter() {
-				if self.comments.contains_key(section) && self.comments.get(section).contains_key(key) {
-					lines.push_str(self.comments.get(section).get(key).as_slice());
+				if self.comments.contains_key(section) && self.comments[*section].contains_key(key) {
+					lines.push_str(self.comments[*section][*key].as_slice());
 				}
 				lines.push_str(format!("{}={}\n", key.to_string(), self.get(section.as_slice(), key.as_slice())).as_slice());
 			}
