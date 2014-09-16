@@ -330,6 +330,7 @@ mod tests {
 	use std::io::BufferedReader;
 	use std::io::fs;
 	use std::io::fs::File;
+    use std::io::fs::PathExtensions;
 	#[test]
 	fn default_filepath_is_empty() {
 		let ini = super::IniFile::new();
