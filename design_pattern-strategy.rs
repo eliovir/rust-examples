@@ -35,24 +35,24 @@ impl FlyBehaviour for DoNotFly {
 }
 
 // The object has reference to the variation.
-struct Duck {
-	flyBehaviour: Box<FlyBehaviour>,
+struct Duck<'a> {
+	fly_behaviour: Box<FlyBehaviour + 'a>,
 }
 
-impl Duck {
+impl<'a> Duck<'a> {
 	// a method calls the funciton in the variation.
 	fn fly(&self) {
-		self.flyBehaviour.fly();
+		self.fly_behaviour.fly();
 	}
-	fn set_fly_behaviour(&mut self, flyBehaviour: Box<FlyBehaviour>) {
-		self.flyBehaviour = flyBehaviour;
+	fn set_fly_behaviour(&mut self, fly_behaviour: Box<FlyBehaviour + 'a>) {
+		self.fly_behaviour = fly_behaviour;
 	}
 }
 
 fn main() {
 	let dnf = DoNotFly;
 	let fww = FlyWithWings;
-	let mut ducky = Duck { flyBehaviour: box fww };
+	let mut ducky = Duck { fly_behaviour: box fww };
 	ducky.fly();
 	// so functions can change dynamically
 	ducky.set_fly_behaviour(box dnf);

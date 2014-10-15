@@ -1,7 +1,5 @@
-#![feature(managed_boxes)]
 extern crate debug;
 use std::rc::Rc;
-use std::gc::GC;
 
 /**
  * Snippets from the Dave Herman's presentation (2013-01-06)
@@ -47,51 +45,33 @@ fn main() {
 	// &T, in C++ : T&
 	let p = Point{x:1.1, y:1.2};
 	print_point(&p);
-	// Managed pointer to T
-	// @T, in C++ : shared_ptr<T>
-	// The type syntax @T was replaced by Gc<T> which lives in std::gc.
-	let p2 = box(GC) Point{x:2.1, y:2.2};
-	print_point(&*p2);
 	// Owned pointer to T
 	// box T, in C++ : unique_ptr<T>
 	let p3 = box Point{x:3.1, y:3.2};
 	print_point(&*p3);
-	// Unsafe pointer to T
-	// *T
-	/*
-	let p4; // uninitialized
-	print_point(p4); // error
-
-	let p5 = ~Point {x:5.1, y:5.2};
-	box.topLeft = move p5; // deinitialized
-	print_point(p); // error
-	*/
 
 	/*
 	 * 13. Dereferencing pointers
 	 * http://doc.rust-lang.org/tutorial.html#dereferencing-pointers
 	 */
-	let managed = box(GC) 10i;
-	let owned = box 20;
-	let borrowed = &30;
+	let owned = box 20u;
+	let borrowed = &30u;
 
-	let sum = *managed + *owned + *borrowed;
-	println!("{} + {} + {} = {}", *managed, *owned, *borrowed, sum);
+	let sum = *owned + *borrowed;
+	println!("{} + {} = {}", *owned, *borrowed, sum);
 
 	/*
 	 * Dereferenced mutable pointers may appear on the left hand side of assignments.
 	 * Such an assignment modifies the value that the pointer points to.
 	 */
-	let managed = box(GC) 10i;
-	let mut owned = box 20;
+	let mut owned = box 20u;
 
-	let mut value = 30;
+	let mut value = 30u;
 	let borrowed = &mut value;
 
 	*owned = *borrowed + 100;
-	*borrowed = *managed + 1000;
-	let sum = *managed + *owned + *borrowed;
-	println!("{} + {} + {} = {}", *managed, *owned, *borrowed, sum);
+	let sum = *owned + *borrowed;
+	println!("{} + {} = {}", *owned, *borrowed, sum);
 
 	/*
 	 * Pointers have high operator precedence, but lower precedence than the dot
@@ -102,7 +82,7 @@ fn main() {
 	 * dereferencing to the receiver (the value on the left-hand side of the dot),
 	 * so in most cases, explicitly dereferencing the receiver is not necessary.
 	 */
-	let bottom = box(GC) Point { x: 10.0, y: 120.0 };
+	let bottom = box Point { x: 10.0, y: 120.0 };
 	let top = box Point { x: bottom.x + 100.0, y: bottom.y - 100.0 };
 	let rect = &Rectangle(*top, *bottom);
 	let area = rect.area();
@@ -118,8 +98,4 @@ fn main() {
 	let rc1 = Rc::new(1u);
 	let rc2 = rc1.clone();
 	println!("{:u}", *(rc1.deref()) + *(rc2.deref()));
-
-	let gc1 = box(GC) 1u;
-	let gc2 = gc1.clone();
-	println!("{:u}", *gc1 + *gc2);
 }

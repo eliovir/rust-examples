@@ -1,15 +1,11 @@
-# Use something that's not 'ruby' so we don't set up things like
-# RVM/bundler/ruby and whatnot. Right now 'rust' isn't a language on
-# travis and it treats unknown languages as ruby
-language: c
+language: rust
+rust: 0.12.0
 env:
 global:
 - secure: YuWDOwPGprL6PiBZVeGaLOCHHgC18fQ6nq617tlt7XFCkG17r/xDWq3iiAyNxNUcwsD9CkWi5aXok8SlX3rQx84XC/sya2bi0+8Frt9EztcVxgMwWuX3Ll4mFHO7HnMhazoQYRPd0b0w4s7bFY2WidxCqjsMKRgAM26Gn+6oQto=
-install:
-- curl https://static.rust-lang.org/rustup.sh | sudo sh -
-- rustc --version
 script:
-- make clean test
+- rustc --version
+- make all
 after_script:
 - make docs
 - curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh

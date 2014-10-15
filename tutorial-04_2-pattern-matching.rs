@@ -37,7 +37,7 @@ fn main() {
 	match my_number {
 		0     => println!("zero"),
 		1 | 2 => println!("one or two"),
-		3..10 => println!("three to ten"),
+		3...10 => println!("three to ten"),
 		_     => println!("something else")
 	}
 	/*
@@ -53,7 +53,7 @@ fn main() {
 	let age: uint = rng.gen_range(0u, 100);
 	println!("age = {}", age);
 	match age {
-		a @ 0..20 => println!("{} years old", a),
+		a @ 0...20 => println!("{} years old", a),
 		_ => println!("older than 21")
 	}
 
