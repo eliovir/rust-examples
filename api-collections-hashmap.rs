@@ -28,7 +28,7 @@ fn main() {
 	// running the same for the second time, will add +1 to "foo"
 	h.insert_or_update_with("foo", 1, |_k, v| *v += 1);
 	println!("foo={}", h.get(&("foo")));
-	assert_eq!(*h.get(&("foo")), 43);
+	assert_eq!(h["foo"], 43);
 
 	// You don't actually need the HashMap to own the keys (but
 	// unless all keys are static, this will be likely to lead

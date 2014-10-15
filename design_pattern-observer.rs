@@ -30,7 +30,7 @@ trait Observable<'a, T: Observer> {
 struct Display {
 	name: String,
 }
-struct Weather<'a, T> {
+struct Weather<'a, T:'a> {
 	temperature: f64,
 	observers: Vec<&'a T>
 }

@@ -5,7 +5,7 @@
 #![comment = "Implement in Rust the design pattern found in Wikipedia (PHP example)."]
 //! Design pattern: Decorator
 //!
-//! Tested with rust-0.10-pre
+//! Tested with rust-0.12
 //!
 //! @see http://fr.wikipedia.org/wiki/D%C3%A9corateur_%28patron_de_conception%29#Exemple_en_PHP
 //!
@@ -36,10 +36,11 @@ struct UnderlinedMessage<T> {
 impl<T:Printable> Printable for UnderlinedMessage<T> {
 	fn print(&self) -> String {
 		// http://doc.rust-lang.org/std/str/trait.StrSlice.html#tymethod.char_len
-		let message = self.decorated.print();
+		let mut message = self.decorated.print();
 		let length = message.len();
-		message.append("\n")
-			.append("=".repeat(length).as_slice())
+		message.push_str("\n");
+		message.push_str("=".repeat(length).as_slice());
+		message
 	}
 }
 
@@ -49,9 +50,9 @@ struct IndentedMessage<T> {
 
 impl<T:Printable> Printable for IndentedMessage<T> {
 	fn print(&self) -> String {
-		let message = self.decorated.print();
-		message.append("    ")
-			.replace("\n", "\n    ")
+		let mut message = self.decorated.print();
+		message.push_str("    ");
+		message.replace("\n", "\n    ")
 	}
 }
 

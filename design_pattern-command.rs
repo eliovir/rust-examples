@@ -4,7 +4,7 @@
 #![desc = "Example of design pattern inspired from Head First Design Patterns"]
 //! Example of design pattern inspired from Head First Design Patterns
 //!
-//! Tested with rust-0.12-pre
+//! Tested with rust-0.12
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -76,14 +76,14 @@ impl Command for LightOffCommand {
 }
 
 // The command will be launched by a remote control.
-struct SimpleRemoteControl {
-	command: Box<Command>,
+struct SimpleRemoteControl<'a> {
+	command: Box<Command + 'a>,
 }
-impl SimpleRemoteControl {
-	fn new() -> SimpleRemoteControl {
+impl<'a> SimpleRemoteControl<'a> {
+	fn new() -> SimpleRemoteControl<'a> {
 		SimpleRemoteControl { command: box NullCommand::new() }
 	}
-	fn set_command(&mut self, cmd: Box<Command>) {
+	fn set_command(&mut self, cmd: Box<Command + 'a>) {
 		self.command = cmd;
 	}
 	fn button_was_pressed(&self) {
@@ -94,12 +94,12 @@ impl SimpleRemoteControl {
 fn main() {
 	let mut remote = SimpleRemoteControl::new();
 	let light = Light::new();
-	let lightOn = LightOnCommand::new(light);
-	let lightOff = LightOffCommand::new(light);
+	let light_on = LightOnCommand::new(light);
+	let light_off = LightOffCommand::new(light);
 
 	remote.button_was_pressed();
-	remote.set_command(box lightOn);
+	remote.set_command(box light_on);
 	remote.button_was_pressed();
-	remote.set_command(box lightOff);
+	remote.set_command(box light_off);
 	remote.button_was_pressed();
 }

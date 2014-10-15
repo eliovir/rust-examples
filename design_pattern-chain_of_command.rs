@@ -5,7 +5,7 @@
 //! Example of design pattern inspired from PHP code of
 //! http://codersview.blogspot.fr/2009/05/chain-of-command-pattern-using-php.html
 //!
-//! Tested with rust-0.12-pre
+//! Tested with rust-0.12
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -17,14 +17,14 @@ trait Command {
 	fn on_command(&self, name: &str, args: &[&str]);
 }
 
-struct CommandChain {
-	commands: Vec<Box<Command>>,
+struct CommandChain<'a> {
+	commands: Vec<Box<Command + 'a>>,
 }
-impl CommandChain {
-	fn new() -> CommandChain {
+impl<'a> CommandChain<'a> {
+	fn new() -> CommandChain<'a> {
 		CommandChain{commands: Vec::new()}
 	}
-	fn add_command(&mut self, command: Box<Command>) {
+	fn add_command(&mut self, command: Box<Command + 'a>) {
 		self.commands.push(command);
 	}
 	fn run_command(&self, name: &str, args: &[&str]) {
