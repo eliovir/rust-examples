@@ -6,7 +6,7 @@
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 extern crate debug;
-use std::collections::hashmap::HashMap;
+use std::collections::hashmap::{HashMap, Occupied, Vacant};
 
 fn main() {
 	println!("Using borrowed pointers as keys.");
@@ -22,11 +22,17 @@ fn main() {
 
 	// Doing a find, inserting with a `proc()`, using the key to construct the value
 	let mut map = HashMap::<String, String>::new();
-	map.find_or_insert_with("foo".to_string(), |k| k.clone().append("bar"));
+	match map.entry("foo".to_string()) {
+		Vacant(entry) => { entry.set("bar".to_string()); },
+		Occupied(mut entry) => { entry.get_mut().push_str("bar"); },
+	}
 	println!("The value for foo is => {:?}", map.find(&("foo".to_string()))); // => Some(&~"foobar")
 	// running this for the first time, will add "foo" with the value 1
 	// running the same for the second time, will add +1 to "foo"
-	h.insert_or_update_with("foo", 1, |_k, v| *v += 1);
+	match h.entry("foo") {
+		Vacant(entry) => { entry.set(1); },
+		Occupied(mut entry) => { *entry.get_mut() += 1; },
+	}
 	println!("foo={}", h.get(&("foo")));
 	assert_eq!(h["foo"], 43);
 

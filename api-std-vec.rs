@@ -65,9 +65,9 @@ fn main() {
 	/*
 	 * Create a two dimensional dynamic vector.
 	 */
-	let mut anotherArray2d = make_2d_array(2, 3, -1);
-	println!("anotherArray2d[0][0] = {}", anotherArray2d.get(0).get(0));
-	*(anotherArray2d.get_mut(0).get_mut(1)) = 1;
-	println!("anotherArray2d[0][1] = {}", anotherArray2d.get(0).get(1));
+	let mut another_array2d = make_2d_array(2, 3, -1);
+	println!("another_array2d[0][0] = {}", another_array2d.get(0).get(0));
+	*(another_array2d.get_mut(0).get_mut(1)) = 1;
+	println!("another_array2d[0][1] = {}", another_array2d.get(0).get(1));
 }
 
