@@ -1,10 +1,6 @@
-#![crate_name="design_pattern-command"]
-#![crate_type = "bin"]
-#![license = "MIT"]
-#![desc = "Example of design pattern inspired from Head First Design Patterns"]
 //! Example of design pattern inspired from Head First Design Patterns
 //!
-//! Tested with rust-0.12
+//! Tested with rust-1.3.O
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -32,6 +28,7 @@ impl Command for NullCommand {
 }
 
 // The object to handle: a light
+#[derive(Copy, Clone)]
 struct Light;
 impl Light {
 	fn new() -> Light {
@@ -81,7 +78,7 @@ struct SimpleRemoteControl<'a> {
 }
 impl<'a> SimpleRemoteControl<'a> {
 	fn new() -> SimpleRemoteControl<'a> {
-		SimpleRemoteControl { command: box NullCommand::new() }
+		SimpleRemoteControl { command: Box::new(NullCommand::new()) }
 	}
 	fn set_command(&mut self, cmd: Box<Command + 'a>) {
 		self.command = cmd;
@@ -98,8 +95,8 @@ fn main() {
 	let light_off = LightOffCommand::new(light);
 
 	remote.button_was_pressed();
-	remote.set_command(box light_on);
+	remote.set_command(Box::new(light_on));
 	remote.button_was_pressed();
-	remote.set_command(box light_off);
+	remote.set_command(Box::new(light_off));
 	remote.button_was_pressed();
 }

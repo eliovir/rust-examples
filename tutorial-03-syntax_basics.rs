@@ -4,7 +4,6 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-extern crate debug;
 fn main() {
 	/*
 	 * The let keyword introduces a local variable.
@@ -12,7 +11,7 @@ fn main() {
 	 * To introduce a local variable that you can re-assign later, use let mut instead.
 	 */
 	let hi = "hi";
-	let mut count = 0i;
+	let mut count = 0;
 
 	while count < 10 {
 		println!("{}, count: {}", hi, count);
@@ -27,7 +26,7 @@ fn main() {
 	static MONSTER_FACTOR: f64 = 57.8;
 	let monster_size = MONSTER_FACTOR * 10.0;
 	println!("{}", monster_size);
-	let monster_size: int = 50;
+	let monster_size = 50;
 	println!("{}", monster_size);
 
 	/*
@@ -35,7 +34,7 @@ fn main() {
 	 * http://doc.rust-lang.org/tutorial.html#syntax-extensions
 	 */
 	// {} will print the "default format" of a type
-	println!("{} is {}", "the answer", 43i);
+	println!("{} is {}", "the answer", 43);
 
 	// // {:?} will conveniently print any type
 	println!("what is this thing: {:?}", monster_size);

@@ -1,10 +1,6 @@
-#![crate_name="design_pattern-observer"]
-#![crate_type = "bin"]
-#![license = "MIT"]
-#![desc = "Example of design pattern inspired from Head First Design Patterns"]
 //! Example of design pattern inspired from Head First Design Patterns
 //!
-//! Tested with rust-0.12-pre
+//! Tested with rust-1.3.0
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -59,18 +55,18 @@ impl std::cmp::PartialEq for Display {
 		self.name == other.name
 	}
 }
-impl std::fmt::Show for Display {
+impl std::fmt::Display for Display {
 	fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
 		write!(f, "Display {}", self.name)
 	}
 }
-impl<'a, T: Observer+PartialEq+std::fmt::Show> Observable<'a, T> for Weather<'a, T> {
+impl<'a, T: Observer+PartialEq+std::fmt::Display> Observable<'a, T> for Weather<'a, T> {
 	fn add_observer(&mut self, observer: &'a T) {
 		println!("add_observer({});", observer);
 		self.observers.push(observer);
 	}
 	fn delete_observer(&mut self, observer: &'a T) {
-		let mut index = 0u;
+		let mut index = 0;
 		let mut found = false;
 		for &obs in self.observers.iter() {
 			if obs == observer {
@@ -92,10 +88,12 @@ impl<'a, T: Observer+PartialEq+std::fmt::Show> Observable<'a, T> for Weather<'a,
 }
 
 fn main() {
+	// reference must be valid for the block
+	// so all bindings display must exist before weather
 	let display = Display::new("Desktop".to_string());
+	let display2 = Display::new("Desktop2".to_string());
 	let mut weather = Weather{temperature: 19.0, observers: Vec::new()};
 	weather.add_observer(&display);
-	let display2 = Display::new("Desktop2".to_string());
 	weather.add_observer(&display2);
 	weather.set_temperature(20.0);
 	weather.delete_observer(&display2);

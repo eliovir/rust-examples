@@ -7,7 +7,7 @@ fn main() {
     // `*` or `/` means mul/div by 2
 
     let program = "+ + * - /";
-    let mut accumulator = 0i;
+    let mut accumulator = 0i32;
 
     for token in program.chars() {
         match token {

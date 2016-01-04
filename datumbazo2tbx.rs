@@ -1,39 +1,40 @@
-#![crate_type = "bin"]
-#![license = "MIT"]
-#![desc = "Script to handle CSV terminology"]
-#![comment = "Reading CSV terminology, printing TBX entries."]
-#![feature(phase)]
 //! Script to handle CSV terminology, reading CSV terminology, printing TBX entries.
 //!
-//! Tested with rust-0.11-pre
+//! Tested with rust-1.3.0
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
-extern crate debug;
-#[phase(plugin, link)] extern crate log;
 
-use std::io::BufferedReader;
-use std::io::fs::File;
-use std::os;
+use std::fmt::Debug;
+use std::io::{BufReader, BufRead};
+use std::fs::File;
+use std::env;
+use std::path::Path;
+
+// The generic `T` must implement `Debug`. So regardless
+// of the type, this will work properly.
+fn print_debug<T: Debug>(t: &T) {
+    println!("<!-- DEBUG :: {:?} -->", t);
+}
 
 fn main() {
-	let args: Vec<String> = os::args();
+	let args: Vec<String> = env::args().collect();
 	let path = {
 		if args.len() == 2 {
-			Path::new(args[1].as_slice())
+			Path::new(&args[1])
 		} else {
 			Path::new("data/datumbazo.csv")
 		}
 	};
-	let mut reader = match File::open(&path) {
-		Err(e) => fail!("open of {:?} failed: {}", path, e),
-		file => {
-			debug!("open of {:?} succeeded", path);
-			BufferedReader::new(file)
+	let reader = match File::open(&path) {
+		Err(e) => panic!("open of {:?} failed: {}", path, e),
+		Ok(file) => {
+			print_debug(&format!("open of {:?} succeeded", path));
+			BufReader::new(file)
 		}
 	};
-	let mut count = 0u;
+	let mut count = 0u32;
 	let langs = vec!("-", "en_US", "eo", "nl", "fr", "de", "es", "ca", "pl");
 	for line in reader.lines() {
 		if count == 0 {
@@ -43,14 +44,14 @@ fn main() {
 		match line {
 			Ok(nread) => {
 				count += 1;
-				if nread.as_slice().starts_with("\t") {
+				if nread.starts_with("\t") {
 					continue;
 				}
-				let v: Vec<&str> = nread.as_slice().split_str("\t").map(|s| s.trim()).collect();
+				let v: Vec<&str> = nread.split("\t").map(|s| s.trim()).collect();
 				print!("
-      <termEntry id=\"komputeko-{:u}\">
+      <termEntry id=\"komputeko-{}\">
         <descrip type=\"subjectField\">computer</descrip>", count);
-				let mut l = 0u;
+				let mut l = 0usize;
 				for word in v.iter() {
 					if l == 0 {
 						l += 1;
@@ -67,7 +68,7 @@ fn main() {
               <term>{}</term>
             </termGrp>
           </ntig>
-        </langSet>", langs.get(l), word);
+        </langSet>", langs.get(l).unwrap(), word);
 					l += 1;
 				}
 				print!("

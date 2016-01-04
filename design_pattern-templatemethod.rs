@@ -1,10 +1,6 @@
-#![crate_name="design_pattern-templatemethod"]
-#![crate_type = "bin"]
-#![license = "MIT"]
-#![desc = "Example of design pattern inspired from Head First Design Patterns"]
 //! Example of design pattern inspired from Head First Design Patterns
 //!
-//! Tested with rust-0.12-pre
+//! Tested with rust-1.3.0
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -13,6 +9,8 @@
 //! @since 2014-04-21
 
 use std::fmt;
+use std::cmp::Ordering;
+use std::cmp::Ordering::{Less, Equal, Greater};
 
 struct Duck {
 	name: String,
@@ -23,9 +21,9 @@ impl Duck {
 		Duck { name: name, weight: weight }
 	}
 }
-impl fmt::Show for Duck {
+impl fmt::Display for Duck {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		write!(f, "The duck {} weights {:.2f} kg.", self.name, self.weight)
+		write!(f, "The duck {} weights {:.2} kg.", self.name, self.weight)
 	}
 }
 // To order a Vec, we need to implement Ord to call sort()

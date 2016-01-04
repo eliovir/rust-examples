@@ -1,10 +1,6 @@
-#![crate_name="design_pattern-decorator2"]
-#![crate_type = "bin"]
-#![license = "MIT"]
-#![desc = "Example of design pattern inspired from Head First Design Patterns"]
 //! Example of design pattern inspired from Head First Design Patterns
 //!
-//! Tested with rust-0.12
+//! Tested with rust-1.3.0
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -69,9 +65,9 @@ fn main() {
 	let columbia = Drink::new("Columbia", 0.89);
 	println!("{} => {}", columbia.description(), columbia.price());
 
-	let chocolate = Ingredient::new("chocolate", 0.2, box columbia);
+	let chocolate = Ingredient::new("chocolate", 0.2, Box::new(columbia));
 	println!("{} => {}", chocolate.description(), chocolate.price());
 
-	let chantilly = Ingredient::new("chantilly", 0.1, box chocolate);
+	let chantilly = Ingredient::new("chantilly", 0.1, Box::new(chocolate));
 	println!("{} => {}", chantilly.description(), chantilly.price());
 }

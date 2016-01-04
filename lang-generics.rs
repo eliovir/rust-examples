@@ -4,15 +4,10 @@
  * https://github.com/Rust-Meetup-Paris/Talks/tree/master/introduction_to_rust
  * @license Creative Commons Attribution 4.0 International License.
  */
-extern crate debug;
 
 /**
  * Functions and data types can be abstracted over types, not just values.
  */
-enum Option<T> {
-	Some(T),
-	None
-}
 fn safe_get<T>(opt: Option<T>, default: T) -> T {
 	match opt {
 		Some(contents) => contents,
@@ -20,11 +15,13 @@ fn safe_get<T>(opt: Option<T>, default: T) -> T {
 	}
 }
 
+#[derive(Debug)]
 struct Dollars {
-	amount: int
+	amount: u32
 }
+#[derive(Debug)]
 struct Euros {
-	amount: int
+	amount: u32
 }
 trait Currency {
 	fn render(&self) -> String;
@@ -39,14 +36,16 @@ impl Currency for Dollars {
 	}
 	fn to_euros(&self) -> Euros {
 		let a = (self.amount as f64) * 0.73;
-		Euros { amount: a as int }
+		Euros { amount: a as u32 }
 	}
 }
 impl Currency for Euros {
 	fn render(&self) -> String {
 		format!("EUR{}", self.amount)
 	}
-	fn to_euros(&self) -> Euros { *self }
+	fn to_euros(&self) -> Euros {
+		Euros { amount: self.amount }
+	}
 }
 /*
  * Static resolution

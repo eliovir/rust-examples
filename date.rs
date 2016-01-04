@@ -1,12 +1,9 @@
 #![crate_name = "date"]
 #![crate_type = "lib"]
-#![license = "MIT"]
-#![desc = "Library for simple date management"]
-#![comment = "Example of library: date management"]
 //! Date management
 //!
 //! Use "constructor", string manipulation
-//! Tested with rust-0.10-pre
+//! Tested with rust-1.3.0
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -15,36 +12,36 @@
 //! @since 2013-10-24
 //!
 //! @todo : get_day_of_week(), get_week(), comparisons
-extern crate debug;
-use std::from_str::FromStr;
 use std::fmt;
 
 /**
  * Simple struct to handle date.
  */
 pub struct Date {
-	day: int,
-	month: int,
-	year: int
+	day: u32,
+	month: u32,
+	year: u32
 }
 
 impl Date {
 	/**
 	 * Add days to the current day. Use negative to remove day.
 	 */
-	pub fn add_days(&mut self, days: int) {
-		let mut day = self.day;
+	pub fn add_days(&mut self, days: i32) {
+		let mut day = self.day as i32;
 		let mut month = self.month;
 		let mut year = self.year;
 		day = day + days;
 		if days > 0 {
-			while day > Date::month_length(year, month) {
-				day = day - Date::month_length(year, month);
+			let mut month_length = Date::month_length(year, month) as i32;
+			while day > month_length {
+				day = day - month_length;
 				month = month + 1;
 				if month > 12 {
 					year = year + 1;
 					month = 1;
 				}
+				month_length = Date::month_length(year, month) as i32;
 			}
 		}
 		if day == 0 {
@@ -53,7 +50,7 @@ impl Date {
 				month = 12;
 				year = year - 1;
 			}
-			day = Date::month_length(year, month);
+			day = Date::month_length(year, month) as i32;
 		}
 		if days < 0 {
 			while day < 1 {
@@ -62,10 +59,11 @@ impl Date {
 					year = year - 1;
 					month = 12;
 				}
-				day = day + Date::month_length(year, month);
+				let month_length = Date::month_length(year, month) as i32;
+				day = day + month_length;
 			}
 		}
-		self.day = day;
+		self.day = day as u32;
 		self.month = month;
 		self.year = year;
 	}
@@ -73,9 +71,9 @@ impl Date {
 	/**
 	 * Get day of year.
 	 */
-	pub fn get_day_of_year(&self) -> int {
+	pub fn get_day_of_year(&self) -> u32 {
 		let mut doy = self.day;
-		for month in range(1, self.month) {
+		for month in 1.. self.month {
 			doy += Date::month_length(self.year, month);
 		}
 		doy
@@ -101,26 +99,26 @@ impl Date {
 	/**
 	 * Static method to know if the year is a leap year.
 	 */
-	pub fn is_leap(year: int) -> bool {
+	pub fn is_leap(year: u32) -> bool {
 		(year % 4 == 0 && year % 100 != 0) || year % 400 == 0
 	}
 
 	/**
 	 * Static method to get the number of days in the month.
 	 */
-	pub fn month_length(year: int, month: int) -> int {
+	pub fn month_length(year: u32, month: u32) -> u32 {
 		match  month {
 			1 | 3 | 5 | 7 | 8 | 10 | 12 => 31,
 			2 => if Date::is_leap(year) { 29 } else { 28 },
 			4 | 6 | 9 | 11 => 30,
-			_ => fail!("Wrong month")
+			_ => panic!("Wrong month")
 		}
 	}
 
 	/**
 	 * "Constructor".
 	 */
-	pub fn new(year: int, month: int, day: int) -> Date {
+	pub fn new(year: u32, month: u32, day: u32) -> Date {
 		Date{day: day, month: month, year: year}
 	}
 
@@ -129,11 +127,11 @@ impl Date {
 	 */
 	pub fn new_from_string(string: &str) -> Date {
 		if string.len() < 10 {
-			fail!("Wrong format!");
+			panic!("Wrong format!");
 		}
-		let year = FromStr::from_str(string.slice_chars(0, 4)).unwrap();
-		let month = FromStr::from_str(string.slice_chars(5, 7)).unwrap();
-		let day = FromStr::from_str(string.slice_chars(8, 10)).unwrap();
+		let year : u32 = string[0..4].parse().ok().expect("Wrong format!");
+		let month : u32 = string[5..7].parse().ok().expect("Wrong format!");
+		let day : u32 = string[8..10].parse().ok().expect("Wrong format!");
 		Date{day: day, month: month, year: year}
 	}
 }
@@ -143,9 +141,9 @@ impl Date {
  *
  * @see http://maniagnosis.crsr.net/2013/04/operator-overloading-in-rust.html
  */
-impl fmt::Show for Date {
+impl fmt::Display for Date {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		write!(f, "{:4d}-{:2d}-{:2d}", self.year, self.month, self.day)
+		write!(f, "{:4}-{:2}-{:2}", self.year, self.month, self.day)
 	}
 }
 
@@ -159,18 +157,18 @@ mod tests {
 		date.add_days(days);
 		let expected = "2013-10-26".to_string();
 		let found = date.to_string();
-		assert!(expected==found, format!("Adding {:d} days to {} should return {}, not {}", days, orig, expected, found));
+		assert!(expected==found, format!("Adding {} days to {} should return {}, not {}", days, orig, expected, found));
 	}
 	#[test]
 	fn get_day_of_year() {
 		let date = ::Date::new(2014, 01, 01);
 		let expected = 1;
 		let found = date.get_day_of_year();
-		assert!(expected==found, format!("{:?} must be day number {} of the year, not {}.", date, expected, found));
+		assert!(expected==found, format!("{} must be day number {} of the year, not {}.", date, expected, found));
 		let date = ::Date::new(2012, 12, 31);
 		let expected = 366;
 		let found = date.get_day_of_year();
-		assert!(expected==found, format!("{:?} must be day number {} of the year, not {}.", date, expected, found));
+		assert!(expected==found, format!("{} must be day number {} of the year, not {}.", date, expected, found));
 	}
 	#[test]
 	fn is_leap() {
@@ -192,8 +190,7 @@ mod tests {
 	fn to_string() {
 		let date = ::Date::new(2013, 10, 24);
 		let expected = "2013-10-24";
-		let date_str = date.to_string();
-		let found = date_str.as_slice();
+		let found = date.to_string();
 		assert!(expected == found, format!("{}!={}", expected, found));
 	}
 	/*

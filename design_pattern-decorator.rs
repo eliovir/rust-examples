@@ -1,11 +1,8 @@
-#![crate_name="decorator"]
-#![crate_type = "bin"]
-#![license = "MIT"]
-#![desc = "Implementation of design pattern Decorator" ]
-#![comment = "Implement in Rust the design pattern found in Wikipedia (PHP example)."]
 //! Design pattern: Decorator
 //!
-//! Tested with rust-0.12
+//! Implement in Rust the design pattern found in Wikipedia (PHP example).
+//!
+//! Tested with rust-1.3.0
 //!
 //! @see http://fr.wikipedia.org/wiki/D%C3%A9corateur_%28patron_de_conception%29#Exemple_en_PHP
 //!
@@ -13,6 +10,7 @@
 //!
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
 //! @since 2013-11-06
+use std::iter::repeat;
 
 struct Message {
 	message: String,
@@ -39,7 +37,7 @@ impl<T:Printable> Printable for UnderlinedMessage<T> {
 		let mut message = self.decorated.print();
 		let length = message.len();
 		message.push_str("\n");
-		message.push_str("=".repeat(length).as_slice());
+		message.push_str(&repeat("=").take(length).collect::<String>());
 		message
 	}
 }
@@ -50,13 +48,20 @@ struct IndentedMessage<T> {
 
 impl<T:Printable> Printable for IndentedMessage<T> {
 	fn print(&self) -> String {
-		let mut message = self.decorated.print();
-		message.push_str("    ");
+		let message = "    ".to_string() + & self.decorated.print();
 		message.replace("\n", "\n    ")
 	}
 }
 
 fn main() {
+	let message = Message{message: "Underlined message.".to_string()};
+	let underlined = UnderlinedMessage{decorated: message};
+	println!("{}", underlined.print());
+
+	let message = Message{message: "Indented message.".to_string()};
+	let indented = IndentedMessage{decorated: message};
+	println!("{}", indented.print());
+
 	let message = Message{message: "The first message is underlined then intended.".to_string()};
 	let underlined = UnderlinedMessage{decorated: message};
 	let indented = IndentedMessage{decorated: underlined};

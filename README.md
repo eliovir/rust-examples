@@ -24,10 +24,9 @@ Examples are tested with version 0.12.0.
     * [15](http://doc.rust-lang.org/tutorial.html#closures) Closures: `tutorial-15-closure.rs`
     * [16](http://doc.rust-lang.org/tutorial.html#methods) Methods, with *constructor*: `tutorial-16-methods.rs`
     * [17](http://doc.rust-lang.org/tutorial.html#generics) Generics: `tutorial-17-generics.rs`
-* [Rust Tasks and Communication]
-    * [2](http://doc.rust-lang.org/guide-tasks.html#basics) Basics: `tutorial-tasks-02-basics.rs`
+* [Book]
+    * [4.6](http://doc.rust-lang.org/book/concurrency.html#threads) Concurrency, threads: `book-4-6-threads.rs`
     * [2.1](http://doc.rust-lang.org/guide-tasks.html#communication) Communication: `tutorial-tasks-02_1-communication.rs`
-    * [2.2](http://doc.rust-lang.org/guide-tasks.html#backgrounding-computations:-futures) Backgrounding computations: Futures: `tutorial-tasks-02_2-backgrounding_computations.rs`
     * [2.3](http://doc.rust-lang.org/guide-tasks.html#sharing-immutable-data-without-copy:-arc) Sharing immutable data without copy: Arc: `tutorial-tasks-02_3-arc.rs`
 * [Doc unit testing]
     * Unit testing in Rust: `unittests.rs`
@@ -42,7 +41,7 @@ Examples are tested with version 0.12.0.
     * [collections:hashmap::HashMap](http://doc.rust-lang.org/collections/hashmap/struct.HashMap.html): `api-collections-hashmap.rs`
     * [getopts](http://doc.rust-lang.org/getopts/index.html): `api-getopts.rs`
     * [std::from_str::FromStr](http://doc.rust-lang.org/std/from_str/trait.FromStr.html): `api-std-from_str.rs`
-    * [std::io::File](http://doc.rust-lang.org/std/io/index.html): `api-std-io-file.rs`
+    * [std::fs::File](http://doc.rust-lang.org/std/fs/index.html): `api-std-fs-file.rs`
     * [std::vec](http://doc.rust-lang.org/std/vec/index.html): OwnedVector, 2D-arrays, ...: `api-std-vec.rs`
 * Some new files:
     * `Makefile` to compile, run tests and run benchmarks
@@ -61,7 +60,7 @@ Examples are tested with version 0.12.0.
 
 [Tutorial]: http://doc.rust-lang.org/tutorial.html
 [The Rust Reference Manual]: http://doc.rust-lang.org/rust.html
-[Rust Tasks and Communication]: http://doc.rust-lang.org/guide-tasks.html
+[Book]: http://doc.rust-lang.org/book/
 [Doc unit testing]: http://doc.rust-lang.org/guide-testing.html
 [Rust Cheatsheet]: http://doc.rust-lang.org/complement-cheatsheet.html#how-do-i-express-phantom-types?
 

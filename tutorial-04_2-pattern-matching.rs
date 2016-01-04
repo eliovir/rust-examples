@@ -4,9 +4,10 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-extern crate debug;
-use std::rand::{task_rng, Rng};
+extern crate rand;
+
 use std::f64;
+use rand::Rng;
 
 struct Point { x: f64, y: f64 }
 
@@ -23,8 +24,7 @@ fn angle(vector: (f64, f64)) -> f64 {
 	}
 }
 fn main() {
-	let mut rng = task_rng();
-	let my_number: uint = rng.gen_range(0u, 10);
+	let my_number: u32 = rand::thread_rng().gen_range(0, 10);
 	println!("my_number = {}", my_number);
 
 	/*
@@ -50,7 +50,7 @@ fn main() {
 		_ => { println!("something else") }
 	}
 
-	let age: uint = rng.gen_range(0u, 100);
+	let age: u32 = rand::thread_rng().gen_range(0, 100);
 	println!("age = {}", age);
 	match age {
 		a @ 0...20 => println!("{} years old", a),

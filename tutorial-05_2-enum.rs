@@ -1,4 +1,3 @@
-#![feature(struct_variant)]
 #![allow(dead_code)]
 /**
  * 5.2 Enums
@@ -7,8 +6,9 @@
  *
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
-use std::f64;
+use std::f64::consts::PI;
 
+#[derive(Clone, Copy)]
 struct Point {
 	x: f64,
 	y: f64
@@ -24,8 +24,8 @@ enum Shape {
 
 fn area(sh: Shape) -> f64 {
     match sh {
-        Circle(_, size) => f64::consts::PI * size * size,
-        Rectangle(Point { x, y }, Point { x: x2, y: y2 }) => (x2 - x) * (y - y2)
+        Shape::Circle(_, size) => PI * size * size,
+        Shape::Rectangle(Point { x, y }, Point { x: x2, y: y2 }) => (x2 - x) * (y - y2)
     }
 }
 
@@ -42,8 +42,8 @@ enum StructShape {
  */
 fn struct_area(sh: StructShape) -> f64 {
 	match sh {
-		StructCircle { radius: radius, .. } => f64::consts::PI * radius * radius,
-		StructRectangle { top_left: top_left, bottom_right: bottom_right } => {
+		StructShape::StructCircle { radius, .. } => PI * radius * radius,
+		StructShape::StructRectangle { top_left, bottom_right } => {
 			(bottom_right.x - top_left.x) * (top_left.y - bottom_right.y)
 		}
 	}
@@ -59,21 +59,21 @@ fn main() {
 	/*
 	 * Enum variant
 	 */
-	let my_circle1 = Circle(top_left, 1.0);
-	let my_rectangle1 = Rectangle(top_left, bottom_right);
+	let my_circle1 = Shape::Circle(top_left, 1.0);
+	let my_rectangle1 = Shape::Rectangle(top_left, bottom_right);
 	let circle_area1: f64 = area(my_circle1);
 	let rectangle_area1: f64 = area(my_rectangle1);
-	println!("variant: circle area: {:f}", circle_area1);
-	println!("variant: rectangle area: {:f}", rectangle_area1);
+	println!("variant: circle area: {}", circle_area1);
+	println!("variant: rectangle area: {}", rectangle_area1);
 
 	/*
 	 * Enum of structs
 	 */
-	let my_circle = StructCircle { center: top_left, radius: 1.0};
-	let my_rectangle = StructRectangle { top_left: top_left, bottom_right: bottom_right};
+	let my_circle = StructShape::StructCircle { center: top_left, radius: 1.0};
+	let my_rectangle = StructShape::StructRectangle { top_left: top_left, bottom_right: bottom_right};
 	let circle_area: f64 = struct_area(my_circle);
 	let rectangle_area: f64 = struct_area(my_rectangle);
-	println!("struct: circle area: {:f}", circle_area);
-	println!("struct: rectangle area: {:f}", rectangle_area);
+	println!("struct: circle area: {}", circle_area);
+	println!("struct: rectangle area: {}", rectangle_area);
 }
 

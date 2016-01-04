@@ -1,35 +1,35 @@
 // http://www.reddit.com/r/rust/comments/2jec05/problem_with_implementation_of_linked_list/
-// Tested with rust-0.12.0
+// Tested with rust-1.5.0
 
 use std::fmt;
 
 struct Node {
-    value: uint,
+    value: u32,
     link: Option<Box<Node>>,
 }
 
 impl Node {
-    fn new(value: uint) -> Node {
+    fn new(value: u32) -> Node {
         Node { value: value, link: None, }
     }
 
-    fn append(&mut self, value: uint) {
+    fn append(&mut self, value: u32) {
         match self.link {
             Some(ref mut node) => node.append(value),
-            None => self.link = Some(box Node::new(value)),
+            None => self.link = Some(Box::new(Node::new(value))),
         }
     }
 
-    fn length(&self) -> uint {
+    fn length(&self) -> u32 {
         match self.link {
             Some(ref node) => node.length() + 1,
             None => 1,
         }
     }
 
-    fn insert_after(&mut self, value: uint, after: uint) -> bool {
+    fn insert_after(&mut self, value: u32, after: u32) -> bool {
         if self.value == after {
-            self.link = Some(box Node { value: value, link: self.link.take() });
+            self.link = Some(Box::new(Node { value: value, link: self.link.take() }));
             true
         }
         else {
@@ -41,7 +41,7 @@ impl Node {
     }
 }
 
-impl fmt::Show for Node {
+impl fmt::Display for Node {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
 		match self.link {
 			Some(ref node) => write!(f, "{} -> {}", self.value, node),
@@ -49,6 +49,7 @@ impl fmt::Show for Node {
 		}
 	}
 }
+
 fn main() {
 	let mut root = Node::new(0);
 	root.append(1);

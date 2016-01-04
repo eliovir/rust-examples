@@ -5,44 +5,44 @@
  * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
  */
 struct Pair {
-	x: int,
-	y: int
+	x: i32,
+	y: i32
 }
 fn main() {
 	/*
 	 * An example of a for loop over the contents of a vector:
 	 */
-	let v: &[uint] = &[4, 2, 1];
+	let v: &[u32] = &[4, 2, 1];
 	for i in v.iter() {
-		println!("{:u} is an integer!", *i);
+		println!("{} is an integer!", *i);
 	}
 
 	/*
 	 * A standard library function that applies a closure to every number between 0 and 10.
 	 */
-	for i in range(0u, 10) {
-		println!("{:u} is an integer!", i);
+	for i in 0..10 {
+		println!("{} is an integer!", i);
 	}
 
 	/*
 	 * is inlined by the compiler as:
 	 */
-	let mut j = 0u;
+	let mut j = 0usize;
 	while j < 10 {
-		println!("{:u} is an integer!", j);
+		println!("{} is an integer!", j);
 		j += 1;
 	}
 
 	/*
 	 * Using loop.
 	 */
-	let mut k = 0u;
+	let mut k = 0usize;
 	loop {
 		k += 1;
 		if k == 10 {
 			break;
 		}
-		println!("{:u} is an integer!", k);
+		println!("{} is an integer!", k);
 	}
 
 	/*

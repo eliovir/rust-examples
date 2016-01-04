@@ -1,3 +1,4 @@
+CARGO=printf "\033[32;1mCargo:\033[33m %s\033[m\n" $@; cargo
 RUSTC=printf "\033[32;1mRustc:\033[33m %s\033[m\n" $@; rustc
 LIBSRC:=$(shell grep -l 'crate_type = "lib"' *rs)
 LIBSTAMP=$(patsubst %.rs,lib-stamps/%,$(LIBSRC))
@@ -20,7 +21,7 @@ help:
 
 clean:
 	# Remove executables, test files, libraries
-	rm -fr $(PROG) $(TESTPROG) *~ build/ doc/ lib/ lib-stamps/
+	rm -fr $(PROG) $(TESTPROG) *.o *~ build/ doc/ lib/ lib-stamps/ target/
 
 bench: $(TESTPROG)
 	# Run benchmarks
@@ -60,8 +61,31 @@ version:
 	# Display version of source code
 	git describe
 
+build/api-getopts: api-getopts.rs build
+	$(CARGO) build --bin api-getopts
+	cp target/debug/api-getopts $@
+
+build/book-3_1-guessing_game: book-3_1-guessing_game.rs build
+	$(CARGO) build --bin book-3_1-guessing_game
+	cp target/debug/book-3_1-guessing_game $@
+
+build/inifile: inifile.rs build
+	$(CARGO) build --bin inifile
+	cp target/debug/inifile $@
+
 build/tutorial-tasks-02_2-backgrounding_computations: tutorial-tasks-02_2-backgrounding_computations.rs $(LIBSTAMP) build
 	$(RUSTC) $(RUSTFLAGS) $< -o $@ -L lib/
+
+build/tutorial-tasks-02_3-arc: tutorial-tasks-02_3-arc.rs build
+	$(CARGO) build --bin tutorial-tasks-02_3-arc
+	cp target/debug/tutorial-tasks-02_3-arc $@
+
+build/tutorial-04_2-pattern-matching: tutorial-04_2-pattern-matching.rs build
+	$(CARGO) build --bin tutorial-04_2-pattern-matching
+	cp target/debug/tutorial-04_2-pattern-matching $@
+
+build:
+	mkdir -p build
 
 build/% : %.rs
 	mkdir -p build
@@ -72,6 +96,11 @@ lib-stamps/% : %.rs
 	mkdir -p lib
 	mkdir -p lib-stamps ;
 	$(RUSTC) --out-dir lib/ $<  > $@;
+
+lib-stamps/inifilex : inifile.rs
+	mkdir -p lib
+	mkdir -p lib-stamps ;
+	$(CARGO) build --lib inifile
 
 build/test-% : %.rs $(LIBSTAMP)
 	mkdir -p build

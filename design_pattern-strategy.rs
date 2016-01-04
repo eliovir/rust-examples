@@ -1,10 +1,7 @@
-#![crate_name="design_pattern-strategy"]
 #![crate_type = "bin"]
-#![license = "MIT"]
-#![desc = "Example of design pattern inspired from Head First Design Patterns"]
 //! Example of design pattern inspired from Head First Design Patterns
 //!
-//! Tested with rust-0.12-pre
+//! Tested with rust-1.3.0
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -50,11 +47,11 @@ impl<'a> Duck<'a> {
 }
 
 fn main() {
-	let dnf = DoNotFly;
-	let fww = FlyWithWings;
-	let mut ducky = Duck { fly_behaviour: box fww };
+	let dnf = Box::new(DoNotFly);
+	let fww = Box::new(FlyWithWings);
+	let mut ducky = Duck { fly_behaviour: fww };
 	ducky.fly();
 	// so functions can change dynamically
-	ducky.set_fly_behaviour(box dnf);
+	ducky.set_fly_behaviour(dnf);
 	ducky.fly();
 }
