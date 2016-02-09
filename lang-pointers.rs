@@ -47,6 +47,15 @@ fn print_point(p: &Point) {
 	}
 }
 
+// http://oct.zoy.org/presentations/rust-devox/#/3/11
+fn add_one(mut num: Box<i32>) -> Box<i32> {
+    *num += 1;
+    num
+}
+fn add_one_ref(ref_to_int: &mut i32) {
+    *ref_to_int += 1;
+}
+
 fn main() {
 	/*
 	 * Snippets from the Dave Herman's presentation (2013-01-06)
@@ -112,4 +121,22 @@ fn main() {
 	let rc2 = rc1.clone();
 	//println!("{}", *(rc1.deref()) + *(rc2.deref()));
 	println!("{}", *rc1 + *rc2);
+
+    /*
+     * http://oct.zoy.org/presentations/rust-devox/#/3/11
+     * Safety features - Transferring ownership
+     * Rust allow the owner of a handle to lend out:
+     * - exactly one mutable reference
+     * - one or more immutable references
+     */
+    let x = Box::new(5);
+    println!("before add_one(): {}", x);
+    let y = add_one(x);
+    // x is moved by add_one()
+    println!("after add_one(): {}", y);
+
+    let x = &mut 5;
+    println!("before add_one_ref(): {}", x);
+    add_one_ref(x);
+    println!("after add_one_ref(): {}", x);
 }

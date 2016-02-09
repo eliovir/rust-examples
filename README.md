@@ -13,24 +13,25 @@ Examples are tested with version 1.3.0.
 
 * [Homepage](http://www.rust-lang.org/)
     * `what_it_looks_like.rs`, `what_it_looks_like2.rs`
-* [Tutorial]
-    * [2.1](http://doc.rust-lang.org/tutorial.html#compiling-your-first-program) Compiling your first program: `tutorial-02_1-hello.rs`
-    * [3](http://doc.rust-lang.org/tutorial.html#syntax-basics) Syntax basics: `tutorial-03-syntax_basics.rs`
-    * [4.2](http://doc.rust-lang.org/tutorial.html#pattern-matching) Pattern matching: `tutorial-04_2-pattern-matching.rs`
-    * [4.3](http://doc.rust-lang.org/tutorial.html#loops) Loops (`for`, `while`, `loop`): `tutorial-04_3-loops.rs`
-    * [5.1](http://doc.rust-lang.org/tutorial.html#structs) Structs: `tutorial-05_1-structs.rs`
-    * [5.2](http://doc.rust-lang.org/tutorial.html#enums) Enums: `tutorial-05_2-enum.rs`
-    * [5.3](http://doc.rust-lang.org/tutorial.html#tuples) Tuples: `tutorial-05_3-tuples.rs`
-    * [15](http://doc.rust-lang.org/tutorial.html#closures) Closures: `tutorial-15-closure.rs`
-    * [16](http://doc.rust-lang.org/tutorial.html#methods) Methods, with *constructor*: `tutorial-16-methods.rs`
-    * [17](http://doc.rust-lang.org/tutorial.html#generics) Generics: `tutorial-17-generics.rs`
+* Old Tutorial, deprecated in favor of the [Book]
+    * 2.1 Compiling your first program: `tutorial-02_1-hello.rs`
+    * 3   Syntax basics: `tutorial-03-syntax_basics.rs`
+    * 4.2 Pattern matching: `tutorial-04_2-pattern-matching.rs`
+    * 4.3 Loops (`for`, `while`, `loop`): `tutorial-04_3-loops.rs`
+    * 5.1 Structs: `tutorial-05_1-structs.rs`
+    * 5.2 Enums: `tutorial-05_2-enum.rs`
+    * 5.3 Tuples: `tutorial-05_3-tuples.rs`
+    * 15  Closures: `tutorial-15-closure.rs`
+    * 16  Methods, with *constructor*: `tutorial-16-methods.rs`
+    * 17  Generics: `tutorial-17-generics.rs`
+* Old Rust Threads and Communication Guide, moved into the [Rust Programming Language book](http://doc.rust-lang.org/book/concurrency.html)
+    * 2.1 Communication: `tutorial-tasks-02_1-communication.rs`
+    * 2.3 Sharing immutable data without copy: Arc: `tutorial-tasks-02_3-arc.rs`
 * [Book]
-    * [4.6](http://doc.rust-lang.org/book/concurrency.html#threads) Concurrency, threads: `book-4-6-threads.rs`
-    * [2.1](http://doc.rust-lang.org/guide-tasks.html#communication) Communication: `tutorial-tasks-02_1-communication.rs`
-    * [2.3](http://doc.rust-lang.org/guide-tasks.html#sharing-immutable-data-without-copy:-arc) Sharing immutable data without copy: Arc: `tutorial-tasks-02_3-arc.rs`
-* [Doc unit testing]
+    * [5.6](http://doc.rust-lang.org/book/concurrency.html#threads) Concurrency, threads: `book-5-6-threads.rs`
+* Doc unit testing, moved into the [Rust Programming Language book](http://doc.rust-lang.org/book/testing.html).
     * Unit testing in Rust: `unittests.rs`
-* [Rust Cheatsheet]
+* Old Rust Cheatsheet
     * Use Struct to express phantom types: `phantom_type.rs`
 * API
     * Program to an 'interface', not an 'implementation', by [Josh Davis](http://joshldavis.com/2013/07/01/program-to-an-interface-fool/): `lang-interface.rs`
@@ -38,10 +39,10 @@ Examples are tested with version 1.3.0.
     * Generics, Polymorphism, by [Felix S. Klock II](https://github.com/Rust-Meetup-Paris/Talks/tree/master/introduction_to_rust): `lang-generics.rs`
     * Overloading by [Rust By Example](http://rustbyexample.com/ops.html): `lang-overloading.rs`
     * Pointer snippets from Dave Herman's talk: `lang-pointers.rs`
-    * [collections:hashmap::HashMap](http://doc.rust-lang.org/collections/hashmap/struct.HashMap.html): `api-collections-hashmap.rs`
-    * [getopts](http://doc.rust-lang.org/getopts/index.html): `api-getopts.rs`
-    * [std::from_str::FromStr](http://doc.rust-lang.org/std/from_str/trait.FromStr.html): `api-std-from_str.rs`
-    * [std::fs::File](http://doc.rust-lang.org/std/fs/index.html): `api-std-fs-file.rs`
+    * [std::collections:HashMap](https://doc.rust-lang.org/std/collections/struct.HashMap.html): `api-collections-hashmap.rs`
+    * [getopts](http://doc.rust-lang.org/getopts/getopts/index.html): `api-getopts.rs`
+    * [std::FromStr](https://doc.rust-lang.org/core/str/trait.FromStr.htmll): `api-std-from_str.rs`
+    * [std::fs::File](http://doc.rust-lang.org/std/fs/struct.File.html): `api-std-fs-file.rs`
     * [std::vec](http://doc.rust-lang.org/std/vec/index.html): OwnedVector, 2D-arrays, ...: `api-std-vec.rs`
 * Some new files:
     * `Makefile` to compile, run tests and run benchmarks
@@ -58,12 +59,8 @@ Examples are tested with version 1.3.0.
     * Design pattern Template method: `design_pattern-templatemethod.rs`
     * Design pattern Chain of Command: `design_pattern-chain_of_command.rs`
 
-[Tutorial]: http://doc.rust-lang.org/tutorial.html
 [The Rust Reference Manual]: http://doc.rust-lang.org/rust.html
 [Book]: http://doc.rust-lang.org/book/
-[Doc unit testing]: http://doc.rust-lang.org/guide-testing.html
-[Rust Cheatsheet]: http://doc.rust-lang.org/complement-cheatsheet.html#how-do-i-express-phantom-types?
-
 
 # Compile and running it
 
