@@ -7,7 +7,7 @@ rust-examples [![Open HUB statistics](https://www.openhub.net/p/rust-examples/wi
 gather example codes from tutorial and other documentations of
 [Rust](http://www.rust-lang.org/) into files, ready to compile.
 
-Examples are tested with version 1.3.0.
+Examples are tested with version 1.13.0.
 
 ## Files
 
@@ -39,6 +39,7 @@ Examples are tested with version 1.3.0.
     * Generics, Polymorphism, by [Felix S. Klock II](https://github.com/Rust-Meetup-Paris/Talks/tree/master/introduction_to_rust): `lang-generics.rs`
     * Overloading by [Rust By Example](http://rustbyexample.com/ops.html): `lang-overloading.rs`
     * Pointer snippets from Dave Herman's talk: `lang-pointers.rs`
+    * Question mark operator introduced in [Rust-1.13](https://blog.rust-lang.org/2016/11/10/Rust-1.13.html): `lang-question_mark.rs`
     * [std::collections:HashMap](https://doc.rust-lang.org/std/collections/struct.HashMap.html): `api-collections-hashmap.rs`
     * [getopts](http://doc.rust-lang.org/getopts/getopts/index.html): `api-getopts.rs`
     * [std::FromStr](https://doc.rust-lang.org/core/str/trait.FromStr.htmll): `api-std-from_str.rs`
