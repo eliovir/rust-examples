@@ -43,7 +43,7 @@ pub fn fibonacci_reccursive(n: i32) -> u64 {
 		/*
 		50    => 12586269025,
 		*/
-		_     => fibonacci(n - 1) + fibonacci(n - 2)
+		_     => fibonacci_reccursive(n - 1) + fibonacci_reccursive(n - 2)
 	}
 }
 
