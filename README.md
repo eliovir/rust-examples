@@ -12,7 +12,7 @@ Examples are tested with version 1.13.0.
 ## Files
 
 * [Homepage](http://www.rust-lang.org/)
-    * `what_it_looks_like.rs`, `what_it_looks_like2.rs`
+    * `what_it_looks_like.rs`, `what_it_looks_like2.rs`, `what_it_looks_like3.rs`
 * Old Tutorial, deprecated in favor of the [Book]
     * 2.1 Compiling your first program: `tutorial-02_1-hello.rs`
     * 3   Syntax basics: `tutorial-03-syntax_basics.rs`
