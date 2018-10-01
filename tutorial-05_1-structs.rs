@@ -10,21 +10,21 @@
  */
 #[derive(Debug)]
 struct Point {
-	x: f64,
-	y: f64
+	x: i32,
+	y: i32
 }
 fn main() {
-	let mut mypoint = Point { x: 1.0, y: 1.0 };
-	let origin = Point { x: 0.0, y: 0.0 };
+	let mut mypoint = Point { x: 1, y: 1 };
+	let origin = Point { x: 0, y: 0 };
 
 	println!("origin = {:?}", origin);
 
-	mypoint.y += 1.0; // mypoint is mutable, and its fields as well
+	mypoint.y += 1; // mypoint is mutable, and its fields as well
 	//origin.y += 1.0; // ERROR: assigning to immutable field
 
 	// `match` patterns destructure structs.
 	match mypoint {
-		Point { x: 0.0, y: yy } => println!("{}", yy),
+		Point { x: 0, y: yy } => println!("{}", yy),
 		Point { x: xx,  y: yy } => println!("{} {}", xx, yy),
 	}
 

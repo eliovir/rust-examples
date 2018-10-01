@@ -13,13 +13,9 @@ struct Point { x: f64, y: f64 }
 
 fn angle(vector: (f64, f64)) -> f64 {
 	let pi = f64::consts::PI;
-	/*
-	 * A powerful application of pattern matching is destructuring:
-	 * matching in order to bind names to the contents of data types.
-	 */
 	match vector {
-		(0.0, y) if y < 0.0 => 1.5 * pi,
-		(0.0, _) => 0.5 * pi,
+		(x, y) if x == 0.0 && y < 0.0 => 1.5 * pi,
+		(x, _) if x == 0.0 => 0.5 * pi,
 		(x, y) => (y / x).atan()
 	}
 }
