@@ -58,11 +58,11 @@ pub fn fibonacci(n: i32) -> u64 {
 	} else if n == 1 {
 		return 1;
 	}
-	
+
 	let mut sum = 0;
 	let mut last = 0;
 	let mut curr = 1;
-	for _i in 0..n {
+	for _i in 1..n {
 		sum = last + curr;
 		last = curr;
 		curr = sum;
