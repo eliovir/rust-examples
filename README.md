@@ -7,7 +7,7 @@ rust-examples [![Open HUB statistics](https://www.openhub.net/p/rust-examples/wi
 gather example codes from tutorial and other documentations of
 [Rust](http://www.rust-lang.org/) into files, ready to compile.
 
-Examples are tested with version 1.13.0.
+Examples are tested with version 1.29.1.
 
 ## Files
 
@@ -59,13 +59,14 @@ Examples are tested with version 1.13.0.
     * Design pattern Command: `design_pattern-command.rs`
     * Design pattern Template method: `design_pattern-templatemethod.rs`
     * Design pattern Chain of Command: `design_pattern-chain_of_command.rs`
+    * Design pattern Visitor: `design_pattern-visitor.rs`
 
 [The Rust Reference Manual]: http://doc.rust-lang.org/rust.html
 [Book]: http://doc.rust-lang.org/book/
 
 # Compile and running it
 
-You will need the version 1.3.0 of the rust compiler.
+You will need the version 1.29.1 of the rust compiler.
 If you encounter problems, make sure you have the right version before creating an issue.
 
 The simplest way to build **rust-examples** is to do a clone and use ``make`` to compile:
