@@ -1,8 +1,12 @@
-/**
- * http://doc.rust-lang.org/getopts/getopts/index.html
- *
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- */
+//! https://crates.io/crates/getopts
+//! https://docs.rs/getopts/0.2.18/getopts/
+//!
+//! Tested with rust-1.3.0 and getopts-0.2.14
+//!
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+//!
+//! @since 2014-02-09
+
 extern crate getopts;
 use getopts::Options;
 use std::env;

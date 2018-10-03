@@ -41,7 +41,8 @@ Examples are tested with version 1.29.1.
     * Pointer snippets from Dave Herman's talk: `lang-pointers.rs`
     * Question mark operator introduced in [Rust-1.13](https://blog.rust-lang.org/2016/11/10/Rust-1.13.html): `lang-question_mark.rs`
     * [std::collections:HashMap](https://doc.rust-lang.org/std/collections/struct.HashMap.html): `api-collections-hashmap.rs`
-    * [getopts](http://doc.rust-lang.org/getopts/getopts/index.html): `api-getopts.rs`
+    * [getopts](https://docs.rs/getopts/0.2.14/getopts/): `api-getopts.rs`
+    * [rand](https://docs.rs/rand/0.3/rand/): `api-rand.rs`
     * [std::FromStr](https://doc.rust-lang.org/core/str/trait.FromStr.htmll): `api-std-from_str.rs`
     * [std::fs::File](http://doc.rust-lang.org/std/fs/struct.File.html): `api-std-fs-file.rs`
     * [std::vec](http://doc.rust-lang.org/std/vec/index.html): OwnedVector, 2D-arrays, ...: `api-std-vec.rs`

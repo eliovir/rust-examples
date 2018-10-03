@@ -65,6 +65,10 @@ build/api-getopts: api-getopts.rs build
 	$(CARGO) build --bin api-getopts
 	cp target/debug/api-getopts $@
 
+build/api-rand: api-rand.rs build
+	$(CARGO) build --bin api-rand
+	cp target/debug/api-rand $@
+
 build/book-3_1-guessing_game: book-3_1-guessing_game.rs build
 	$(CARGO) build --bin book-3_1-guessing_game
 	cp target/debug/book-3_1-guessing_game $@

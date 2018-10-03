@@ -16,6 +16,10 @@ name = "api-getopts"
 path = "api-getopts.rs"
 
 [[bin]]
+name = "api-rand"
+path = "api-rand.rs"
+
+[[bin]]
 name = "book-3_1-guessing_game"
 path = "book-3_1-guessing_game.rs"
 
