@@ -17,7 +17,7 @@
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 
-/**
+/*
 * Calcule les elements de la suite de Fibonnaci.
 *
 * REGLE rg_024 Le projet permet de calculer les membres de la Suite de
@@ -37,10 +37,13 @@
 * REGLE rg_024.6 : le calcul de n'importe quel element de la Suite de
 * Fibonacci, pour un rang inferieur a 50, doit s'effectuer en moins d'une
 * seconde.
-*
-* @param n le rang pour lequel on calcule le membre.
-* @return Le membre de rang n dans la Suite.
 */
+
+/// This code shows the wrong way to compute the Fibonacci sequence, the complexity is exponential.
+///
+/// It's here to play with `#[bench]`.
+///
+/// `n` the rank used to compute the member of the sequence.
 pub fn fibonacci_reccursive(n: i32) -> u64 {
 	if n < 0 {
 		panic!("{} is negative!", n);
@@ -56,9 +59,9 @@ pub fn fibonacci_reccursive(n: i32) -> u64 {
 	}
 }
 
-/**
- * Non reccursive function.
- */
+/// Non reccursive function.
+///
+/// `n` the rank used to compute the member of the sequence.
 pub fn fibonacci(n: i32) -> u64 {
 	if n < 0 {
 		panic!("{} is negative!", n);
@@ -79,10 +82,9 @@ pub fn fibonacci(n: i32) -> u64 {
 	sum
 }
 
-/**
- * Iterative fibonacci
- * https://github.com/rust-lang/rust-by-example
- */
+/// Iterative fibonacci.
+///
+/// https://github.com/rust-lang/rust-by-example
 pub struct Fibonacci {
 	curr: u64,
 	next: u64,
@@ -100,9 +102,7 @@ impl Iterator for Fibonacci {
 	}
 }
 
-/**
- * A "constructor" for Iiterative fibonacci
- */
+/// A "constructor" for Iterative fibonacci.
 pub fn iterative_fibonacci() -> Fibonacci {
 	Fibonacci { curr: 1, next: 1 }
 }
@@ -114,6 +114,7 @@ fn rg_024_x(n: i32, expected: u64) {
 	found = fibonacci(n);
 	assert!(expected == found, format!("fibibonacci({}): expected ({}) != found ({})", n, expected, found));
 }
+
 /**
  * Test du calcul de la suite de Fibonnaci.
  *
