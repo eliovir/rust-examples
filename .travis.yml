@@ -1,5 +1,5 @@
 language: rust
-rust: 1.29.1
+rust: 1.41.0
 env:
 global:
 - secure: YuWDOwPGprL6PiBZVeGaLOCHHgC18fQ6nq617tlt7XFCkG17r/xDWq3iiAyNxNUcwsD9CkWi5aXok8SlX3rQx84XC/sya2bi0+8Frt9EztcVxgMwWuX3Ll4mFHO7HnMhazoQYRPd0b0w4s7bFY2WidxCqjsMKRgAM26Gn+6oQto=
