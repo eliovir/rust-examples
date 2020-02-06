@@ -1,8 +1,17 @@
 #![crate_name="fibonacci"]
 #![crate_type = "lib"]
+#![cfg_attr(feature = "nightly", feature(test))]
+
 //! Compute fibonacci.
 //!
 //! The Fibonacci sequence is a sequence of numbers starting with 0 and 1 where every subsequent number is the sum of the previous two numbers.
+//!
+//! Tested with rust-1.41.0 and rust-1.41.0-nightly
+//! Nightly is needed to run benchmarks.
+//! https://doc.rust-lang.org/unstable-book/library-features/test.html
+//!
+//! To run the benchmark, use nightly version and
+//! `cargo bench --bin fibonacci --features=nightly`
 //!
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
 //!
@@ -154,10 +163,12 @@ fn rg_024_5() {
 	/*rg_024_x(55, 139583862445);*/
 	rg_024_x(30, 832040);
 }
-#[cfg(feature = "nightly")]
+
+#[cfg(feature="nightly")]
+#[cfg(test)]
 mod bench {
-    #[cfg(test)]
-    use test::Bencher;
+	extern crate test;
+    use self::test::Bencher;
     use super::*;
 
     // bench: find the `BENCH_SIZE` first terms of the fibonacci sequence

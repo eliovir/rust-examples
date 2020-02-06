@@ -1,7 +1,7 @@
 #![crate_type = "bin"]
 //! Example of design pattern inspired from Head First Design Patterns
 //!
-//! Tested with rust-1.14.0
+//! Tested with rust-1.41.1-nightly
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -33,7 +33,7 @@ impl FlyBehaviour for DoNotFly {
 
 // The object has reference to the variation.
 struct Duck {
-	fly_behaviour: Box<FlyBehaviour>,
+	fly_behaviour: Box<dyn FlyBehaviour>,
 }
 
 impl Duck {
@@ -41,7 +41,7 @@ impl Duck {
 	fn fly(&self) {
 		self.fly_behaviour.fly();
 	}
-	fn set_fly_behaviour(&mut self, fly_behaviour: Box<FlyBehaviour>) {
+	fn set_fly_behaviour(&mut self, fly_behaviour: Box<dyn FlyBehaviour>) {
 		self.fly_behaviour = fly_behaviour;
 	}
 }

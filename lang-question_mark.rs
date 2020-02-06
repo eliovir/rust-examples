@@ -29,10 +29,10 @@ fn read_username_from_file_with_matches() -> Result<String, io::Error> {
 }
 
 fn read_username_from_file_with_try() -> Result<String, io::Error> {
-	let mut f = try!(File::open("data/username.txt"));
+	let mut f = File::open("data/username.txt")?;
 	let mut s = String::new();
 
-	try!(f.read_to_string(&mut s));
+	f.read_to_string(&mut s)?;
 
 	Ok(s)
 }

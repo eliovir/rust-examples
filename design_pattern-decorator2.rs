@@ -1,6 +1,6 @@
 //! Example of design pattern inspired from Head First Design Patterns
 //!
-//! Tested with rust-1.3.0
+//! Tested with rust-1.41.1-nightly
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -39,7 +39,7 @@ struct Ingredient<'a> {
 	description: &'a str,
 	price: f64,
 	// to decorate an struct, it must have the common trait
-	drink: Box<Drinkable + 'a>,
+	drink: Box<dyn Drinkable + 'a>,
 }
 
 impl<'a> Drinkable for Ingredient<'a> {
@@ -56,7 +56,7 @@ impl<'a> Drinkable for Ingredient<'a> {
 
 impl<'a> Ingredient<'a> {
 	// The "constructor", optional but useful!
-	pub fn new(description: &'a str, price: f64, drink: Box<Drinkable + 'a>) -> Ingredient<'a> {
+	pub fn new(description: &'a str, price: f64, drink: Box<dyn Drinkable + 'a>) -> Ingredient<'a> {
 		Ingredient { description: description, price: price, drink: drink }
 	}
 }

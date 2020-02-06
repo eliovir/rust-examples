@@ -1,9 +1,11 @@
 CARGO=printf "\033[32;1mCargo:\033[33m %s\033[m\n" $@; cargo
+BENCH=printf "\033[32;1mBench:\033[33m %s\033[m\n" $@; cargo bench --features=nightly --bin
 RUSTC=printf "\033[32;1mRustc:\033[33m %s\033[m\n" $@; rustc
 LIBSRC:=$(shell grep -l 'crate_type = "lib"' *rs)
 LIBSTAMP=$(patsubst %.rs,lib-stamps/%,$(LIBSRC))
 TESTSRC:=$(shell grep -l '\#\[test\]' *.rs)
 TESTPROG:=$(patsubst %.rs,build/test-%,$(TESTSRC))
+BENCHMARKS=fibonacci find_max
 SRC=$(wildcard *.rs)
 SRC:=$(filter-out unittests.rs,$(SRC))
 PROG:=$(patsubst %.rs,build/%,$(SRC))
@@ -23,10 +25,10 @@ clean:
 	# Remove executables, test files, libraries
 	rm -fr $(PROG) $(TESTPROG) *.o *~ build/ doc/ lib/ lib-stamps/ target/
 
-bench: $(TESTPROG)
+bench:
 	# Run benchmarks
-	@for EXE in $(TESTPROG); do\
-		./$$EXE --bench;\
+	@for EXE in $(BENCHMARKS); do\
+		$(BENCH) $$EXE;\
 	done
 
 docs: $(SRC) $(LIBSRC)

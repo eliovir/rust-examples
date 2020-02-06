@@ -1,9 +1,10 @@
-/**
- * Code from "Introduction to Rust" delivered by Felix S. Klock II at the Rust Meetup Paris on Tuesday February 25, 2014.
- * http://rust-meetup-paris.github.io/Talks/introduction_to_rust/pnkfelix-meetup-2014feb.pdf
- * https://github.com/Rust-Meetup-Paris/Talks/tree/master/introduction_to_rust
- * @license Creative Commons Attribution 4.0 International License.
- */
+//! Code from "Introduction to Rust" delivered by Felix S. Klock II at the Rust Meetup Paris on Tuesday February 25, 2014.
+//! http://rust-meetup-paris.github.io/Talks/introduction_to_rust/pnkfelix-meetup-2014feb.pdf
+//! https://github.com/Rust-Meetup-Paris/Talks/tree/master/introduction_to_rust
+//!
+//! Tested with rust-1.41.1-nightly
+//!
+//! @license Creative Commons Attribution 4.0 International License.
 
 /**
  * Functions and data types can be abstracted over types, not just values.
@@ -56,7 +57,7 @@ fn add_as_euros<C: Currency>(a: &C, b: &C) -> Euros {
 	Euros{ amount: sum }
 }
 // To add Dollars and Euros, Generics can not be used.
-fn accumeuros(a: &Currency, b: &Currency) -> Euros {
+fn accumeuros(a: &dyn Currency, b: &dyn Currency) -> Euros {
 	let sum = a.to_euros().amount + b.to_euros().amount;
 	Euros{ amount: sum }
 }
@@ -79,5 +80,5 @@ fn main() {
 
 	let us100 = Dollars { amount: 100 };
 	let eu200 = Euros { amount: 200 };
-	println!("{:?}", accumeuros(&us100 as &Currency, &eu200 as &Currency));
+	println!("{:?}", accumeuros(&us100 as &dyn Currency, &eu200 as &dyn Currency));
 }

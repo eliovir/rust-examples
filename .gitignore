@@ -10,3 +10,4 @@ Cargo.lock
 /nbproject/private/
 *.o
 /target/
+/.idea/

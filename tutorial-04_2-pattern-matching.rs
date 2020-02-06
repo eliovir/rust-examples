@@ -1,9 +1,10 @@
-/**
- * 4.2 Pattern matching
- * http://doc.rust-lang.org/tutorial.html#pattern-matching
- *
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- */
+//! 4.2 Pattern matching
+//! http://doc.rust-lang.org/tutorial.html#pattern-matching
+//!
+//! Tested with rust-1.41.1-nightly
+//!
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+
 extern crate rand;
 
 use std::f64;
@@ -33,7 +34,7 @@ fn main() {
 	match my_number {
 		0     => println!("zero"),
 		1 | 2 => println!("one or two"),
-		3...10 => println!("three to ten"),
+		3..=10 => println!("three to ten"),
 		_     => println!("something else")
 	}
 	/*
@@ -49,7 +50,7 @@ fn main() {
 	let age: u32 = rand::thread_rng().gen_range(0, 100);
 	println!("age = {}", age);
 	match age {
-		a @ 0...20 => println!("{} years old", a),
+		a @ 0..=20 => println!("{} years old", a),
 		_ => println!("older than 21")
 	}
 

@@ -1,6 +1,6 @@
 //! Example of design pattern inspired from Head First Design Patterns
 //!
-//! Tested with rust-1.3.O
+//! Tested with rust-1.41.1-nightly
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -48,7 +48,7 @@ struct LightOnCommand {
 }
 impl LightOnCommand {
 	fn new(light: Light) -> LightOnCommand {
-		LightOnCommand { light: light }
+		LightOnCommand { light }
 	}
 }
 impl Command for LightOnCommand {
@@ -63,7 +63,7 @@ struct LightOffCommand {
 }
 impl LightOffCommand {
 	fn new(light: Light) -> LightOffCommand {
-		LightOffCommand { light: light }
+		LightOffCommand { light }
 	}
 }
 impl Command for LightOffCommand {
@@ -74,13 +74,13 @@ impl Command for LightOffCommand {
 
 // The command will be launched by a remote control.
 struct SimpleRemoteControl<'a> {
-	command: Box<Command + 'a>,
+	command: Box<dyn Command + 'a>,
 }
 impl<'a> SimpleRemoteControl<'a> {
 	fn new() -> SimpleRemoteControl<'a> {
 		SimpleRemoteControl { command: Box::new(NullCommand::new()) }
 	}
-	fn set_command(&mut self, cmd: Box<Command + 'a>) {
+	fn set_command(&mut self, cmd: Box<dyn Command + 'a>) {
 		self.command = cmd;
 	}
 	fn button_was_pressed(&self) {

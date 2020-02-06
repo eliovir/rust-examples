@@ -1,5 +1,11 @@
 #![crate_name="find_max"]
+#![cfg_attr(feature = "nightly", feature(test))]
+
 //! Test various syntaxes to find the maximum value of a vector using generic function.
+//!
+//! Tested with rust-1.41.0 and rust-1.41.0-nightly
+//! To run the benchmark, use nightly version and
+//! `cargo bench --bin find_max --features=nightly`
 //!
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
 
@@ -70,8 +76,8 @@ fn find_max3<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
  * Using std lib
  */
 #[cfg(feature = "nightly")]
-fn find_maxstd<'a, T: Ord>(lst: &'a Vec<T>) -> Option<&'a T> {
-    lst.iter().max_by(|x| *x)
+fn find_maxstd<T: Ord>(lst: &Vec<T>) -> Option<&T> {
+    lst.iter().max_by(|x, y| x.cmp(y))
 }
 
 #[test]
@@ -103,15 +109,19 @@ fn test_find_maxstd() {
 	assert_eq!(Some(&nine), find_maxstd(&v));
 }
 
-#[cfg(feature = "nightly")]
+#[cfg(feature="nightly")]
 #[cfg(test)]
 mod bench {
     extern crate test;
-    use test::Bencher;
+    use self::test::Bencher;
+	use super::*;
+
+	#[cfg(test)]
+	static SIZE: i32 = 100;
 
     #[bench]
     fn bench_find_max1(b: &mut Bencher) {
-        let v = vec!(0i32, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        let v = (0..SIZE).collect::<Vec<i32>>();
         b.iter(|| {
             find_max1(&v);
         });
@@ -119,7 +129,7 @@ mod bench {
 
     #[bench]
     fn bench_find_max2(b: &mut Bencher) {
-        let v = vec!(0i32, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+		let v = (0..SIZE).collect::<Vec<i32>>();
         b.iter(|| {
             find_max2(&v);
         });
@@ -127,11 +137,19 @@ mod bench {
 
     #[bench]
     fn bench_find_max3(b: &mut Bencher) {
-        let v = vec!(0i32, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+		let v = (0..SIZE).collect::<Vec<i32>>();
         b.iter(|| {
             find_max3(&v);
         });
     }
+
+	#[bench]
+	fn bench_find_maxstd(b: &mut Bencher) {
+		let v = (0..SIZE).collect::<Vec<i32>>();
+		b.iter(|| {
+			find_maxstd(&v);
+		});
+	}
 }
 
 #[cfg(not(test))]
@@ -140,6 +158,10 @@ fn main () {
 	println!("find_max1 -> {:?}", find_max1(&int_v));
 	println!("find_max2 -> {:?}", find_max2(&int_v));
 	println!("find_max3 -> {:?}", find_max3(&int_v));
+	#[cfg(feature="nightly")]
+	{
+		println!("find_maxstd -> {:?}", find_maxstd(&int_v));
+	}
 	let v = vec!("qehgesrhsetha", "bqthst", "cthersth");
 	let b = find_max3(&v);
 	println!("{:?}", b);

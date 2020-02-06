@@ -7,7 +7,7 @@ rust-examples [![Open HUB statistics](https://www.openhub.net/p/rust-examples/wi
 gather example codes from tutorial and other documentations of
 [Rust](http://www.rust-lang.org/) into files, ready to compile.
 
-Examples are tested with version 1.29.1.
+Examples are tested with version 1.41.0 and 1.41.0-nightly.
 
 ## Files
 
@@ -77,7 +77,7 @@ The simplest way to build **rust-examples** is to do a clone and use ``make`` to
     cd rust-examples
     make
 
-To run tests and benchmarks:
+To run tests and benchmarks (benchmarks need Nightly):
 
     make tests
     make bench

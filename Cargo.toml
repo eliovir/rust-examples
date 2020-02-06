@@ -8,7 +8,7 @@ authors = ["Eliovir <eliovir@gmail.com>"]
 path = "inifile"
 
 [dependencies]
-getopts = "0.2.14"
+getopts = "0.2.21"
 rand = "0.3"
 
 [[bin]]
@@ -24,9 +24,20 @@ name = "book-3_1-guessing_game"
 path = "book-3_1-guessing_game.rs"
 
 [[bin]]
+name ="fibonacci"
+path = "fibonacci.rs"
+
+[[bin]]
+name ="find_max"
+path = "find_max.rs"
+
+[[bin]]
 name = "tutorial-tasks-02_3-arc"
 path = "tutorial-tasks-02_3-arc.rs"
 
 [[bin]]
 name = "tutorial-04_2-pattern-matching"
 path = "tutorial-04_2-pattern-matching.rs"
+
+[features]
+nightly = []
