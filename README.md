@@ -7,7 +7,7 @@ rust-examples [![Open HUB statistics](https://www.openhub.net/p/rust-examples/wi
 gather example codes from tutorial and other documentations of
 [Rust](http://www.rust-lang.org/) into files, ready to compile.
 
-Examples are tested with version 1.41.0 and 1.41.0-nightly.
+Examples are tested with version 1.64.0 and 1.68.0-nightly.
 
 ## Files
 
@@ -67,7 +67,7 @@ Examples are tested with version 1.41.0 and 1.41.0-nightly.
 
 # Compile and running it
 
-You will need the version 1.29.1 of the rust compiler.
+You will need the version 1.30.0 of the rust compiler.
 If you encounter problems, make sure you have the right version before creating an issue.
 
 The simplest way to build **rust-examples** is to do a clone and use ``make`` to compile:

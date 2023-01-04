@@ -157,18 +157,18 @@ mod tests {
 		date.add_days(days);
 		let expected = "2013-10-26".to_string();
 		let found = date.to_string();
-		assert!(expected==found, format!("Adding {} days to {} should return {}, not {}", days, orig, expected, found));
+		assert!(expected==found, "Adding {} days to {} should return {}, not {}", days, orig, expected, found);
 	}
 	#[test]
 	fn get_day_of_year() {
 		let date = ::Date::new(2014, 01, 01);
 		let expected = 1;
 		let found = date.get_day_of_year();
-		assert!(expected==found, format!("{} must be day number {} of the year, not {}.", date, expected, found));
+		assert!(expected==found, "{} must be day number {} of the year, not {}.", date, expected, found);
 		let date = ::Date::new(2012, 12, 31);
 		let expected = 366;
 		let found = date.get_day_of_year();
-		assert!(expected==found, format!("{} must be day number {} of the year, not {}.", date, expected, found));
+		assert!(expected==found, "{} must be day number {} of the year, not {}.", date, expected, found);
 	}
 	#[test]
 	fn is_leap() {
@@ -191,7 +191,7 @@ mod tests {
 		let date = ::Date::new(2013, 10, 24);
 		let expected = "2013-10-24";
 		let found = date.to_string();
-		assert!(expected == found, format!("{}!={}", expected, found));
+		assert!(expected == found, "{}!={}", expected, found);
 	}
 	/*
 	 * Static methods
@@ -209,14 +209,14 @@ mod tests {
 		let date = ::Date::new(2013, 10, 24);
 		let expected = "2013-10-24".to_string();
 		let found = date.to_string();
-		assert!(expected == found, format!("{}!={}", expected, found));
+		assert!(expected == found, "{}!={}", expected, found);
 	}
 	#[test]
 	fn new_from_string() {
 		let date = ::Date::new_from_string("2013-10-24 23:24:34");
 		let expected = "2013-10-24".to_string();
 		let found = date.to_string();
-		assert!(expected == found, format!("{}!={}", expected, found));
+		assert!(expected == found, "{}!={}", expected, found);
 	}
 }
 

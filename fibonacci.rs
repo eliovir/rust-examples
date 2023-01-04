@@ -110,9 +110,9 @@ pub fn iterative_fibonacci() -> Fibonacci {
 #[cfg(test)]
 fn rg_024_x(n: i32, expected: u64) {
 	let mut found = fibonacci_reccursive(n);
-	assert!(expected == found, format!("fibibonacci_reccursive({}): expected ({}) != found ({})", n, expected, found));
+	assert!(expected == found, "fibibonacci_reccursive({}): expected ({}) != found ({})", n, expected, found);
 	found = fibonacci(n);
-	assert!(expected == found, format!("fibibonacci({}): expected ({}) != found ({})", n, expected, found));
+	assert!(expected == found, "fibibonacci({}): expected ({}) != found ({})", n, expected, found);
 }
 
 /**

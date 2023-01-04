@@ -44,7 +44,7 @@ test: $(TESTPROG)
 	# Run tests
 	@EXIT=0; for EXE in $(TESTPROG); do\
 		./$$EXE; RET=$$?; \
-		if test "$$RET" != "0"; then \
+		if [ "$$RET" -ne "0" ]; then \
 			EXIT=$$RET;\
 		fi;\
 	done; exit $$EXIT
@@ -53,7 +53,7 @@ trailing: $(SRC)
 	# Check trailing spaces
 	@NB=0; for FI in $(SRC); do \
 		grep -n '\s\+$$' $$FI; RET=$$?; \
-		if test "$$RET" == "0"; then \
+		if [ "$$RET" -eq "0" ]; then \
 			echo $$FI; \
 			NB=1; \
 		fi; \

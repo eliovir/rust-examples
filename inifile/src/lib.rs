@@ -202,7 +202,7 @@ impl<'a> IniFile<'a> {
 	 */
 	 pub fn remove_option(&mut self, section: String, option: String) -> bool {
 		if !self.has_section(&section) {
-			panic!("Section [{:?}] does not exist!");
+			panic!("Section [{:?}] does not exist!", section);
 		}
 	/*
 		if !self.has_option(section.to_string(), option.to_string()) {
@@ -258,7 +258,7 @@ impl<'a> IniFile<'a> {
 	 */
 	pub fn set(&mut self, section: String, option: String, value: String) {
 		if !self.has_section(&section) {
-			panic!("Section [{:?}] does not exist!");
+			panic!("Section [{:?}] does not exist!", section);
 		}
 		if !self.has_option(&section, &option) {
 			self.opts.get_mut(&section).unwrap().insert(option.clone(), value);
