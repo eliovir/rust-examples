@@ -1,7 +1,7 @@
 rust-examples [![Open HUB statistics](https://www.openhub.net/p/rust-examples/widgets/project_thin_badge.gif)](https://www.openhub.net/p/rust-examples/)
 =============
 
-[![Build Status](http://travis-ci.org/eliovir/rust-examples.png?branch=master)](https://travis-ci.org/eliovir/rust-examples)
+[![Build Status](https://app.travis-ci.com/eliovir/rust-examples.svg?branch=master)](https://app.travis-ci.com/github/eliovir/rust-examples)
 
 [Rust-examples](https://github.com/eliovir/rust-examples) is a repository to
 gather example codes from tutorial and other documentations of
