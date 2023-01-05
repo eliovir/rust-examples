@@ -1,4 +1,4 @@
-#![crate_name="fibonacci"]
+#![crate_name = "fibonacci"]
 #![crate_type = "lib"]
 #![cfg_attr(feature = "nightly", feature(test))]
 
@@ -45,74 +45,86 @@
 ///
 /// `n` the rank used to compute the member of the sequence.
 pub fn fibonacci_reccursive(n: i32) -> u64 {
-	if n < 0 {
-		panic!("{} is negative!", n);
-	}
-	match n {
-		0     => panic!("zero is not a right argument to fibonacci_reccursive()!"),
-		1 | 2 => 1,
-		3     => 2,
-		/*
-		50    => 12586269025,
-		*/
-		_     => fibonacci_reccursive(n - 1) + fibonacci_reccursive(n - 2)
-	}
+    if n < 0 {
+        panic!("{} is negative!", n);
+    }
+    match n {
+        0 => panic!("zero is not a right argument to fibonacci_reccursive()!"),
+        1 | 2 => 1,
+        3 => 2,
+        /*
+        50    => 12586269025,
+        */
+        _ => fibonacci_reccursive(n - 1) + fibonacci_reccursive(n - 2),
+    }
 }
 
 /// Non reccursive function.
 ///
 /// `n` the rank used to compute the member of the sequence.
 pub fn fibonacci(n: i32) -> u64 {
-	if n < 0 {
-		panic!("{} is negative!", n);
-	} else if n == 0 {
-		panic!("zero is not a right argument to fibonacci()!");
-	} else if n == 1 {
-		return 1;
-	}
+    if n < 0 {
+        panic!("{} is negative!", n);
+    } else if n == 0 {
+        panic!("zero is not a right argument to fibonacci()!");
+    } else if n == 1 {
+        return 1;
+    }
 
-	let mut sum = 0;
-	let mut last = 0;
-	let mut curr = 1;
-	for _i in 1..n {
-		sum = last + curr;
-		last = curr;
-		curr = sum;
-	}
-	sum
+    let mut sum = 0;
+    let mut last = 0;
+    let mut curr = 1;
+    for _i in 1..n {
+        sum = last + curr;
+        last = curr;
+        curr = sum;
+    }
+    sum
 }
 
 /// Iterative fibonacci.
 ///
 /// https://github.com/rust-lang/rust-by-example
 pub struct Fibonacci {
-	curr: u64,
-	next: u64,
+    curr: u64,
+    next: u64,
 }
 
 impl Iterator for Fibonacci {
-	type Item = u64;
-	fn next(&mut self) -> Option<u64> {
-		let new_next = self.curr + self.next;
+    type Item = u64;
+    fn next(&mut self) -> Option<u64> {
+        let new_next = self.curr + self.next;
 
-		self.curr = self.next;
-		self.next = new_next;
+        self.curr = self.next;
+        self.next = new_next;
 
-		Some(self.curr)
-	}
+        Some(self.curr)
+    }
 }
 
 /// A "constructor" for Iterative fibonacci.
 pub fn iterative_fibonacci() -> Fibonacci {
-	Fibonacci { curr: 1, next: 1 }
+    Fibonacci { curr: 1, next: 1 }
 }
 
 #[cfg(test)]
 fn rg_024_x(n: i32, expected: u64) {
-	let mut found = fibonacci_reccursive(n);
-	assert!(expected == found, "fibibonacci_reccursive({}): expected ({}) != found ({})", n, expected, found);
-	found = fibonacci(n);
-	assert!(expected == found, "fibibonacci({}): expected ({}) != found ({})", n, expected, found);
+    let mut found = fibonacci_reccursive(n);
+    assert!(
+        expected == found,
+        "fibibonacci_reccursive({}): expected ({}) != found ({})",
+        n,
+        expected,
+        found
+    );
+    found = fibonacci(n);
+    assert!(
+        expected == found,
+        "fibibonacci({}): expected ({}) != found ({})",
+        n,
+        expected,
+        found
+    );
 }
 
 /**
@@ -122,7 +134,7 @@ fn rg_024_x(n: i32, expected: u64) {
  */
 #[test]
 fn rg_024_1() {
-	rg_024_x(1, 1);
+    rg_024_x(1, 1);
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
@@ -131,7 +143,7 @@ fn rg_024_1() {
  */
 #[test]
 fn rg_024_2() {
-	rg_024_x(2, 1);
+    rg_024_x(2, 1);
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
@@ -140,7 +152,7 @@ fn rg_024_2() {
  */
 #[test]
 fn rg_024_3_a() {
-	rg_024_x(3, 2);
+    rg_024_x(3, 2);
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
@@ -151,8 +163,8 @@ fn rg_024_3_a() {
 #[test]
 #[should_panic]
 fn rg_024_4_a() {
-	fibonacci(-1);
-	fibonacci(0);
+    fibonacci(-1);
+    fibonacci(0);
 }
 /**
  * Test du calcul de la suite de Fibonnaci.
@@ -161,14 +173,14 @@ fn rg_024_4_a() {
  */
 #[test]
 fn rg_024_5() {
-	/*rg_024_x(55, 139583862445);*/
-	rg_024_x(30, 832040);
+    /*rg_024_x(55, 139583862445);*/
+    rg_024_x(30, 832040);
 }
 
-#[cfg(feature="nightly")]
+#[cfg(feature = "nightly")]
 #[cfg(test)]
 mod bench {
-	extern crate test;
+    extern crate test;
     use self::test::Bencher;
     use super::*;
 
@@ -198,5 +210,4 @@ mod bench {
             //iterative_fibonacci().take(BENCH_SIZE).collect::<Vec<u64>>()
         })
     }
-
 }
