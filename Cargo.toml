@@ -28,8 +28,12 @@ name ="fibonacci"
 path = "fibonacci.rs"
 
 [[bin]]
-name ="find_max"
+name = "find_max"
 path = "find_max.rs"
+
+[[bin]]
+name = "finite-state-machine"
+path = "finite-state-machine.rs"
 
 [[bin]]
 name = "tutorial-tasks-02_3-arc"

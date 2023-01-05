@@ -48,7 +48,7 @@ Examples are tested with version 1.64.0 and 1.68.0-nightly.
     * [std::vec](http://doc.rust-lang.org/std/vec/index.html): OwnedVector, 2D-arrays, ...: `api-std-vec.rs`
 * Some new files:
     * `Makefile` to compile, run tests and run benchmarks
-    * `.travis.yml` to add the repository to [Travis CI](https://travis-ci.org/eliovir/rust-examples) and [Rust CI](http://www.rust-ci.org/p/90/)
+    * `.travis.yml` to add the repository to [Travis CI](https://app.travis-ci.com/github/eliovir/rust-examples) and [Rust CI](http://www.rust-ci.org/p/90/)
     * A library and its unit tests and benchmarks for 2 Fibonacci functions (a reccursive and a non reccursive): `fibonacci.rs`
     * A struct to manage dates: `date.rs`
     * Different syntaxes to find the maximum value in a vector: `find_max.rs`
@@ -61,6 +61,7 @@ Examples are tested with version 1.64.0 and 1.68.0-nightly.
     * Design pattern Template method: `design_pattern-templatemethod.rs`
     * Design pattern Chain of Command: `design_pattern-chain_of_command.rs`
     * Design pattern Visitor: `design_pattern-visitor.rs`
+    * Finite state machine: [`finite-state-machine.rs`](finite-state-machine.rs)
 
 [The Rust Reference Manual]: http://doc.rust-lang.org/rust.html
 [Book]: http://doc.rust-lang.org/book/

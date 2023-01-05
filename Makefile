@@ -40,6 +40,10 @@ docs: $(SRC) $(LIBSRC)
 exe: $(PROG)
 	# Build executables
 
+format:
+	# Format sources with cargo-fmt
+	cargo fmt --all
+
 test: $(TESTPROG)
 	# Run tests
 	@EXIT=0; for EXE in $(TESTPROG); do\
@@ -74,6 +78,10 @@ build/api-rand: api-rand.rs build
 build/book-3_1-guessing_game: book-3_1-guessing_game.rs build
 	$(CARGO) build --bin book-3_1-guessing_game
 	cp target/debug/book-3_1-guessing_game $@
+
+build/finite-state-machine: finite-state-machine.rs build
+	$(CARGO) build --bin finite-state-machine
+	cp target/debug/finite-state-machine $@
 
 build/inifile: inifile.rs build
 	$(CARGO) build --bin inifile
