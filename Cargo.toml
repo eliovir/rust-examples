@@ -24,6 +24,10 @@ name = "book-3_1-guessing_game"
 path = "book-3_1-guessing_game.rs"
 
 [[bin]]
+name = "design_pattern-state"
+path = "design_pattern-state.rs"
+
+[[bin]]
 name ="fibonacci"
 path = "fibonacci.rs"
 

@@ -87,6 +87,10 @@ build/inifile: inifile.rs build
 	$(CARGO) build --bin inifile
 	cp target/debug/inifile $@
 
+build/design_pattern-state: design_pattern-state.rs build
+	$(CARGO) build --bin design_pattern-state
+	cp target/debug/design_pattern-state $@
+
 build/tutorial-tasks-02_2-backgrounding_computations: tutorial-tasks-02_2-backgrounding_computations.rs $(LIBSTAMP) build
 	$(RUSTC) $(RUSTFLAGS) $< -o $@ -L lib/
 

@@ -58,6 +58,7 @@ Examples are tested with version 1.64.0 and 1.68.0-nightly.
     * Design pattern Strategy: `design_pattern-strategy.rs`
     * Design pattern Observer: `design_pattern-observer.rs`
     * Design pattern Command: `design_pattern-command.rs`
+    * Design pattern State: [`design_pattern-state.rs`](design_pattern-state.rs)
     * Design pattern Template method: `design_pattern-templatemethod.rs`
     * Design pattern Chain of Command: `design_pattern-chain_of_command.rs`
     * Design pattern Visitor: `design_pattern-visitor.rs`
@@ -68,7 +69,7 @@ Examples are tested with version 1.64.0 and 1.68.0-nightly.
 
 # Compile and running it
 
-You will need the version 1.30.0 of the rust compiler.
+You will need the version 1.64.0 of the rust compiler.
 If you encounter problems, make sure you have the right version before creating an issue.
 
 The simplest way to build **rust-examples** is to do a clone and use ``make`` to compile:
