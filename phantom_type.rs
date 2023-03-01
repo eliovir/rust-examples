@@ -1,5 +1,4 @@
-//!
-//! http://doc.rust-lang.org/complement-cheatsheet.html#how-do-i-express-phantom-types?
+//! <http://doc.rust-lang.org/complement-cheatsheet.html#how-do-i-express-phantom-types?>
 use std::marker::PhantomData;
 
 // Phantom types are useful for enforcing state at compile time. For example:

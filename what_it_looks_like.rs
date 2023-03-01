@@ -1,5 +1,4 @@
-//!
-//! Example given on the homepage (2013-10-21) http://www.rust-lang.org/
+//! Example given on the homepage (2013-10-21) <http://www.rust-lang.org/>
 //!
 //! Tested with rust-1.3.0
 //!

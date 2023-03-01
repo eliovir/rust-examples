@@ -1,8 +1,7 @@
-/**
- * http://doc.rust-lang.org/std/fs/struct.File.html
- *
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- */
+//! <http://doc.rust-lang.org/std/fs/struct.File.html>
+//!
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+
 use std::io::BufReader;
 use std::io::prelude::*;
 use std::fs::File;

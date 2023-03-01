@@ -8,7 +8,7 @@
 //!
 //! Tested with rust-1.41.0 and rust-1.41.0-nightly
 //! Nightly is needed to run benchmarks.
-//! https://doc.rust-lang.org/unstable-book/library-features/test.html
+//! <https://doc.rust-lang.org/unstable-book/library-features/test.html>
 //!
 //! To run the benchmark, use nightly version and
 //! `cargo bench --bin fibonacci --features=nightly`
@@ -84,7 +84,7 @@ pub fn fibonacci(n: i32) -> u64 {
 
 /// Iterative fibonacci.
 ///
-/// https://github.com/rust-lang/rust-by-example
+/// <https://github.com/rust-lang/rust-by-example>
 pub struct Fibonacci {
     curr: u64,
     next: u64,

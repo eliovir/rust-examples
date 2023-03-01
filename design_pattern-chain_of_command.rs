@@ -1,6 +1,6 @@
 #![crate_type = "bin"]
 //! Example of design pattern inspired from PHP code of
-//! http://codersview.blogspot.fr/2009/05/chain-of-command-pattern-using-php.html
+//! <http://codersview.blogspot.fr/2009/05/chain-of-command-pattern-using-php.html>
 //!
 //! Tested with rust-1.41.1-nightly
 //!

@@ -1,10 +1,9 @@
-/**
- * Converting from String
- * http://doc.rust-lang.org/std/from_str/trait.FromStr.html
- * http://doc.rust-lang.org/std/primitive.str.html#method.parse
- *
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- **/
+//! Converting from String
+//! <http://doc.rust-lang.org/std/from_str/trait.FromStr.html>
+//! <http://doc.rust-lang.org/std/primitive.str.html#method.parse>
+//!
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+
 use std::num::ParseIntError;
 
 fn main() {

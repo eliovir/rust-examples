@@ -1,5 +1,5 @@
-//! https://crates.io/crates/getopts
-//! https://docs.rs/getopts/0.2.18/getopts/
+//! <https://crates.io/crates/getopts>
+//! <https://docs.rs/getopts/0.2.18/getopts/>
 //!
 //! Tested with rust-1.3.0 and getopts-0.2.14
 //!

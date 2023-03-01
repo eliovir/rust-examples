@@ -1,5 +1,5 @@
 //! Example of the new operator `?` added in Rust-1.13.0.
-//! See https://blog.rust-lang.org/2016/11/10/Rust-1.13.html
+//! See <https://blog.rust-lang.org/2016/11/10/Rust-1.13.html>
 
 use std::io::prelude::*;
 use std::fs::File;

@@ -1,7 +1,7 @@
-//! https://crates.io/crates/rand
-//! https://docs.rs/rand/0.3/rand/
+//! <https://crates.io/crates/rand>
+//! <https://docs.rs/rand/0.3/rand/>
 //!
-//! Tested with rust-1.29.1 and rand-0.3
+//! Tested with rust-1.29.1 and rand-0.8.5
 //!
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
 //!

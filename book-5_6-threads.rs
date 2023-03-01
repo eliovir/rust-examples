@@ -1,13 +1,12 @@
-/**
- * Concurrency
- * http://doc.rust-lang.org/book/concurrency.html
- *
- * was
- * Rust Tasks and Communication Tutorial - 2 Basics
- * http://doc.rust-lang.org/guide-tasks.html#basics
- *
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- */
+//! Concurrency
+//! <http://doc.rust-lang.org/book/concurrency.html>
+//!
+//! was
+//! Rust Tasks and Communication Tutorial - 2 Basics
+//! <http://doc.rust-lang.org/guide-tasks.html#basics>
+//!
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+
 use std::sync::{Arc, Mutex};
 use std::sync::mpsc;
 use std::thread;

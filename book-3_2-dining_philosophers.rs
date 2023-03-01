@@ -1,9 +1,8 @@
-/**
- * Dining Philosophers, a classic concurrency problem.
- *
- * http://doc.rust-lang.org/book/dining-philosophers.html
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- */
+//! Dining Philosophers, a classic concurrency problem.
+//!
+//! <http://doc.rust-lang.org/book/dining-philosophers.html>
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+
 struct Philosopher {
 	name: String,
 }

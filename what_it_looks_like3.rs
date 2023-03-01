@@ -1,4 +1,4 @@
-//! Example given on the homepage (2018-10-03) http://www.rust-lang.org/
+//! Example given on the homepage (2018-10-03) <http://www.rust-lang.org/>
 //!
 //! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
 fn main() {

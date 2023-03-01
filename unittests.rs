@@ -1,11 +1,10 @@
-/**
- * http://doc.rust-lang.org/guide-testing.html
- * http://doc.rust-lang.org/test/index.html
- * rustc unittests.rs --test -o unittests
- * ./unittests --test
- *
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- */
+//! <http://doc.rust-lang.org/guide-testing.html>
+//! <http://doc.rust-lang.org/test/index.html>
+//! rustc unittests.rs --test -o unittests
+//! ./unittests --test
+//!
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
+
 #[cfg(test)]
 mod tests {
 	#[test]

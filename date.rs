@@ -139,7 +139,7 @@ impl Date {
 /**
  * Operator overloading
  *
- * @see http://maniagnosis.crsr.net/2013/04/operator-overloading-in-rust.html
+ * @see <http://maniagnosis.crsr.net/2013/04/operator-overloading-in-rust.html>
  */
 impl fmt::Display for Date {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -1,6 +1,6 @@
 //! Code from "Introduction to Rust" delivered by Felix S. Klock II at the Rust Meetup Paris on Tuesday February 25, 2014.
-//! http://rust-meetup-paris.github.io/Talks/introduction_to_rust/pnkfelix-meetup-2014feb.pdf
-//! https://github.com/Rust-Meetup-Paris/Talks/tree/master/introduction_to_rust
+//! <http://rust-meetup-paris.github.io/Talks/introduction_to_rust/pnkfelix-meetup-2014feb.pdf>
+//! <https://github.com/Rust-Meetup-Paris/Talks/tree/master/introduction_to_rust>
 //!
 //! Tested with rust-1.41.1-nightly
 //!

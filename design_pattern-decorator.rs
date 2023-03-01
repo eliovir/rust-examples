@@ -4,7 +4,7 @@
 //!
 //! Tested with rust-1.3.0
 //!
-//! @see http://fr.wikipedia.org/wiki/D%C3%A9corateur_%28patron_de_conception%29#Exemple_en_PHP
+//! @see <http://fr.wikipedia.org/wiki/D%C3%A9corateur_%28patron_de_conception%29#Exemple_en_PHP>
 //!
 //! @author Eliovir <http://github.com/~eliovir>
 //!
@@ -30,10 +30,10 @@ struct UnderlinedMessage<T> {
 }
 
 // 17.2 Declaring and implementing traits
-// http://doc.rust-lang.org/tutorial.html#declaring-and-implementing-traits
+// <http://doc.rust-lang.org/tutorial.html#declaring-and-implementing-traits>
 impl<T:Printable> Printable for UnderlinedMessage<T> {
 	fn print(&self) -> String {
-		// http://doc.rust-lang.org/std/str/trait.StrSlice.html#tymethod.char_len
+		// <http://doc.rust-lang.org/std/str/trait.StrSlice.html#tymethod.char_len>
 		let mut message = self.decorated.print();
 		let length = message.len();
 		message.push_str("\n");

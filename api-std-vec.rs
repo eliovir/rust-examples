@@ -1,8 +1,6 @@
-/**
- * http://doc.rust-lang.org/std/vec/
- *
- * @license MIT license <http://www.opensource.org/licenses/mit-license.php>
- */
+//! <http://doc.rust-lang.org/std/vec/>
+//!
+//! @license MIT license <http://www.opensource.org/licenses/mit-license.php>
 
 /**
  * ~[~str] is an owned pointer, allocated on the send heap, can be sent accross tasks.
