@@ -19,7 +19,7 @@ fn pnorm(nums: &[f64], p: usize) -> f64 {
 
 fn main() {
     let numbers: Vec<f64> = (1..1000000)
-        .map(|_| rand::thread_rng().gen_range(1.0, 101.0))
+        .map(|_| rand::thread_rng().gen_range(1.0..=101.0))
         .collect();
     // With simple pipes, without Arc, a copy would have to be made for each thread.
     //

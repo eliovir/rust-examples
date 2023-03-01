@@ -9,7 +9,7 @@ path = "inifile"
 
 [dependencies]
 getopts = "0.2.21"
-rand = "0.3"
+rand = "0.8.5"
 
 [[bin]]
 name = "api-getopts"

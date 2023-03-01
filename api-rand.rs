@@ -9,10 +9,10 @@
 
 extern crate rand;
 
-use rand::Rng;
+use rand::prelude::*;
 
 fn main() {
-    let mut tmp_rand = rand::thread_rng();
+    let mut tmp_rand = thread_rng();
 
     let boolean: bool = tmp_rand.gen();
     println!("bool: {}", boolean);
@@ -29,7 +29,7 @@ fn main() {
     let float64: f64 = tmp_rand.gen::<f64>();
     println!("float32: {}\nfloat64: {}", float32, float64);
 
-    let int8_for_range: u8 = tmp_rand.gen_range(0, 127);
+    let int8_for_range: u8 = tmp_rand.gen_range(0..=127);
     println!("int8_for_range: {}", int8_for_range);
 
     let tuple = rand::random::<(f32, f32)>();

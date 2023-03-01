@@ -24,7 +24,7 @@ fn angle(vector: (f64, f64)) -> f64 {
     }
 }
 fn main() {
-    let my_number: u32 = rand::thread_rng().gen_range(0, 10);
+    let my_number: u32 = rand::thread_rng().gen_range(0..=10);
     println!("my_number = {}", my_number);
 
     /*
@@ -54,7 +54,7 @@ fn main() {
         }
     }
 
-    let age: u32 = rand::thread_rng().gen_range(0, 100);
+    let age: u32 = rand::thread_rng().gen_range(0..=100);
     println!("age = {}", age);
     match age {
         a @ 0..=20 => println!("{} years old", a),
